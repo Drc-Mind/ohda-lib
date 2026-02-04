@@ -1,0 +1,41 @@
+{
+  "name": "ohada-lib",
+  "version": "0.0.2",
+  "description": "A developer-friendly OHADA accounting library that transforms business events into type-safe journal entries, manages stock and expenses, and generates compliant financial reports",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "clean": "rimraf dist coverage",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcellintacite/ohada-lib.git"
+  },
+  "keywords": [
+    "Ohada"
+  ],
+  "author": "Aksanti bahiga Tacite",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcellintacite/ohada-lib/issues"
+  },
+  "homepage": "https://github.com/marcellintacite/ohada-lib#readme",
+  "devDependencies": {
+    "@types/node": "25.2.0",
+    "prettier": "3.8.1",
+    "rimraf": "6.1.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3",
+    "vitest": "4.0.18"
+  },
+  "dependencies": {
+    "decimal.js": "10.6.0",
+    "zod": "4.3.6"
+  }
+}
