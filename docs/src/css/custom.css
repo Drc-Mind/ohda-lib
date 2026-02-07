@@ -1,0 +1,68 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #101828;
+  --ifm-color-primary-dark: #0d1321;
+  --ifm-color-primary-darker: #0b111e;
+  --ifm-color-primary-darkest: #090d18;
+  --ifm-color-primary-light: #182230;
+  --ifm-color-primary-lighter: #1d2939;
+  --ifm-color-primary-lightest: #2a3a50;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --grid-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #53b1fd;
+  --ifm-color-primary-dark: #2e90fa;
+  --ifm-color-primary-darker: #1570ef;
+  --ifm-color-primary-darkest: #175cd3;
+  --ifm-color-primary-light: #84caff;
+  --ifm-color-primary-lighter: #b2ddff;
+  --ifm-color-primary-lightest: #d1e9ff;
+  --grid-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Dyte-like Grid Background */
+.dyte-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
+
+/* Ionic-like Sidebar and Clean Layout */
+.sidebar_src-theme-DocSidebar-styles-module {
+  border-right: 1px solid var(--ifm-toc-border-color);
+}
+
+.menu__link--active {
+  background-color: var(--ifm-color-primary-lighter);
+  color: #fff !important;
+}
+
+[data-theme='dark'] .menu__link--active {
+  background-color: var(--ifm-color-primary-darker);
+}
+
+.hero--dyte {
+  padding: 8rem 0;
+  text-align: center;
+  background-color: transparent;
+}
+
+.hero__title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .hero__title {
+  color: #fff;
+}
