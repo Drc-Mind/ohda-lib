@@ -17,25 +17,12 @@ export class AccountResolver {
   }
 
   private indexChart(chart: ChartOfAccounts) {
-    for (const accountClass of chart) {
-      this.indexNodes(accountClass.accounts);
+    for (const [code, name] of Object.entries(chart)) {
+      this.nameIndex.set(this.normalize(name), code);
+      this.codeMap.set(code, { code, name });
     }
   }
 
-  private indexNodes(nodes: AccountNode[]) {
-    for (const node of nodes) {
-      this.codeMap.set(node.code, node);
-      // Index exact name
-      this.nameIndex.set(this.normalize(node.name), node.code);
-      
-      // Index words? For now, just exact normalized full string.
-      // We can add more advanced indexing (e.g. keywords) if needed.
-
-      if (node.subaccounts) {
-        this.indexNodes(node.subaccounts);
-      }
-    }
-  }
 
   private normalize(text: string): string {
     return text
