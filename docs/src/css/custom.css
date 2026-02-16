@@ -1,68 +1,149 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #101828;
-  --ifm-color-primary-dark: #0d1321;
-  --ifm-color-primary-darker: #0b111e;
-  --ifm-color-primary-darkest: #090d18;
-  --ifm-color-primary-light: #182230;
-  --ifm-color-primary-lighter: #1d2939;
-  --ifm-color-primary-lightest: #2a3a50;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-primary: #004EEB;
+  --site-background: #ffffff;
+  --site-surface: #f9fafb;
+  --site-border: #eaecf0;
+  --site-text-main: #101828;
+  --site-text-muted: #667085;
+  --site-accent: #004EEB;
   --grid-color: rgba(0, 0, 0, 0.05);
+  
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Outfit', sans-serif;
+  --ifm-code-font-size: 90%;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #53b1fd;
-  --ifm-color-primary-dark: #2e90fa;
-  --ifm-color-primary-darker: #1570ef;
-  --ifm-color-primary-darkest: #175cd3;
-  --ifm-color-primary-light: #84caff;
-  --ifm-color-primary-lighter: #b2ddff;
-  --ifm-color-primary-lightest: #d1e9ff;
-  --grid-color: rgba(255, 255, 255, 0.05);
+  --site-background: #060910;
+  --site-surface: #0c111d;
+  --site-border: #1d2939;
+  --site-text-main: #f2f4f7;
+  --site-text-muted: #98a2b3;
+  --site-accent: #53b1fd;
+  --grid-color: rgba(255, 255, 255, 0.04);
+  --ifm-navbar-background-color: rgba(6, 9, 16, 0.8);
 }
 
-/* Dyte-like Grid Background */
+body {
+  background-color: var(--site-background);
+  color: var(--site-text-main);
+}
+
 .dyte-grid-bg {
-  background-size: 40px 40px;
+  background-size: 50px 50px;
   background-image: 
     linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
 
-/* Ionic-like Sidebar and Clean Layout */
-.sidebar_src-theme-DocSidebar-styles-module {
-  border-right: 1px solid var(--ifm-toc-border-color);
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.menu__link--active {
-  background-color: var(--ifm-color-primary-lighter);
-  color: #fff !important;
-}
-
-[data-theme='dark'] .menu__link--active {
-  background-color: var(--ifm-color-primary-darker);
-}
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
 
 .hero--dyte {
-  padding: 8rem 0;
-  text-align: center;
-  background-color: transparent;
+  padding: 10rem 0 6rem;
+  text-align: left;
+  background-color: var(--site-background);
+  position: relative;
 }
 
 .hero__title {
-  font-size: 4rem;
+  font-size: clamp(3.5rem, 10vw, 6.5rem);
   font-weight: 800;
-  color: var(--ifm-color-primary);
+  letter-spacing: -0.04em;
+  color: var(--site-text-main);
+  margin-bottom: 2rem;
+  line-height: 0.95;
 }
 
-[data-theme='dark'] .hero__title {
-  color: #fff;
+.hero__subtitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--site-text-muted);
+  max-width: 800px;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+.button--primary {
+  background-color: var(--site-text-main);
+  color: var(--site-background);
+  border: none;
+  border-radius: 99px;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.button--primary:hover {
+  opacity: 0.9;
+  color: var(--site-background);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--site-text-main);
+  border: 1px solid var(--site-border);
+  border-radius: 99px;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+}
+
+.button--secondary:hover {
+  background-color: var(--site-surface);
+  color: var(--site-text-main);
+  text-decoration: none;
+}
+
+/* Navbar blurring */
+.navbar {
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--site-border);
+  background-color: var(--ifm-navbar-background-color) !important;
+}
+
+.navbar__title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* Better Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  margin-bottom: 2rem;
+}
+
+/* Forced Dark Theme for Landing Page */
+.forced-dark-theme {
+  --site-background: #060910;
+  --site-surface: #0c111d;
+  --site-border: #1d2939;
+  --site-text-main: #f2f4f7;
+  --site-text-muted: #98a2b3;
+  --site-accent: #53b1fd;
+  --grid-color: rgba(255, 255, 255, 0.04);
+  background-color: var(--site-background);
+  color: var(--site-text-main);
+}
+
+.forced-dark-theme .hero--dyte {
+  background-color: var(--site-background);
 }

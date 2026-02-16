@@ -15,8 +15,17 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
+    'ohada-rules',
     'getting-started',
-    'core-concepts',
+    {
+      type: 'category',
+      label: 'Business Cases',
+      items: [
+        'sales',
+        'purchases',
+        'expenses',
+      ],
+    },
     'i18n',
     'API',
   ],

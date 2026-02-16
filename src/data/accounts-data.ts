@@ -1,0 +1,6928 @@
+export const CHART_OF_ACCOUNTS = [
+   {
+      "class":"1",
+      "name":"Comptes de ressources durables",
+      "accounts":[
+         {
+            "code":"10",
+            "name":"Capital",
+            "subaccounts":[
+               {
+                  "code":"101",
+                  "name":"Capital social",
+                  "subaccounts":[
+                     {
+                        "code":"1011",
+                        "name":"Capital souscrit, non appelé"
+                     },
+                     {
+                        "code":"1012",
+                        "name":"Capital souscrit, appelé, non versé"
+                     },
+                     {
+                        "code":"1013",
+                        "name":"Capital souscrit, appelé, versé, non amorti"
+                     },
+                     {
+                        "code":"1014",
+                        "name":"Capital souscrit, appelé, versé, amorti"
+                     },
+                     {
+                        "code":"1018",
+                        "name":"Capital souscrit soumis à des conditions particulières"
+                     }
+                  ]
+               },
+               {
+                  "code":"102",
+                  "name":"Capital par dotation",
+                  "subaccounts":[
+                     {
+                        "code":"1021",
+                        "name":"Dotation initiale"
+                     },
+                     {
+                        "code":"1022",
+                        "name":"Dotations complémentaires"
+                     },
+                     {
+                        "code":"1028",
+                        "name":"Autres dotations"
+                     }
+                  ]
+               },
+               {
+                  "code":"103",
+                  "name":"Capital personnel",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"104",
+                  "name":"Compte de l’exploitant",
+                  "subaccounts":[
+                     {
+                        "code":"1041",
+                        "name":"Apports temporaires"
+                     },
+                     {
+                        "code":"1042",
+                        "name":"Opérations courantes"
+                     },
+                     {
+                        "code":"1043",
+                        "name":"Rémunérations, impôts et autres charges personnelles"
+                     },
+                     {
+                        "code":"1047",
+                        "name":"Prélèvements d’autoconsommation"
+                     },
+                     {
+                        "code":"1048",
+                        "name":"Autres prélèvements"
+                     }
+                  ]
+               },
+               {
+                  "code":"105",
+                  "name":"Primes liées au capital social",
+                  "subaccounts":[
+                     {
+                        "code":"1051",
+                        "name":"Primes d’émission"
+                     },
+                     {
+                        "code":"1052",
+                        "name":"Primes d’apport"
+                     },
+                     {
+                        "code":"1053",
+                        "name":"Primes de fusion"
+                     },
+                     {
+                        "code":"1054",
+                        "name":"Primes de conversion"
+                     },
+                     {
+                        "code":"1058",
+                        "name":"Autres primes"
+                     }
+                  ]
+               },
+               {
+                  "code":"106",
+                  "name":"Écarts de réévaluation",
+                  "subaccounts":[
+                     {
+                        "code":"1061",
+                        "name":"Écarts de réévaluation légale"
+                     },
+                     {
+                        "code":"1062",
+                        "name":"Écarts de réévaluation libre"
+                     }
+                  ]
+               },
+               {
+                  "code":"109",
+                  "name":"Apporteurs, capital souscrit, non appelé",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"11",
+            "name":"Réserves",
+            "subaccounts":[
+               {
+                  "code":"111",
+                  "name":"Réserve légale",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"112",
+                  "name":"Réserves statutaires ou contractuelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"113",
+                  "name":"Réserves réglementées",
+                  "subaccounts":[
+                     {
+                        "code":"1131",
+                        "name":"Réserves de plus-values nettes à long terme"
+                     },
+                     {
+                        "code":"1132",
+                        "name":"Réserves d’attribution gratuite d’actions au personnel salarié et aux dirigeants"
+                     },
+                     {
+                        "code":"1133",
+                        "name":"Réserves consécutives à l’octroi de subventions d’investissement"
+                     },
+                     {
+                        "code":"1134",
+                        "name":"Réserves des valeurs mobilières donnant accès au capital"
+                     },
+                     {
+                        "code":"1138",
+                        "name":"Autres réserves réglementées"
+                     }
+                  ]
+               },
+               {
+                  "code":"118",
+                  "name":"Autres réserves",
+                  "subaccounts":[
+                     {
+                        "code":"1181",
+                        "name":"Réserves facultatives"
+                     },
+                     {
+                        "code":"1188",
+                        "name":"Réserves diverses"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"12",
+            "name":"Report à nouveau",
+            "subaccounts":[
+               {
+                  "code":"121",
+                  "name":"Report à nouveau créditeur",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"129",
+                  "name":"Report à nouveau débiteur",
+                  "subaccounts":[
+                     {
+                        "code":"1291",
+                        "name":"Perte nette à reporter"
+                     },
+                     {
+                        "code":"1292",
+                        "name":"Perte - Amortissements réputés différés"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"13",
+            "name":"Résultat net de l’exercice",
+            "subaccounts":[
+               {
+                  "code":"130",
+                  "name":"Résultat en instance d’affectation",
+                  "subaccounts":[
+                     {
+                        "code":"1301",
+                        "name":"Résultat en instance d’affectation : bénéfice"
+                     },
+                     {
+                        "code":"1309",
+                        "name":"Résultat en instance d’affectation : perte"
+                     }
+                  ]
+               },
+               {
+                  "code":"131",
+                  "name":"Résultat net : bénéfice",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"132",
+                  "name":"Marge commerciale (MC)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"133",
+                  "name":"Valeur ajoutée (VA)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"134",
+                  "name":"Excédent brut d’exploitation (EBE)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"135",
+                  "name":"Résultat d’exploitation (RE)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"136",
+                  "name":"Résultat financier (RF)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"137",
+                  "name":"Résultat des activités ordinaires (RAO)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"138",
+                  "name":"Résultat hors activités ordinaires (RHAO)",
+                  "subaccounts":[
+                     {
+                        "code":"1381",
+                        "name":"Résultat de fusion"
+                     },
+                     {
+                        "code":"1382",
+                        "name":"Résultat d’apport partiel d’actif"
+                     },
+                     {
+                        "code":"1383",
+                        "name":"Résultat de scission"
+                     },
+                     {
+                        "code":"1384",
+                        "name":"Résultat de liquidation"
+                     }
+                  ]
+               },
+               {
+                  "code":"139",
+                  "name":"Résultat net : perte",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"14",
+            "name":"Subventions d’investissement",
+            "subaccounts":[
+               {
+                  "code":"141",
+                  "name":"Subventions d’équipement",
+                  "subaccounts":[
+                     {
+                        "code":"1411",
+                        "name":"État"
+                     },
+                     {
+                        "code":"1412",
+                        "name":"Régions"
+                     },
+                     {
+                        "code":"1413",
+                        "name":"Départements"
+                     },
+                     {
+                        "code":"1414",
+                        "name":"Communes et collectivités publiques décentralisées"
+                     },
+                     {
+                        "code":"1415",
+                        "name":"Entités publiques ou mixtes"
+                     },
+                     {
+                        "code":"1416",
+                        "name":"Entités et organismes privés"
+                     },
+                     {
+                        "code":"1417",
+                        "name":"Organismes internationaux"
+                     },
+                     {
+                        "code":"1418",
+                        "name":"Autres"
+                     }
+                  ]
+               },
+               {
+                  "code":"148",
+                  "name":"Autres subventions d’investissement",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"15",
+            "name":"Provisions réglementées et fonds assimilés",
+            "subaccounts":[
+               {
+                  "code":"151",
+                  "name":"Amortissements dérogatoires",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"152",
+                  "name":"Plus-values de cession à réinvestir",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"153",
+                  "name":"Fonds réglementés",
+                  "subaccounts":[
+                     {
+                        "code":"1531",
+                        "name":"Fonds National"
+                     },
+                     {
+                        "code":"1532",
+                        "name":"Prélèvement pour le Budget"
+                     }
+                  ]
+               },
+               {
+                  "code":"154",
+                  "name":"Provisions spéciales de réévaluation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"155",
+                  "name":"Provisions réglementées relatives aux immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"1551",
+                        "name":"Reconstitution des gisements miniers et pétroliers"
+                     }
+                  ]
+               },
+               {
+                  "code":"156",
+                  "name":"Provisions réglementées relatives aux stocks",
+                  "subaccounts":[
+                     {
+                        "code":"1561",
+                        "name":"Hausse de prix"
+                     },
+                     {
+                        "code":"1562",
+                        "name":"Fluctuation des cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"157",
+                  "name":"Provisions pour investissement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"158",
+                  "name":"Autres provisions et fonds réglementés",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"16",
+            "name":"Emprunts et dettes assimilées",
+            "subaccounts":[
+               {
+                  "code":"161",
+                  "name":"Emprunts obligataires",
+                  "subaccounts":[
+                     {
+                        "code":"1611",
+                        "name":"Emprunts obligataires ordinaires"
+                     },
+                     {
+                        "code":"1612",
+                        "name":"Emprunts obligataires convertibles en actions"
+                     },
+                     {
+                        "code":"1613",
+                        "name":"Emprunts obligataires remboursables en actions"
+                     },
+                     {
+                        "code":"1618",
+                        "name":"Autres emprunts obligataires"
+                     }
+                  ]
+               },
+               {
+                  "code":"162",
+                  "name":"Emprunts et dettes auprès des établissements de crédit",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"163",
+                  "name":"Avances reçues de l’État",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"164",
+                  "name":"Avances reçues et comptes courants bloqués",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"165",
+                  "name":"Dépôts et cautionnements reçus",
+                  "subaccounts":[
+                     {
+                        "code":"1651",
+                        "name":"Dépôts"
+                     },
+                     {
+                        "code":"1652",
+                        "name":"Cautionnements"
+                     }
+                  ]
+               },
+               {
+                  "code":"166",
+                  "name":"Intérêts courus",
+                  "subaccounts":[
+                     {
+                        "code":"1661",
+                        "name":"Sur emprunts obligataires"
+                     },
+                     {
+                        "code":"1662",
+                        "name":"Sur emprunts et dettes auprès des établissements de crédit"
+                     },
+                     {
+                        "code":"1663",
+                        "name":"Sur avances reçues de l’État"
+                     },
+                     {
+                        "code":"1664",
+                        "name":"Sur avances reçues et comptes courants bloqués"
+                     },
+                     {
+                        "code":"1665",
+                        "name":"Sur dépôts et cautionnements reçus"
+                     },
+                     {
+                        "code":"1667",
+                        "name":"Sur avances assorties de conditions particulières"
+                     },
+                     {
+                        "code":"1668",
+                        "name":"Sur autres emprunts et dettes"
+                     }
+                  ]
+               },
+               {
+                  "code":"167",
+                  "name":"Avances assorties de conditions particulières",
+                  "subaccounts":[
+                     {
+                        "code":"1671",
+                        "name":"Avances bloquées pour augmentation du capital"
+                     },
+                     {
+                        "code":"1672",
+                        "name":"Avances conditionnées par l’État"
+                     },
+                     {
+                        "code":"1673",
+                        "name":"Avances conditionnées par les autres organismes africains"
+                     },
+                     {
+                        "code":"1674",
+                        "name":"Avances conditionnées par les organismes internationaux"
+                     }
+                  ]
+               },
+               {
+                  "code":"168",
+                  "name":"Autres emprunts et dettes",
+                  "subaccounts":[
+                     {
+                        "code":"1681",
+                        "name":"Rentes viagères capitalisées"
+                     },
+                     {
+                        "code":"1682",
+                        "name":"Billets de fonds"
+                     },
+                     {
+                        "code":"1683",
+                        "name":"Dettes consécutives à des titres empruntés"
+                     },
+                     {
+                        "code":"1684",
+                        "name":"Emprunts participatifs"
+                     },
+                     {
+                        "code":"1685",
+                        "name":"Participation des travailleurs aux bénéfices"
+                     },
+                     {
+                        "code":"1686",
+                        "name":"Emprunts et dettes contractés auprès des autres tiers"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"17",
+            "name":"Dettes de location acquisition",
+            "subaccounts":[
+               {
+                  "code":"172",
+                  "name":"Dettes de location acquisition / crédit - bail immobilier",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"173",
+                  "name":"Dettes de location acquisition / crédit - bail mobilier",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"174",
+                  "name":"Dettes de location acquisition / location de vente",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"176",
+                  "name":"Intérêts courus",
+                  "subaccounts":[
+                     {
+                        "code":"1762",
+                        "name":"Sur dettes de location acquisition / crédit-bail immobilier"
+                     },
+                     {
+                        "code":"1763",
+                        "name":"Sur dettes de location acquisition / crédit-bail mobilier"
+                     },
+                     {
+                        "code":"1764",
+                        "name":"Sur dettes de location acquisition / location-vente"
+                     },
+                     {
+                        "code":"1768",
+                        "name":"Sur autres dettes de location acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"178",
+                  "name":"Autres dettes de location acquisition",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"18",
+            "name":"Dettes liées à des participations et comptes de liaison",
+            "subaccounts":[
+               {
+                  "code":"181",
+                  "name":"Dettes liées à des participations",
+                  "subaccounts":[
+                     {
+                        "code":"1811",
+                        "name":"Dettes liées à des participations (groupe)"
+                     },
+                     {
+                        "code":"1812",
+                        "name":"Dettes liées à des participations (hors groupe)"
+                     }
+                  ]
+               },
+               {
+                  "code":"182",
+                  "name":"Dettes liées à des sociétés en participation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"183",
+                  "name":"Intérêts courus sur dettes liées à des participations",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"184",
+                  "name":"Comptes permanents bloqués des établissements et succursales",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"185",
+                  "name":"Comptes permanents non bloqués des établissements et succursales",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"186",
+                  "name":"Comptes de liaison charges",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"187",
+                  "name":"Comptes de liaison produits",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"188",
+                  "name":"Comptes de liaison des sociétés en participation",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"19",
+            "name":"Provisions pour risques et charges",
+            "subaccounts":[
+               {
+                  "code":"191",
+                  "name":"Provisions pour litiges",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"192",
+                  "name":"Provisions pour garanties données aux clients",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"193",
+                  "name":"Provisions pour pertes sur marchés à achèvement futur",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"194",
+                  "name":"Provisions pour pertes de change",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"195",
+                  "name":"Provisions pour impôts",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"196",
+                  "name":"Provisions pour pensions et obligations similaires",
+                  "subaccounts":[
+                     {
+                        "code":"1961",
+                        "name":"Provisions pour pensions et obligations similaires - engagement de retraite"
+                     },
+                     {
+                        "code":"1962",
+                        "name":"Actif du régime de retraite"
+                     }
+                  ]
+               },
+               {
+                  "code":"197",
+                  "name":"Provisions pour restructuration",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"198",
+                  "name":"Autres provisions pour risques et charges",
+                  "subaccounts":[
+                     {
+                        "code":"1981",
+                        "name":"Provisions pour amendes et pénalités"
+                     },
+                     {
+                        "code":"1983",
+                        "name":"Provisions pour propre assureur"
+                     },
+                     {
+                        "code":"1984",
+                        "name":"Provisions pour démantèlement et remise en état"
+                     },
+                     {
+                        "code":"1985",
+                        "name":"Provisions pour droits à réduction ou avantage en nature"
+                     },
+                     {
+                        "code":"1988",
+                        "name":"Provisions pour divers risques et charges"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"2",
+      "name":"Comptes d’actif immobilisé",
+      "accounts":[
+         {
+            "code":"21",
+            "name":"Immobilisations incorporelles",
+            "subaccounts":[
+               {
+                  "code":"211",
+                  "name":"Frais de développement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"212",
+                  "name":"Brevets, licences, concessions et droits similaires",
+                  "subaccounts":[
+                     {
+                        "code":"2121",
+                        "name":"Brevets"
+                     },
+                     {
+                        "code":"2122",
+                        "name":"Licences"
+                     },
+                     {
+                        "code":"2123",
+                        "name":"Concessions de service public"
+                     },
+                     {
+                        "code":"2128",
+                        "name":"Autres concessions et droits similaires"
+                     }
+                  ]
+               },
+               {
+                  "code":"213",
+                  "name":"Logiciels et sites internet",
+                  "subaccounts":[
+                     {
+                        "code":"2131",
+                        "name":"Logiciels"
+                     },
+                     {
+                        "code":"2132",
+                        "name":"Sites internet"
+                     }
+                  ]
+               },
+               {
+                  "code":"214",
+                  "name":"Marques",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"215",
+                  "name":"Fonds commercial",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"216",
+                  "name":"Droit au bail",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"217",
+                  "name":"Investissements de création",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"218",
+                  "name":"Autres droits et valeurs incorporels",
+                  "subaccounts":[
+                     {
+                        "code":"2181",
+                        "name":"Frais de prospection et d’évaluation de ressources minérales"
+                     },
+                     {
+                        "code":"2182",
+                        "name":"Coûts d’obtention du contrat"
+                     },
+                     {
+                        "code":"2183",
+                        "name":"Fichiers clients, notices, titres de journaux et magazines"
+                     },
+                     {
+                        "code":"2184",
+                        "name":"Coûts des franchises"
+                     },
+                     {
+                        "code":"2188",
+                        "name":"Divers droits et valeurs incorporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"219",
+                  "name":"Immobilisations incorporelles en cours",
+                  "subaccounts":[
+                     {
+                        "code":"2191",
+                        "name":"Frais de développement"
+                     },
+                     {
+                        "code":"2193",
+                        "name":"Logiciels et internet"
+                     },
+                     {
+                        "code":"2198",
+                        "name":"Autres droits et valeurs incorporels"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"22",
+            "name":"Terrains",
+            "subaccounts":[
+               {
+                  "code":"221",
+                  "name":"Terrains agricoles et forestiers",
+                  "subaccounts":[
+                     {
+                        "code":"2211",
+                        "name":"Terrains d’exploitation agricole"
+                     },
+                     {
+                        "code":"2212",
+                        "name":"Terrains d’exploitation forestière"
+                     },
+                     {
+                        "code":"2218",
+                        "name":"Autres terrains"
+                     }
+                  ]
+               },
+               {
+                  "code":"222",
+                  "name":"Terrains nus",
+                  "subaccounts":[
+                     {
+                        "code":"2221",
+                        "name":"Terrains à bâtir"
+                     },
+                     {
+                        "code":"2228",
+                        "name":"Autres terrains nus"
+                     }
+                  ]
+               },
+               {
+                  "code":"223",
+                  "name":"Terrains bâtis",
+                  "subaccounts":[
+                     {
+                        "code":"2231",
+                        "name":"Pour bâtiments industriels et agricoles"
+                     },
+                     {
+                        "code":"2232",
+                        "name":"Pour bâtiments administratifs et commerciaux"
+                     },
+                     {
+                        "code":"2234",
+                        "name":"Pour bâtiments affectés aux autres opérations professionnelles"
+                     },
+                     {
+                        "code":"2235",
+                        "name":"Pour bâtiments affectés aux autres opérations non professionnelles"
+                     },
+                     {
+                        "code":"2238",
+                        "name":"Autres terrains bâtis"
+                     }
+                  ]
+               },
+               {
+                  "code":"224",
+                  "name":"Travaux de mise en valeur des terrains",
+                  "subaccounts":[
+                     {
+                        "code":"2241",
+                        "name":"Plantation d’arbres et d’arbustes"
+                     },
+                     {
+                        "code":"2245",
+                        "name":"Améliorations du fonds"
+                     },
+                     {
+                        "code":"2248",
+                        "name":"Autres travaux"
+                     }
+                  ]
+               },
+               {
+                  "code":"225",
+                  "name":"Terrains de carrières - tréfonds",
+                  "subaccounts":[
+                     {
+                        "code":"2251",
+                        "name":"Carrières"
+                     }
+                  ]
+               },
+               {
+                  "code":"226",
+                  "name":"Terrains aménagés",
+                  "subaccounts":[
+                     {
+                        "code":"2261",
+                        "name":"Parkings"
+                     }
+                  ]
+               },
+               {
+                  "code":"227",
+                  "name":"Terrains mis en concession",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"228",
+                  "name":"Autres terrains",
+                  "subaccounts":[
+                     {
+                        "code":"2281",
+                        "name":"Terrains - immeubles de placement"
+                     },
+                     {
+                        "code":"2285",
+                        "name":"Terrains des logements affectés au personnel"
+                     },
+                     {
+                        "code":"2286",
+                        "name":"Terrains de location - acquisition"
+                     },
+                     {
+                        "code":"2288",
+                        "name":"Divers terrains"
+                     }
+                  ]
+               },
+               {
+                  "code":"229",
+                  "name":"Aménagements de terrains en cours",
+                  "subaccounts":[
+                     {
+                        "code":"2291",
+                        "name":"Terrains agricoles et forestiers"
+                     },
+                     {
+                        "code":"2292",
+                        "name":"Terrains nus"
+                     },
+                     {
+                        "code":"2295",
+                        "name":"Terrains de carrières - tréfonds"
+                     },
+                     {
+                        "code":"2298",
+                        "name":"Autres terrains"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"23",
+            "name":"Bâtiments, installations techniques et agencements",
+            "subaccounts":[
+               {
+                  "code":"231",
+                  "name":"Bâtiments industriels, agricoles, administratifs et commerciaux sur sol propre",
+                  "subaccounts":[
+                     {
+                        "code":"2311",
+                        "name":"Bâtiments industriels"
+                     },
+                     {
+                        "code":"2312",
+                        "name":"Bâtiments agricoles"
+                     },
+                     {
+                        "code":"2313",
+                        "name":"Bâtiments administratifs et commerciaux"
+                     },
+                     {
+                        "code":"2314",
+                        "name":"Bâtiments affectés au logement du personnel"
+                     },
+                     {
+                        "code":"2315",
+                        "name":"Bâtiments - immeubles de placement"
+                     },
+                     {
+                        "code":"2316",
+                        "name":"Bâtiments de location - acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"232",
+                  "name":"Bâtiments industriels, agricoles, administratifs et commerciaux sur sol d’autrui",
+                  "subaccounts":[
+                     {
+                        "code":"2321",
+                        "name":"Bâtiments industriels"
+                     },
+                     {
+                        "code":"2322",
+                        "name":"Bâtiments agricoles"
+                     },
+                     {
+                        "code":"2323",
+                        "name":"Bâtiments administratifs et commerciaux"
+                     },
+                     {
+                        "code":"2324",
+                        "name":"Bâtiments affectés au logement du personnel"
+                     },
+                     {
+                        "code":"2325",
+                        "name":"Bâtiments - immeubles de placement"
+                     },
+                     {
+                        "code":"2326",
+                        "name":"Bâtiments de location - acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"233",
+                  "name":"Ouvrages d’infrastructure",
+                  "subaccounts":[
+                     {
+                        "code":"2331",
+                        "name":"Voies de terre"
+                     },
+                     {
+                        "code":"2332",
+                        "name":"Voies de fer"
+                     },
+                     {
+                        "code":"2333",
+                        "name":"Voies d’eau"
+                     },
+                     {
+                        "code":"2334",
+                        "name":"Barrages, Digues"
+                     },
+                     {
+                        "code":"2335",
+                        "name":"Pistes d’aérodrome"
+                     },
+                     {
+                        "code":"2338",
+                        "name":"Autres ouvrages d’infrastructures"
+                     }
+                  ]
+               },
+               {
+                  "code":"234",
+                  "name":"Aménagements, agencements et installations techniques",
+                  "subaccounts":[
+                     {
+                        "code":"2341",
+                        "name":"Installations complexes spécialisées sur sol propre"
+                     },
+                     {
+                        "code":"2342",
+                        "name":"Installations complexes spécialisées sur sol d’autrui"
+                     },
+                     {
+                        "code":"2343",
+                        "name":"Installations à caractère spécifique sur sol propre"
+                     },
+                     {
+                        "code":"2344",
+                        "name":"Installations à caractère spécifique sur sol d’autrui"
+                     },
+                     {
+                        "code":"2345",
+                        "name":"Aménagements et agencements des bâtiments"
+                     }
+                  ]
+               },
+               {
+                  "code":"235",
+                  "name":"Aménagements de bureaux",
+                  "subaccounts":[
+                     {
+                        "code":"2351",
+                        "name":"Installations générales"
+                     },
+                     {
+                        "code":"2358",
+                        "name":"Autres aménagements de bureaux"
+                     }
+                  ]
+               },
+               {
+                  "code":"237",
+                  "name":"Bâtiments industriels, agricoles et commerciaux mis en concession",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"238",
+                  "name":"Autres installations et agencements",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"239",
+                  "name":"Bâtiments aménagements, agencements et installations en cours",
+                  "subaccounts":[
+                     {
+                        "code":"2391",
+                        "name":"Bâtiments en cours"
+                     },
+                     {
+                        "code":"2392",
+                        "name":"Installations en cours"
+                     },
+                     {
+                        "code":"2393",
+                        "name":"Ouvrages d’infrastructure en cours"
+                     },
+                     {
+                        "code":"2394",
+                        "name":"Aménagements et agencements et installations techniques en cours"
+                     },
+                     {
+                        "code":"2395",
+                        "name":"Aménagements de bureaux en cours"
+                     },
+                     {
+                        "code":"2398",
+                        "name":"Autres installations et agencements en cours"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"24",
+            "name":"Matériel, mobilier et actifs biologiques",
+            "subaccounts":[
+               {
+                  "code":"241",
+                  "name":"Matériel et outillage industriel et commercial",
+                  "subaccounts":[
+                     {
+                        "code":"2411",
+                        "name":"Matériel industriel"
+                     },
+                     {
+                        "code":"2412",
+                        "name":"Outillage industriel"
+                     },
+                     {
+                        "code":"2413",
+                        "name":"Matériel commercial"
+                     },
+                     {
+                        "code":"2414",
+                        "name":"Outillage commercial"
+                     },
+                     {
+                        "code":"2416",
+                        "name":"Matériel & outillage industriel et commercial de location-acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"242",
+                  "name":"Matériel et outillage agricole",
+                  "subaccounts":[
+                     {
+                        "code":"2421",
+                        "name":"Matériel agricole"
+                     },
+                     {
+                        "code":"2422",
+                        "name":"Outillage agricole"
+                     },
+                     {
+                        "code":"2426",
+                        "name":"Matériel & outillage agricole de location-acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"243",
+                  "name":"Matériel d’emballage récupérable et identifiable",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"244",
+                  "name":"Matériel et mobilier",
+                  "subaccounts":[
+                     {
+                        "code":"2441",
+                        "name":"Matériel de bureau"
+                     },
+                     {
+                        "code":"2442",
+                        "name":"Matériel informatique"
+                     },
+                     {
+                        "code":"2443",
+                        "name":"Matériel bureautique"
+                     },
+                     {
+                        "code":"2444",
+                        "name":"Mobilier de bureau"
+                     },
+                     {
+                        "code":"2445",
+                        "name":"Matériel et mobilier - immeubles de placement"
+                     },
+                     {
+                        "code":"2446",
+                        "name":"Matériel et mobilier de location - acquisition"
+                     },
+                     {
+                        "code":"2447",
+                        "name":"Matériel et mobilier des logements du personnel"
+                     }
+                  ]
+               },
+               {
+                  "code":"245",
+                  "name":"Matériel de transport",
+                  "subaccounts":[
+                     {
+                        "code":"2451",
+                        "name":"Matériel automobile"
+                     },
+                     {
+                        "code":"2452",
+                        "name":"Matériel ferroviaire"
+                     },
+                     {
+                        "code":"2453",
+                        "name":"Matériel fluvial, lagunaire"
+                     },
+                     {
+                        "code":"2454",
+                        "name":"Matériel naval"
+                     },
+                     {
+                        "code":"2455",
+                        "name":"Matériel aérien"
+                     },
+                     {
+                        "code":"2456",
+                        "name":"Matériel de transport de location-acquisition"
+                     },
+                     {
+                        "code":"2457",
+                        "name":"Matériel hippomobile"
+                     },
+                     {
+                        "code":"2458",
+                        "name":"Autres matériels de transport"
+                     }
+                  ]
+               },
+               {
+                  "code":"246",
+                  "name":"Actifs biologiques",
+                  "subaccounts":[
+                     {
+                        "code":"2461",
+                        "name":"Cheptel, animaux de trait"
+                     },
+                     {
+                        "code":"2462",
+                        "name":"Cheptel, animaux reproducteurs"
+                     },
+                     {
+                        "code":"2463",
+                        "name":"Animaux de garde"
+                     },
+                     {
+                        "code":"2465",
+                        "name":"Plantations agricoles"
+                     },
+                     {
+                        "code":"2468",
+                        "name":"Autres actifs biologiques"
+                     }
+                  ]
+               },
+               {
+                  "code":"247",
+                  "name":"Agencements, aménagements du matériel et actifs biologiques",
+                  "subaccounts":[
+                     {
+                        "code":"2471",
+                        "name":"Agencements et aménagements du matériel"
+                     },
+                     {
+                        "code":"2472",
+                        "name":"Agencements et aménagements des actifs biologiques"
+                     },
+                     {
+                        "code":"2478",
+                        "name":"Autres agencements, aménagements du matériel et actifs biologiques"
+                     }
+                  ]
+               },
+               {
+                  "code":"248",
+                  "name":"Autres matériels et mobiliers",
+                  "subaccounts":[
+                     {
+                        "code":"2481",
+                        "name":"Collections et œuvres d’art"
+                     },
+                     {
+                        "code":"2488",
+                        "name":"Divers matériels mobiliers"
+                     }
+                  ]
+               },
+               {
+                  "code":"249",
+                  "name":"Matériels et actifs biologiques en cours",
+                  "subaccounts":[
+                     {
+                        "code":"2491",
+                        "name":"Matériel et outillage industriel et commercial"
+                     },
+                     {
+                        "code":"2492",
+                        "name":"Matériel et outillage agricole"
+                     },
+                     {
+                        "code":"2493",
+                        "name":"Matériel d’emballage récupérable et identifiable"
+                     },
+                     {
+                        "code":"2494",
+                        "name":"Matériel et mobilier de bureau"
+                     },
+                     {
+                        "code":"2495",
+                        "name":"Matériel de transport"
+                     },
+                     {
+                        "code":"2496",
+                        "name":"Actifs biologiques"
+                     },
+                     {
+                        "code":"2497",
+                        "name":"Agencements aménagements du matériel et actifs biologiques"
+                     },
+                     {
+                        "code":"2498",
+                        "name":"Autres matériels et actifs biologiques en cours"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"25",
+            "name":"Avances et acomptes versés sur immobilisations",
+            "subaccounts":[
+               {
+                  "code":"251",
+                  "name":"Avances et acomptes versés sur immobilisations incorporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"252",
+                  "name":"Avances et acomptes versés sur immobilisations corporelles",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"26",
+            "name":"Titres de participation",
+            "subaccounts":[
+               {
+                  "code":"261",
+                  "name":"Titres de participation dans des sociétés sous contrôle exclusif",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"262",
+                  "name":"Titres de participation dans des sociétés sous contrôle conjoint",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"263",
+                  "name":"Titres de participation dans des sociétés conférant une influence notable",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"265",
+                  "name":"Participations dans des organismes professionnels",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"266",
+                  "name":"Parts dans des groupements d’intérêt économique (GIE)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"268",
+                  "name":"Autres titres de participation",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"27",
+            "name":"Autres immobilisations financières",
+            "subaccounts":[
+               {
+                  "code":"271",
+                  "name":"Prêts et créances",
+                  "subaccounts":[
+                     {
+                        "code":"2711",
+                        "name":"Prêts participatifs"
+                     },
+                     {
+                        "code":"2712",
+                        "name":"Prêts aux associés"
+                     },
+                     {
+                        "code":"2713",
+                        "name":"Billets de fonds"
+                     },
+                     {
+                        "code":"2714",
+                        "name":"Titres prêtés"
+                     },
+                     {
+                        "code":"2718",
+                        "name":"Autres prêts et créances"
+                     }
+                  ]
+               },
+               {
+                  "code":"272",
+                  "name":"Prêts au personnel",
+                  "subaccounts":[
+                     {
+                        "code":"2721",
+                        "name":"Prêts immobiliers"
+                     },
+                     {
+                        "code":"2722",
+                        "name":"Prêts mobiliers et d’installation"
+                     },
+                     {
+                        "code":"2728",
+                        "name":"Autres prêts au personnel"
+                     }
+                  ]
+               },
+               {
+                  "code":"273",
+                  "name":"Créances sur l’État",
+                  "subaccounts":[
+                     {
+                        "code":"2731",
+                        "name":"Retenues de garantie"
+                     },
+                     {
+                        "code":"2733",
+                        "name":"Fonds réglementé"
+                     },
+                     {
+                        "code":"2734",
+                        "name":"Créances sur le concédant"
+                     },
+                     {
+                        "code":"2738",
+                        "name":"Autres créances sur l’État"
+                     }
+                  ]
+               },
+               {
+                  "code":"274",
+                  "name":"Titres immobilisés",
+                  "subaccounts":[
+                     {
+                        "code":"2741",
+                        "name":"Titres immobilisés de l’activité de portefeuille (TIAP)"
+                     },
+                     {
+                        "code":"2742",
+                        "name":"Titres participatifs"
+                     },
+                     {
+                        "code":"2743",
+                        "name":"Certificats d’investissement"
+                     },
+                     {
+                        "code":"2744",
+                        "name":"Parts de fonds commun de placement (FCP)"
+                     },
+                     {
+                        "code":"2745",
+                        "name":"Obligations"
+                     },
+                     {
+                        "code":"2746",
+                        "name":"Actions ou parts propres"
+                     },
+                     {
+                        "code":"2748",
+                        "name":"Autres titres immobilisés"
+                     }
+                  ]
+               },
+               {
+                  "code":"275",
+                  "name":"Dépôts et cautionnements versés",
+                  "subaccounts":[
+                     {
+                        "code":"2751",
+                        "name":"Dépôts pour loyers d’avance"
+                     },
+                     {
+                        "code":"2752",
+                        "name":"Dépôts pour l’électricité"
+                     },
+                     {
+                        "code":"2753",
+                        "name":"Dépôts pour l’eau"
+                     },
+                     {
+                        "code":"2754",
+                        "name":"Dépôts pour le gaz"
+                     },
+                     {
+                        "code":"2755",
+                        "name":"Dépôts pour le téléphone, le télex, la télécopie"
+                     },
+                     {
+                        "code":"2756",
+                        "name":"Cautionnements sur marchés publics"
+                     },
+                     {
+                        "code":"2757",
+                        "name":"Cautionnements sur autres opérations"
+                     },
+                     {
+                        "code":"2758",
+                        "name":"Autres dépôts et cautionnements"
+                     }
+                  ]
+               },
+               {
+                  "code":"276",
+                  "name":"Intérêts courus",
+                  "subaccounts":[
+                     {
+                        "code":"2761",
+                        "name":"Prêts et créances non commerciales"
+                     },
+                     {
+                        "code":"2762",
+                        "name":"Prêts au personnel"
+                     },
+                     {
+                        "code":"2763",
+                        "name":"Créances sur l’État"
+                     },
+                     {
+                        "code":"2764",
+                        "name":"Titres immobilisés"
+                     },
+                     {
+                        "code":"2765",
+                        "name":"Dépôts et cautionnements versés"
+                     },
+                     {
+                        "code":"2767",
+                        "name":"Créances rattachées à des participations"
+                     },
+                     {
+                        "code":"2768",
+                        "name":"Immobilisations financières diverses"
+                     }
+                  ]
+               },
+               {
+                  "code":"277",
+                  "name":"Créances rattachées à des participations et avances à des GIE",
+                  "subaccounts":[
+                     {
+                        "code":"2771",
+                        "name":"Créances rattachées à des participations (groupe)"
+                     },
+                     {
+                        "code":"2772",
+                        "name":"Créances rattachées à des participations (hors groupe)"
+                     },
+                     {
+                        "code":"2773",
+                        "name":"Créances rattachées à des sociétés en participation"
+                     },
+                     {
+                        "code":"2774",
+                        "name":"Avances à des Groupements d’intérêt économique (GIE)"
+                     }
+                  ]
+               },
+               {
+                  "code":"278",
+                  "name":"Immobilisations financières diverses",
+                  "subaccounts":[
+                     {
+                        "code":"2781",
+                        "name":"Créances diverses groupe"
+                     },
+                     {
+                        "code":"2782",
+                        "name":"Créances diverses hors groupe"
+                     },
+                     {
+                        "code":"2784",
+                        "name":"Banques dépôts à terme"
+                     },
+                     {
+                        "code":"2785",
+                        "name":"Or et métaux précieux [1]"
+                     },
+                     {
+                        "code":"2788",
+                        "name":"Autres immobilisations financières"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"28",
+            "name":"Amortissements",
+            "subaccounts":[
+               {
+                  "code":"281",
+                  "name":"Amortissements des immobilisations incorporelles",
+                  "subaccounts":[
+                     {
+                        "code":"2811",
+                        "name":"Amortissements des frais de développement"
+                     },
+                     {
+                        "code":"2812",
+                        "name":"Amortissements des brevets, licences, concessions et droits similaires"
+                     },
+                     {
+                        "code":"2813",
+                        "name":"Amortissements des logiciels et sites internet"
+                     },
+                     {
+                        "code":"2814",
+                        "name":"Amortissements des marques"
+                     },
+                     {
+                        "code":"2815",
+                        "name":"Amortissements du fonds commercial"
+                     },
+                     {
+                        "code":"2816",
+                        "name":"Amortissements du droit au bail"
+                     },
+                     {
+                        "code":"2817",
+                        "name":"Amortissements des investissements de création"
+                     },
+                     {
+                        "code":"2818",
+                        "name":"Amortissements des autres droits et valeurs incorporels"
+                     }
+                  ]
+               },
+               {
+                  "code":"282",
+                  "name":"Amortissements des terrains",
+                  "subaccounts":[
+                     {
+                        "code":"2824",
+                        "name":"Amortissements des travaux de mise en valeur des terrains"
+                     }
+                  ]
+               },
+               {
+                  "code":"283",
+                  "name":"Amortissements des bâtiments, installations techniques et agencements",
+                  "subaccounts":[
+                     {
+                        "code":"2831",
+                        "name":"Amortissements des bâtiments industriels, agricoles, administratifs et commerciaux sur sol propre"
+                     },
+                     {
+                        "code":"2832",
+                        "name":"Amortissements des bâtiments industriels, agricoles, administratifs et commerciaux sur sol d’autrui"
+                     },
+                     {
+                        "code":"2833",
+                        "name":"Amortissements des ouvrages d’infrastructure"
+                     },
+                     {
+                        "code":"2834",
+                        "name":"Amortissements des aménagements, agencements et installations techniques"
+                     },
+                     {
+                        "code":"2835",
+                        "name":"Amortissements des aménagements de bureaux"
+                     },
+                     {
+                        "code":"2837",
+                        "name":"Amortissements des bâtiments industriels, agricoles et commerciaux mis en concession"
+                     },
+                     {
+                        "code":"2838",
+                        "name":"Amortissements des autres installations et agencements"
+                     }
+                  ]
+               },
+               {
+                  "code":"284",
+                  "name":"Amortissements du matériel",
+                  "subaccounts":[
+                     {
+                        "code":"2841",
+                        "name":"Amortissements du matériel et outillage industriel et commercial"
+                     },
+                     {
+                        "code":"2842",
+                        "name":"Amortissements du matériel et outillage agricole"
+                     },
+                     {
+                        "code":"2843",
+                        "name":"Amortissements du matériel d’emballage récupérable et identifiable"
+                     },
+                     {
+                        "code":"2844",
+                        "name":"Amortissements du matériel et mobilier"
+                     },
+                     {
+                        "code":"2845",
+                        "name":"Amortissements du matériel de transport"
+                     },
+                     {
+                        "code":"2846",
+                        "name":"Amortissements des actifs biologiques"
+                     },
+                     {
+                        "code":"2847",
+                        "name":"Amortissements des agencements et aménagements du matériel et des actifs biologiques"
+                     },
+                     {
+                        "code":"2848",
+                        "name":"Amortissements des autres matériels"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"29",
+            "name":"Dépréciations des immobilisations",
+            "subaccounts":[
+               {
+                  "code":"291",
+                  "name":"Dépréciations des immobilisations incorporelles",
+                  "subaccounts":[
+                     {
+                        "code":"2911",
+                        "name":"Dépréciations des frais de développement"
+                     },
+                     {
+                        "code":"2912",
+                        "name":"Dépréciations des brevets, licences, concessions et droits similaires"
+                     },
+                     {
+                        "code":"2913",
+                        "name":"Dépréciations des logiciels et sites internet"
+                     },
+                     {
+                        "code":"2914",
+                        "name":"Dépréciations des marques"
+                     },
+                     {
+                        "code":"2915",
+                        "name":"Dépréciations du fonds commercial"
+                     },
+                     {
+                        "code":"2916",
+                        "name":"Dépréciations du droit au bail"
+                     },
+                     {
+                        "code":"2917",
+                        "name":"Dépréciations des investissements de création"
+                     },
+                     {
+                        "code":"2918",
+                        "name":"Dépréciations des autres droits et valeurs incorporels"
+                     },
+                     {
+                        "code":"2919",
+                        "name":"Dépréciations des immobilisations incorporelles en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"292",
+                  "name":"Dépréciations des terrains",
+                  "subaccounts":[
+                     {
+                        "code":"2921",
+                        "name":"Dépréciations des terrains agricoles et forestiers"
+                     },
+                     {
+                        "code":"2922",
+                        "name":"Dépréciations des terrains nus"
+                     },
+                     {
+                        "code":"2923",
+                        "name":"Dépréciations des terrains bâtis"
+                     },
+                     {
+                        "code":"2924",
+                        "name":"Dépréciations des travaux de mise en valeur des terrains"
+                     },
+                     {
+                        "code":"2925",
+                        "name":"Dépréciations des terrains de gisement"
+                     },
+                     {
+                        "code":"2926",
+                        "name":"Dépréciations des terrains aménagés"
+                     },
+                     {
+                        "code":"2927",
+                        "name":"Dépréciations des terrains mis en concession"
+                     },
+                     {
+                        "code":"2928",
+                        "name":"Dépréciations des autres terrains"
+                     },
+                     {
+                        "code":"2929",
+                        "name":"Dépréciations des aménagements de terrains en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"293",
+                  "name":"Dépréciations des bâtiments, installations techniques et agencements",
+                  "subaccounts":[
+                     {
+                        "code":"2931",
+                        "name":"Dépréciations des bâtiments industriels, agricoles, administratifs et commerciaux sur sol propre"
+                     },
+                     {
+                        "code":"2932",
+                        "name":"Dépréciations des bâtiments industriels, agricoles, administratifs et commerciaux sur sol d’autrui"
+                     },
+                     {
+                        "code":"2933",
+                        "name":"Dépréciations des ouvrages d’infrastructures"
+                     },
+                     {
+                        "code":"2934",
+                        "name":"Dépréciations des aménagements, agencements et installations techniques"
+                     },
+                     {
+                        "code":"2935",
+                        "name":"Dépréciations des aménagements de bureaux"
+                     },
+                     {
+                        "code":"2937",
+                        "name":"Dépréciations des bâtiments industriels, agricoles et commerciaux mis en concession"
+                     },
+                     {
+                        "code":"2938",
+                        "name":"Dépréciations des autres installations et agencements"
+                     },
+                     {
+                        "code":"2939",
+                        "name":"Dépréciations des bâtiments et installations en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"294",
+                  "name":"Dépréciations de matériel, du mobilier et de l’actif biologique",
+                  "subaccounts":[
+                     {
+                        "code":"2941",
+                        "name":"Dépréciations du matériel et outillage industriel et commercial"
+                     },
+                     {
+                        "code":"2942",
+                        "name":"Dépréciations du matériel et outillage agricole"
+                     },
+                     {
+                        "code":"2943",
+                        "name":"Dépréciations du matériel d’emballage récupérable et identifiable"
+                     },
+                     {
+                        "code":"2944",
+                        "name":"Dépréciations du matériel et mobilier"
+                     },
+                     {
+                        "code":"2945",
+                        "name":"Dépréciations du matériel de transport"
+                     },
+                     {
+                        "code":"2946",
+                        "name":"Dépréciations des actifs biologiques"
+                     },
+                     {
+                        "code":"2947",
+                        "name":"Dépréciations des agencements et aménagements du matériel et des actifs biologiques"
+                     },
+                     {
+                        "code":"2948",
+                        "name":"Dépréciations des autres matériels"
+                     },
+                     {
+                        "code":"2949",
+                        "name":"Dépréciations de matériel en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"295",
+                  "name":"Dépréciations des avances et acomptes versés sur immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"2951",
+                        "name":"Dépréciations des avances et acomptes versés sur immobilisations incorporelles"
+                     },
+                     {
+                        "code":"2952",
+                        "name":"Dépréciations des avances et acomptes versés sur immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"296",
+                  "name":"Dépréciations des titres de participation",
+                  "subaccounts":[
+                     {
+                        "code":"2961",
+                        "name":"Dépréciations des titres de participation dans des sociétés sous contrôle exclusif"
+                     },
+                     {
+                        "code":"2962",
+                        "name":"Dépréciations des titres de participation dans des sociétés sous contrôle conjoint"
+                     },
+                     {
+                        "code":"2963",
+                        "name":"Dépréciations des titres de participation dans des sociétés conférant une influence notable"
+                     },
+                     {
+                        "code":"2965",
+                        "name":"Dépréciations des participations dans des organismes professionnels"
+                     },
+                     {
+                        "code":"2966",
+                        "name":"Dépréciations des parts dans des GIE"
+                     },
+                     {
+                        "code":"2968",
+                        "name":"Dépréciations des autres titres de participation"
+                     }
+                  ]
+               },
+               {
+                  "code":"297",
+                  "name":"Dépréciations des autres immobilisations financières",
+                  "subaccounts":[
+                     {
+                        "code":"2971",
+                        "name":"Dépréciations des prêts et créances"
+                     },
+                     {
+                        "code":"2972",
+                        "name":"Dépréciations des prêts au personnel"
+                     },
+                     {
+                        "code":"2973",
+                        "name":"Dépréciations des créances sur l’État"
+                     },
+                     {
+                        "code":"2974",
+                        "name":"Dépréciations des titres immobilisés"
+                     },
+                     {
+                        "code":"2975",
+                        "name":"Dépréciations des dépôts et cautionnements versés"
+                     },
+                     {
+                        "code":"2977",
+                        "name":"Dépréciations des créances rattachées à des participations et avances à des GIE"
+                     },
+                     {
+                        "code":"2978",
+                        "name":"Dépréciations des créances financières diverses"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"3",
+      "name":"Comptes de stocks",
+      "accounts":[
+         {
+            "code":"31",
+            "name":"Marchandises",
+            "subaccounts":[
+               {
+                  "code":"311",
+                  "name":"Marchandises A",
+                  "subaccounts":[
+                     {
+                        "code":"3111",
+                        "name":"Marchandises A1"
+                     },
+                     {
+                        "code":"3112",
+                        "name":"Marchandises A2"
+                     }
+                  ]
+               },
+               {
+                  "code":"312",
+                  "name":"Marchandises B",
+                  "subaccounts":[
+                     {
+                        "code":"3121",
+                        "name":"Marchandises B1"
+                     },
+                     {
+                        "code":"3122",
+                        "name":"Marchandises B2"
+                     }
+                  ]
+               },
+               {
+                  "code":"313",
+                  "name":"Actifs biologiques",
+                  "subaccounts":[
+                     {
+                        "code":"3131",
+                        "name":"Animaux"
+                     },
+                     {
+                        "code":"3132",
+                        "name":"Végétaux"
+                     }
+                  ]
+               },
+               {
+                  "code":"318",
+                  "name":"Marchandises hors activités ordinaires (HAO)",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"32",
+            "name":"Matières premières et fournitures liées",
+            "subaccounts":[
+               {
+                  "code":"321",
+                  "name":"Matières A",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"322",
+                  "name":"Matières B",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"323",
+                  "name":"Fournitures (A, B)",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"33",
+            "name":"Autres approvisionnements",
+            "subaccounts":[
+               {
+                  "code":"331",
+                  "name":"Matières consommables",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"332",
+                  "name":"Fournitures d’atelier et d’usine",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"333",
+                  "name":"Fournitures de magasin",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"334",
+                  "name":"Fournitures de bureau",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"335",
+                  "name":"Emballages",
+                  "subaccounts":[
+                     {
+                        "code":"3351",
+                        "name":"Emballages perdus"
+                     },
+                     {
+                        "code":"3352",
+                        "name":"Emballages récupérables non identifiables"
+                     },
+                     {
+                        "code":"3353",
+                        "name":"Emballages à usage mixte"
+                     },
+                     {
+                        "code":"3358",
+                        "name":"Autres emballages"
+                     }
+                  ]
+               },
+               {
+                  "code":"338",
+                  "name":"Autres matières",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"34",
+            "name":"Produits en cours",
+            "subaccounts":[
+               {
+                  "code":"341",
+                  "name":"Produits en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3411",
+                        "name":"Produits en cours P1"
+                     },
+                     {
+                        "code":"3412",
+                        "name":"Produits en cours P2"
+                     }
+                  ]
+               },
+               {
+                  "code":"342",
+                  "name":"Travaux en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3421",
+                        "name":"Travaux en cours T1"
+                     },
+                     {
+                        "code":"3422",
+                        "name":"Travaux en cours T2"
+                     }
+                  ]
+               },
+               {
+                  "code":"343",
+                  "name":"Produits intermédiaires en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3431",
+                        "name":"Produits intermédiaires A"
+                     },
+                     {
+                        "code":"3432",
+                        "name":"Produits intermédiaires B"
+                     }
+                  ]
+               },
+               {
+                  "code":"344",
+                  "name":"Produits résiduels en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3441",
+                        "name":"Produits résiduels A"
+                     },
+                     {
+                        "code":"3442",
+                        "name":"Produits résiduels B"
+                     }
+                  ]
+               },
+               {
+                  "code":"345",
+                  "name":"Actifs biologiques en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3451",
+                        "name":"Animaux"
+                     },
+                     {
+                        "code":"3452",
+                        "name":"Végétaux"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"35",
+            "name":"Services en cours",
+            "subaccounts":[
+               {
+                  "code":"351",
+                  "name":"Études en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3511",
+                        "name":"Études en cours E1"
+                     },
+                     {
+                        "code":"3512",
+                        "name":"Études en cours E2"
+                     }
+                  ]
+               },
+               {
+                  "code":"352",
+                  "name":"Prestations de services en cours",
+                  "subaccounts":[
+                     {
+                        "code":"3521",
+                        "name":"Prestations de services S1"
+                     },
+                     {
+                        "code":"3522",
+                        "name":"Prestations de services S2"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"36",
+            "name":"Produits finis",
+            "subaccounts":[
+               {
+                  "code":"361",
+                  "name":"Produits finis A",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"362",
+                  "name":"Produits finis B",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"363",
+                  "name":"Actifs biologiques",
+                  "subaccounts":[
+                     {
+                        "code":"3631",
+                        "name":"Animaux"
+                     },
+                     {
+                        "code":"3632",
+                        "name":"Végétaux"
+                     },
+                     {
+                        "code":"3638",
+                        "name":"Autres stocks (activités annexes)"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"37",
+            "name":"Produits intermédiaires et résiduels",
+            "subaccounts":[
+               {
+                  "code":"371",
+                  "name":"Produits intermédiaires",
+                  "subaccounts":[
+                     {
+                        "code":"3711",
+                        "name":"Produits intermédiaires A"
+                     },
+                     {
+                        "code":"3712",
+                        "name":"Produits intermédiaires B"
+                     }
+                  ]
+               },
+               {
+                  "code":"372",
+                  "name":"Produits résiduels",
+                  "subaccounts":[
+                     {
+                        "code":"3721",
+                        "name":"Déchets"
+                     },
+                     {
+                        "code":"3722",
+                        "name":"Rebuts"
+                     },
+                     {
+                        "code":"3723",
+                        "name":"Matières de Récupération"
+                     }
+                  ]
+               },
+               {
+                  "code":"373",
+                  "name":"Actifs biologiques",
+                  "subaccounts":[
+                     {
+                        "code":"3731",
+                        "name":"Animaux"
+                     },
+                     {
+                        "code":"3732",
+                        "name":"Végétaux"
+                     },
+                     {
+                        "code":"3738",
+                        "name":"Autres stocks (activités annexes)"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"38",
+            "name":"Stocks en cours de route, en consignation ou en dépôt",
+            "subaccounts":[
+               {
+                  "code":"381",
+                  "name":"Marchandises en cours de route",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"382",
+                  "name":"Matières premières et fournitures liées en cours de route",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"383",
+                  "name":"Autres approvisionnements en cours de route",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"386",
+                  "name":"Produits finis en cours de route",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"387",
+                  "name":"Stock en consignation ou en dépôt",
+                  "subaccounts":[
+                     {
+                        "code":"3871",
+                        "name":"Stock en consignation"
+                     },
+                     {
+                        "code":"3872",
+                        "name":"Stock en dépôt"
+                     }
+                  ]
+               },
+               {
+                  "code":"388",
+                  "name":"Stock provenant d’immobilisations mises hors service ou au rebut",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"39",
+            "name":"Dépréciations des stocks et encours de production",
+            "subaccounts":[
+               {
+                  "code":"391",
+                  "name":"Dépréciations des stocks de marchandises",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"392",
+                  "name":"Dépréciations des stocks de matières premières et fournitures liées",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"393",
+                  "name":"Dépréciations des stocks d’autres approvisionnements",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"394",
+                  "name":"Dépréciations des productions en cours",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"395",
+                  "name":"Dépréciations des services en cours",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"396",
+                  "name":"Dépréciations des stocks de produits finis",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"397",
+                  "name":"Dépréciations des stocks de produits intermédiaires et résiduels",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"398",
+                  "name":"Dépréciations des stocks en cours de route, en consignation ou en dépôt",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"4",
+      "name":"Comptes de tiers",
+      "accounts":[
+         {
+            "code":"40",
+            "name":"Fournisseurs et comptes rattachés",
+            "subaccounts":[
+               {
+                  "code":"401",
+                  "name":"Fournisseurs, dettes en compte",
+                  "subaccounts":[
+                     {
+                        "code":"4011",
+                        "name":"Fournisseurs"
+                     },
+                     {
+                        "code":"4012",
+                        "name":"Fournisseurs groupe"
+                     },
+                     {
+                        "code":"4013",
+                        "name":"Fournisseurs sous-traitants"
+                     },
+                     {
+                        "code":"4016",
+                        "name":"Fournisseurs, réserve de propriété"
+                     },
+                     {
+                        "code":"4017",
+                        "name":"Fournisseur, retenues de garantie"
+                     }
+                  ]
+               },
+               {
+                  "code":"402",
+                  "name":"Fournisseurs, effets à payer",
+                  "subaccounts":[
+                     {
+                        "code":"4021",
+                        "name":"Fournisseurs - Effets à payer"
+                     },
+                     {
+                        "code":"4022",
+                        "name":"Fournisseurs - Groupe, effets à payer"
+                     },
+                     {
+                        "code":"4023",
+                        "name":"Fournisseurs - Sous-traitants, effets à payer"
+                     }
+                  ]
+               },
+               {
+                  "code":"404",
+                  "name":"Fournisseurs, acquisitions courantes d’immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"4041",
+                        "name":"Fournisseurs - Dettes en comptes, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4042",
+                        "name":"Fournisseurs - Dettes en comptes, immobilisations corporelles"
+                     },
+                     {
+                        "code":"4046",
+                        "name":"Fournisseurs - Effets à payer, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4047",
+                        "name":"Fournisseurs - Effets à payer, immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"408",
+                  "name":"Fournisseurs, factures non parvenues",
+                  "subaccounts":[
+                     {
+                        "code":"4081",
+                        "name":"Fournisseurs"
+                     },
+                     {
+                        "code":"4082",
+                        "name":"Fournisseurs groupe"
+                     },
+                     {
+                        "code":"4083",
+                        "name":"Fournisseurs sous-traitants"
+                     },
+                     {
+                        "code":"4086",
+                        "name":"Fournisseurs, intérêts courus"
+                     }
+                  ]
+               },
+               {
+                  "code":"409",
+                  "name":"Fournisseurs débiteurs",
+                  "subaccounts":[
+                     {
+                        "code":"4091",
+                        "name":"Fournisseurs - Avances et acomptes versés"
+                     },
+                     {
+                        "code":"4092",
+                        "name":"Fournisseurs - Groupe avances et acomptes versés"
+                     },
+                     {
+                        "code":"4093",
+                        "name":"Fournisseurs - Sous-traitants avances et acomptes versés"
+                     },
+                     {
+                        "code":"4094",
+                        "name":"Fournisseurs - Créances pour emballages et matériels à rendre"
+                     },
+                     {
+                        "code":"4098",
+                        "name":"Fournisseurs - Rabais, remises, ristournes et autres avoirs à obtenir"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"41",
+            "name":"Clients et comptes rattachés",
+            "subaccounts":[
+               {
+                  "code":"411",
+                  "name":"Clients",
+                  "subaccounts":[
+                     {
+                        "code":"4111",
+                        "name":"Clients"
+                     },
+                     {
+                        "code":"4112",
+                        "name":"Clients - groupe"
+                     },
+                     {
+                        "code":"4114",
+                        "name":"Clients, État et Collectivités publiques"
+                     },
+                     {
+                        "code":"4115",
+                        "name":"Clients, organismes internationaux"
+                     },
+                     {
+                        "code":"4116",
+                        "name":"Clients, réserve de propriété"
+                     },
+                     {
+                        "code":"4117",
+                        "name":"Client, retenues de garantie"
+                     },
+                     {
+                        "code":"4118",
+                        "name":"Clients, dégrèvement de taxes sur la valeur ajoutée (TVA)"
+                     }
+                  ]
+               },
+               {
+                  "code":"412",
+                  "name":"Clients, effets à recevoir en portefeuille",
+                  "subaccounts":[
+                     {
+                        "code":"4121",
+                        "name":"Clients, effets à recevoir"
+                     },
+                     {
+                        "code":"4122",
+                        "name":"Clients - Groupe, effets à recevoir"
+                     },
+                     {
+                        "code":"4124",
+                        "name":"État et Collectivités publiques, effets à recevoir"
+                     },
+                     {
+                        "code":"4125",
+                        "name":"Organismes Internationaux, effets à recevoir"
+                     }
+                  ]
+               },
+               {
+                  "code":"413",
+                  "name":"Clients, chèques, effets et autres valeurs impayées",
+                  "subaccounts":[
+                     {
+                        "code":"4131",
+                        "name":"Clients, chèques impayés"
+                     },
+                     {
+                        "code":"4132",
+                        "name":"Clients, effets impayés"
+                     },
+                     {
+                        "code":"4133",
+                        "name":"Clients, cartes de crédit impayées"
+                     },
+                     {
+                        "code":"4138",
+                        "name":"Clients, autres valeurs impayées"
+                     }
+                  ]
+               },
+               {
+                  "code":"414",
+                  "name":"Créances sur cessions courantes d’immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"4141",
+                        "name":"Créances en compte, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4142",
+                        "name":"Créances en compte, immobilisations corporelles"
+                     },
+                     {
+                        "code":"4146",
+                        "name":"Effets à recevoir, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4147",
+                        "name":"Effets à recevoir, immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"415",
+                  "name":"Clients, effets escomptés non échus",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"416",
+                  "name":"Créances clients litigieuses ou douteuses",
+                  "subaccounts":[
+                     {
+                        "code":"4161",
+                        "name":"Créances litigieuses"
+                     },
+                     {
+                        "code":"4162",
+                        "name":"Créances douteuses"
+                     }
+                  ]
+               },
+               {
+                  "code":"418",
+                  "name":"Clients, produits à recevoir",
+                  "subaccounts":[
+                     {
+                        "code":"4181",
+                        "name":"Clients, factures à établir"
+                     },
+                     {
+                        "code":"4186",
+                        "name":"Clients, intérêts courus"
+                     }
+                  ]
+               },
+               {
+                  "code":"419",
+                  "name":"Clients créditeurs",
+                  "subaccounts":[
+                     {
+                        "code":"4191",
+                        "name":"Clients, avances et acomptes reçus"
+                     },
+                     {
+                        "code":"4192",
+                        "name":"Clients - groupe, avances et acomptes reçus"
+                     },
+                     {
+                        "code":"4194",
+                        "name":"Clients, dettes pour emballages et matériels consignés"
+                     },
+                     {
+                        "code":"4198",
+                        "name":"Clients, rabais, remises, ristournes et autres avoirs à accorder"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"42",
+            "name":"Personnel",
+            "subaccounts":[
+               {
+                  "code":"421",
+                  "name":"Personnel, avances et acomptes",
+                  "subaccounts":[
+                     {
+                        "code":"4211",
+                        "name":"Personnel, avances"
+                     },
+                     {
+                        "code":"4212",
+                        "name":"Personnel, acomptes"
+                     },
+                     {
+                        "code":"4213",
+                        "name":"Frais avancés et fournitures au personnel"
+                     }
+                  ]
+               },
+               {
+                  "code":"422",
+                  "name":"Personnel, rémunérations dues",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"423",
+                  "name":"Personnel, oppositions, saisies-arrêts",
+                  "subaccounts":[
+                     {
+                        "code":"4231",
+                        "name":"Personnel, oppositions"
+                     },
+                     {
+                        "code":"4232",
+                        "name":"Personnel, saisies-arrêts"
+                     },
+                     {
+                        "code":"4233",
+                        "name":"Personnel, avis à tiers détenteur"
+                     }
+                  ]
+               },
+               {
+                  "code":"424",
+                  "name":"Personnel, œuvres sociales internes",
+                  "subaccounts":[
+                     {
+                        "code":"4241",
+                        "name":"Assistance médicale"
+                     },
+                     {
+                        "code":"4242",
+                        "name":"Allocations familiales"
+                     },
+                     {
+                        "code":"4245",
+                        "name":"Organismes sociaux rattachés à l’entité"
+                     },
+                     {
+                        "code":"4248",
+                        "name":"Autres œuvres sociales internes"
+                     }
+                  ]
+               },
+               {
+                  "code":"425",
+                  "name":"Représentants du personnel",
+                  "subaccounts":[
+                     {
+                        "code":"4251",
+                        "name":"Délégués du personnel"
+                     },
+                     {
+                        "code":"4252",
+                        "name":"Syndicats et Comités d’entreprises, d’Établissement"
+                     },
+                     {
+                        "code":"4258",
+                        "name":"Autres représentants du personnel"
+                     }
+                  ]
+               },
+               {
+                  "code":"426",
+                  "name":"Personnel, participation aux bénéfices et au capital",
+                  "subaccounts":[
+                     {
+                        "code":"4261",
+                        "name":"Participation aux bénéfices"
+                     },
+                     {
+                        "code":"4264",
+                        "name":"Participation au capital"
+                     }
+                  ]
+               },
+               {
+                  "code":"427",
+                  "name":"Personnel - dépôts",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"428",
+                  "name":"Personnel, charges à payer et produits à recevoir",
+                  "subaccounts":[
+                     {
+                        "code":"4281",
+                        "name":"Dettes provisionnées pour congés à payer"
+                     },
+                     {
+                        "code":"4286",
+                        "name":"Autres charges à payer"
+                     },
+                     {
+                        "code":"4287",
+                        "name":"Produits à recevoir"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"43",
+            "name":"Organismes sociaux",
+            "subaccounts":[
+               {
+                  "code":"431",
+                  "name":"Sécurité sociale",
+                  "subaccounts":[
+                     {
+                        "code":"4311",
+                        "name":"Prestations familiales"
+                     },
+                     {
+                        "code":"4312",
+                        "name":"Accidents de travail"
+                     },
+                     {
+                        "code":"4313",
+                        "name":"Caisse de retraite obligatoire"
+                     },
+                     {
+                        "code":"4314",
+                        "name":"Caisse de retraite facultative"
+                     },
+                     {
+                        "code":"4318",
+                        "name":"Autres cotisations sociales"
+                     }
+                  ]
+               },
+               {
+                  "code":"432",
+                  "name":"Caisses de retraite complémentaire",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"433",
+                  "name":"Autres organismes sociaux",
+                  "subaccounts":[
+                     {
+                        "code":"4331",
+                        "name":"Mutuelle"
+                     },
+                     {
+                        "code":"4332",
+                        "name":"Assurances retraite"
+                     },
+                     {
+                        "code":"4333",
+                        "name":"Assurances et organismes de santé"
+                     }
+                  ]
+               },
+               {
+                  "code":"438",
+                  "name":"Organismes sociaux, charges à payer et produits à recevoir",
+                  "subaccounts":[
+                     {
+                        "code":"4381",
+                        "name":"Charges sociales sur gratifications à payer"
+                     },
+                     {
+                        "code":"4382",
+                        "name":"Charges sociales sur congés à payer"
+                     },
+                     {
+                        "code":"4386",
+                        "name":"Autres charges à payer"
+                     },
+                     {
+                        "code":"4387",
+                        "name":"Produits à recevoir"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"44",
+            "name":"État et collectivités publiques",
+            "subaccounts":[
+               {
+                  "code":"441",
+                  "name":"État, impôt sur les bénéfices",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"442",
+                  "name":"État, autres impôts et taxes",
+                  "subaccounts":[
+                     {
+                        "code":"4421",
+                        "name":"Impôts et taxes d’État"
+                     },
+                     {
+                        "code":"4422",
+                        "name":"Impôts et taxes pour les collectivités publiques"
+                     },
+                     {
+                        "code":"4423",
+                        "name":"Impôts et taxes recouvrables sur des obligataires"
+                     },
+                     {
+                        "code":"4424",
+                        "name":"Impôts et taxes recouvrables sur des associés"
+                     },
+                     {
+                        "code":"4426",
+                        "name":"Droits de douane"
+                     },
+                     {
+                        "code":"4428",
+                        "name":"Autres impôts et taxes"
+                     }
+                  ]
+               },
+               {
+                  "code":"443",
+                  "name":"État, TVA facturée",
+                  "subaccounts":[
+                     {
+                        "code":"4431",
+                        "name":"TVA facturée sur ventes"
+                     },
+                     {
+                        "code":"4432",
+                        "name":"TVA facturée sur prestations de services"
+                     },
+                     {
+                        "code":"4433",
+                        "name":"TVA facturée sur travaux"
+                     },
+                     {
+                        "code":"4434",
+                        "name":"TVA facturée sur production livrée à soi-même"
+                     },
+                     {
+                        "code":"4435",
+                        "name":"TVA sur factures à établir"
+                     }
+                  ]
+               },
+               {
+                  "code":"444",
+                  "name":"État, TVA due ou crédit de TVA",
+                  "subaccounts":[
+                     {
+                        "code":"4441",
+                        "name":"État, TVA due"
+                     },
+                     {
+                        "code":"4449",
+                        "name":"État, crédit de TVA à reporter"
+                     }
+                  ]
+               },
+               {
+                  "code":"445",
+                  "name":"État, TVA récupérable",
+                  "subaccounts":[
+                     {
+                        "code":"4451",
+                        "name":"TVA récupérable sur immobilisations"
+                     },
+                     {
+                        "code":"4452",
+                        "name":"TVA récupérable sur achats"
+                     },
+                     {
+                        "code":"4453",
+                        "name":"TVA récupérable sur transport"
+                     },
+                     {
+                        "code":"4454",
+                        "name":"TVA récupérable sur services extérieurs et autres charges"
+                     },
+                     {
+                        "code":"4455",
+                        "name":"TVA récupérable sur factures non parvenues"
+                     },
+                     {
+                        "code":"4456",
+                        "name":"TVA transférée par d’autres entités"
+                     }
+                  ]
+               },
+               {
+                  "code":"446",
+                  "name":"État, autres taxes sur le chiffre d’affaires",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"447",
+                  "name":"État, impôts retenus à la source",
+                  "subaccounts":[
+                     {
+                        "code":"4471",
+                        "name":"Impôt Général sur le revenu"
+                     },
+                     {
+                        "code":"4472",
+                        "name":"Impôts sur salaires"
+                     },
+                     {
+                        "code":"4473",
+                        "name":"Contribution nationale"
+                     },
+                     {
+                        "code":"4474",
+                        "name":"Contribution nationale de solidarité"
+                     },
+                     {
+                        "code":"4478",
+                        "name":"Autres impôts et contributions"
+                     }
+                  ]
+               },
+               {
+                  "code":"448",
+                  "name":"État, charges à payer et produits à recevoir",
+                  "subaccounts":[
+                     {
+                        "code":"4486",
+                        "name":"Charges à payer"
+                     },
+                     {
+                        "code":"4487",
+                        "name":"Produits à recevoir"
+                     }
+                  ]
+               },
+               {
+                  "code":"449",
+                  "name":"État, créances et dettes diverses",
+                  "subaccounts":[
+                     {
+                        "code":"4491",
+                        "name":"État, obligations cautionnées"
+                     },
+                     {
+                        "code":"4492",
+                        "name":"État, avances et acomptes versés sur impôts"
+                     },
+                     {
+                        "code":"4493",
+                        "name":"État, fonds de dotation à recevoir"
+                     },
+                     {
+                        "code":"4494",
+                        "name":"État, subventions investissement à recevoir"
+                     },
+                     {
+                        "code":"4495",
+                        "name":"État, subventions d’exploitation à recevoir"
+                     },
+                     {
+                        "code":"4496",
+                        "name":"État, subventions d’équilibre à recevoir"
+                     },
+                     {
+                        "code":"4497",
+                        "name":"État, avances sur subventions"
+                     },
+                     {
+                        "code":"4499",
+                        "name":"État, fonds réglementés provisionnés"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"45",
+            "name":"Organismes internationaux",
+            "subaccounts":[
+               {
+                  "code":"451",
+                  "name":"Opérations avec les organismes africains",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"452",
+                  "name":"Opérations avec les autres organismes internationaux",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"458",
+                  "name":"Organismes internationaux, fonds de dotation et subventions à recevoir",
+                  "subaccounts":[
+                     {
+                        "code":"4581",
+                        "name":"Organismes internationaux, fonds de dotation à recevoir"
+                     },
+                     {
+                        "code":"4582",
+                        "name":"Organismes internationaux, subventions à recevoir"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"46",
+            "name":"Apporteurs, associés et groupe",
+            "subaccounts":[
+               {
+                  "code":"461",
+                  "name":"Apporteurs, opérations sur le capital",
+                  "subaccounts":[
+                     {
+                        "code":"4611",
+                        "name":"Apporteurs, apports en nature"
+                     },
+                     {
+                        "code":"4612",
+                        "name":"Apporteurs, apports en numéraire"
+                     },
+                     {
+                        "code":"4613",
+                        "name":"Apporteurs, capital appelé, non versé"
+                     },
+                     {
+                        "code":"4614",
+                        "name":"Apporteurs, compte d’apport, opérations de restructuration (fusion...)"
+                     },
+                     {
+                        "code":"4615",
+                        "name":"Apporteurs, versements reçus sur augmentation de capital"
+                     },
+                     {
+                        "code":"4616",
+                        "name":"Apporteurs, versements anticipés"
+                     },
+                     {
+                        "code":"4617",
+                        "name":"Apporteurs défaillants"
+                     },
+                     {
+                        "code":"4618",
+                        "name":"Apporteurs, titres à échanger"
+                     },
+                     {
+                        "code":"4619",
+                        "name":"Apporteurs, capital à rembourser"
+                     }
+                  ]
+               },
+               {
+                  "code":"462",
+                  "name":"Associés [2], comptes courants",
+                  "subaccounts":[
+                     {
+                        "code":"4621",
+                        "name":"Principal"
+                     },
+                     {
+                        "code":"4626",
+                        "name":"Intérêts courus"
+                     }
+                  ]
+               },
+               {
+                  "code":"463",
+                  "name":"Associés [2], opérations faites en commun et GIE",
+                  "subaccounts":[
+                     {
+                        "code":"4631",
+                        "name":"Opérations courantes"
+                     },
+                     {
+                        "code":"4636",
+                        "name":"Intérêts courus"
+                     }
+                  ]
+               },
+               {
+                  "code":"465",
+                  "name":"Associés [2], dividendes à payer",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"466",
+                  "name":"Groupe, comptes courants",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"467",
+                  "name":"Apporteurs, restant dû sur capital appelé",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"47",
+            "name":"Débiteurs et créditeurs divers",
+            "subaccounts":[
+               {
+                  "code":"471",
+                  "name":"Débiteurs et créditeurs divers",
+                  "subaccounts":[
+                     {
+                        "code":"4711",
+                        "name":"Débiteurs divers"
+                     },
+                     {
+                        "code":"4712",
+                        "name":"Créditeurs divers"
+                     },
+                     {
+                        "code":"4713",
+                        "name":"Obligataires"
+                     },
+                     {
+                        "code":"4715",
+                        "name":"Rémunérations d’administrateurs"
+                     },
+                     {
+                        "code":"4716",
+                        "name":"Compte d’affacturage"
+                     },
+                     {
+                        "code":"4717",
+                        "name":"Débiteurs divers - retenues de garantie"
+                     },
+                     {
+                        "code":"4718",
+                        "name":"Apport, compte de fusion et opérations assimilées"
+                     },
+                     {
+                        "code":"4719",
+                        "name":"Bons de souscription d’actions et d’obligations"
+                     }
+                  ]
+               },
+               {
+                  "code":"472",
+                  "name":"Créances et dettes sur titres de placement",
+                  "subaccounts":[
+                     {
+                        "code":"4721",
+                        "name":"Créances sur cessions de titres de placement"
+                     },
+                     {
+                        "code":"4726",
+                        "name":"Versements restant à effectuer sur titres de placement non libérés"
+                     }
+                  ]
+               },
+               {
+                  "code":"473",
+                  "name":"Intermédiaires - Opérations faites pour compte de tiers",
+                  "subaccounts":[
+                     {
+                        "code":"4731",
+                        "name":"Mandants"
+                     },
+                     {
+                        "code":"4732",
+                        "name":"Mandataires"
+                     },
+                     {
+                        "code":"4733",
+                        "name":"Commettants"
+                     },
+                     {
+                        "code":"4734",
+                        "name":"Commissionnaires"
+                     },
+                     {
+                        "code":"4739",
+                        "name":"État, Collectivités publiques, fonds global d’allocation"
+                     }
+                  ]
+               },
+               {
+                  "code":"474",
+                  "name":"Compte de répartition périodique des charges et des produits",
+                  "subaccounts":[
+                     {
+                        "code":"4746",
+                        "name":"Compte de répartition périodique des charges"
+                     },
+                     {
+                        "code":"4747",
+                        "name":"Compte de répartition périodique des produits"
+                     }
+                  ]
+               },
+               {
+                  "code":"475",
+                  "name":"Compte transitoire, ajustement spécial lié à la révision du SYSCOHADA",
+                  "subaccounts":[
+                     {
+                        "code":"4751",
+                        "name":"Compte actif"
+                     },
+                     {
+                        "code":"4752",
+                        "name":"Compte passif"
+                     }
+                  ]
+               },
+               {
+                  "code":"476",
+                  "name":"Charges constatées d’avance",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"477",
+                  "name":"Produits constatés d’avance",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"478",
+                  "name":"Écarts de conversion - actif",
+                  "subaccounts":[
+                     {
+                        "code":"4781",
+                        "name":"Diminution des créances d’exploitation"
+                     },
+                     {
+                        "code":"4782",
+                        "name":"Diminution des créances financières"
+                     },
+                     {
+                        "code":"4783",
+                        "name":"Augmentation des dettes d’exploitation"
+                     },
+                     {
+                        "code":"4784",
+                        "name":"Augmentation des dettes financières"
+                     },
+                     {
+                        "code":"4786",
+                        "name":"Différences d’évaluation sur instruments de trésorerie"
+                     },
+                     {
+                        "code":"4788",
+                        "name":"Différences compensées par couverture de change"
+                     }
+                  ]
+               },
+               {
+                  "code":"479",
+                  "name":"Écarts de conversion - passif",
+                  "subaccounts":[
+                     {
+                        "code":"4791",
+                        "name":"Augmentation des créances d’exploitation"
+                     },
+                     {
+                        "code":"4792",
+                        "name":"Augmentation des créances financières"
+                     },
+                     {
+                        "code":"4793",
+                        "name":"Diminution des dettes d’exploitation"
+                     },
+                     {
+                        "code":"4794",
+                        "name":"Diminution des dettes financières"
+                     },
+                     {
+                        "code":"4797",
+                        "name":"Différences d’évaluation sur instruments de trésorerie"
+                     },
+                     {
+                        "code":"4798",
+                        "name":"Différences compensées par couverture de change"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"48",
+            "name":"Créances et dettes hors activités ordinaires (HAO)",
+            "subaccounts":[
+               {
+                  "code":"481",
+                  "name":"Fournisseurs d’investissements",
+                  "subaccounts":[
+                     {
+                        "code":"4811",
+                        "name":"Immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4812",
+                        "name":"Immobilisations corporelles"
+                     },
+                     {
+                        "code":"4813",
+                        "name":"Versements restant à effectuer sur titres de participation et titres immobilisés non libérés"
+                     },
+                     {
+                        "code":"4816",
+                        "name":"Réserve de propriété [3]"
+                     },
+                     {
+                        "code":"4817",
+                        "name":"Retenues de garantie [3]"
+                     },
+                     {
+                        "code":"4818",
+                        "name":"Factures non parvenues [3]"
+                     }
+                  ]
+               },
+               {
+                  "code":"482",
+                  "name":"Fournisseurs d’investissements, effets à payer",
+                  "subaccounts":[
+                     {
+                        "code":"4821",
+                        "name":"Immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4822",
+                        "name":"Immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"484",
+                  "name":"Autres dettes hors activités ordinaires (HAO)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"485",
+                  "name":"Créances sur cessions d’immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"4851",
+                        "name":"En compte, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4852",
+                        "name":"En compte, immobilisations corporelles"
+                     },
+                     {
+                        "code":"4853",
+                        "name":"Effets à recevoir, immobilisations incorporelles"
+                     },
+                     {
+                        "code":"4854",
+                        "name":"Effets à recevoir, immobilisations corporelles"
+                     },
+                     {
+                        "code":"4855",
+                        "name":"Effets escomptés non échus"
+                     },
+                     {
+                        "code":"4857",
+                        "name":"Retenues de garantie"
+                     },
+                     {
+                        "code":"4858",
+                        "name":"Factures à établir"
+                     }
+                  ]
+               },
+               {
+                  "code":"488",
+                  "name":"Autres créances hors activités ordinaires (HAO)",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"49",
+            "name":"Dépréciations et provisions pour risques à court terme (tiers)",
+            "subaccounts":[
+               {
+                  "code":"490",
+                  "name":"Dépréciations des comptes fournisseurs",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"491",
+                  "name":"Dépréciations des comptes clients",
+                  "subaccounts":[
+                     {
+                        "code":"4911",
+                        "name":"Créances litigieuses"
+                     },
+                     {
+                        "code":"4912",
+                        "name":"Créances douteuses"
+                     }
+                  ]
+               },
+               {
+                  "code":"492",
+                  "name":"Dépréciations des comptes personnel",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"493",
+                  "name":"Dépréciations des comptes organismes sociaux",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"494",
+                  "name":"Dépréciations des comptes État et collectivités publiques",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"495",
+                  "name":"Dépréciations des comptes organismes internationaux",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"496",
+                  "name":"Dépréciations des comptes apporteurs, associés et groupe",
+                  "subaccounts":[
+                     {
+                        "code":"4962",
+                        "name":"Associés, comptes courants"
+                     },
+                     {
+                        "code":"4963",
+                        "name":"Associés, opérations faites en commun"
+                     },
+                     {
+                        "code":"4966",
+                        "name":"Groupe, comptes courants"
+                     }
+                  ]
+               },
+               {
+                  "code":"497",
+                  "name":"Dépréciations des comptes débiteurs divers",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"498",
+                  "name":"Dépréciations des comptes de créances HAO",
+                  "subaccounts":[
+                     {
+                        "code":"4985",
+                        "name":"Créances sur cessions d’immobilisations"
+                     },
+                     {
+                        "code":"4986",
+                        "name":"Créances sur cessions de titres de placement"
+                     },
+                     {
+                        "code":"4988",
+                        "name":"Autres créances HAO"
+                     }
+                  ]
+               },
+               {
+                  "code":"499",
+                  "name":"Provisions pour risques à court terme",
+                  "subaccounts":[
+                     {
+                        "code":"4991",
+                        "name":"Sur opérations d’exploitation"
+                     },
+                     {
+                        "code":"4997",
+                        "name":"Sur opérations financières"
+                     },
+                     {
+                        "code":"4998",
+                        "name":"Sur opérations HAO"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"5",
+      "name":"Comptes de trésorerie",
+      "accounts":[
+         {
+            "code":"50",
+            "name":"Titres de placement",
+            "subaccounts":[
+               {
+                  "code":"501",
+                  "name":"Titres du trésor et bons de caisse à court terme",
+                  "subaccounts":[
+                     {
+                        "code":"5011",
+                        "name":"Titres du Trésor à court terme"
+                     },
+                     {
+                        "code":"5012",
+                        "name":"Titres d’organismes financiers"
+                     },
+                     {
+                        "code":"5013",
+                        "name":"Bons de caisse à court terme"
+                     },
+                     {
+                        "code":"5016",
+                        "name":"Frais d’acquisition des titres de trésor et bons de caisse"
+                     }
+                  ]
+               },
+               {
+                  "code":"502",
+                  "name":"Actions",
+                  "subaccounts":[
+                     {
+                        "code":"5021",
+                        "name":"Actions ou parts propres"
+                     },
+                     {
+                        "code":"5022",
+                        "name":"Actions cotées"
+                     },
+                     {
+                        "code":"5023",
+                        "name":"Actions non cotées"
+                     },
+                     {
+                        "code":"5024",
+                        "name":"Actions démembrées (certificats d’investissement, droits de vote)"
+                     },
+                     {
+                        "code":"5025",
+                        "name":"Autres actions"
+                     },
+                     {
+                        "code":"5026",
+                        "name":"Frais d’acquisition des actions"
+                     }
+                  ]
+               },
+               {
+                  "code":"503",
+                  "name":"Obligations",
+                  "subaccounts":[
+                     {
+                        "code":"5031",
+                        "name":"Obligations émises par la société et rachetées par elle"
+                     },
+                     {
+                        "code":"5032",
+                        "name":"Obligations cotées"
+                     },
+                     {
+                        "code":"5033",
+                        "name":"Obligations non cotées"
+                     },
+                     {
+                        "code":"5035",
+                        "name":"Autres obligations"
+                     },
+                     {
+                        "code":"5036",
+                        "name":"Frais d’acquisition des obligations"
+                     }
+                  ]
+               },
+               {
+                  "code":"504",
+                  "name":"Bons de souscription",
+                  "subaccounts":[
+                     {
+                        "code":"5042",
+                        "name":"Bons de souscription d’actions"
+                     },
+                     {
+                        "code":"5043",
+                        "name":"Bons de souscription d’obligations"
+                     }
+                  ]
+               },
+               {
+                  "code":"505",
+                  "name":"Titres négociables hors région",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"506",
+                  "name":"Intérêts courus",
+                  "subaccounts":[
+                     {
+                        "code":"5061",
+                        "name":"Titres du Trésor et bons de caisse à court terme"
+                     },
+                     {
+                        "code":"5062",
+                        "name":"Actions"
+                     },
+                     {
+                        "code":"5063",
+                        "name":"Obligations"
+                     }
+                  ]
+               },
+               {
+                  "code":"508",
+                  "name":"Autres titres de placement et créances assimilées",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"51",
+            "name":"Valeurs à encaisser",
+            "subaccounts":[
+               {
+                  "code":"511",
+                  "name":"Effets à encaisser",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"512",
+                  "name":"Effets à l’encaissement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"513",
+                  "name":"Chèques à encaisser",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"514",
+                  "name":"Chèques à l’encaissement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"515",
+                  "name":"Cartes de crédit à encaisser",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"518",
+                  "name":"Autres valeurs à l’encaissement",
+                  "subaccounts":[
+                     {
+                        "code":"5181",
+                        "name":"Warrants"
+                     },
+                     {
+                        "code":"5182",
+                        "name":"Billets de fonds"
+                     },
+                     {
+                        "code":"5185",
+                        "name":"Chèques de voyage"
+                     },
+                     {
+                        "code":"5186",
+                        "name":"Coupons échus"
+                     },
+                     {
+                        "code":"5187",
+                        "name":"Intérêts échus des obligations"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"52",
+            "name":"Banques",
+            "subaccounts":[
+               {
+                  "code":"521",
+                  "name":"Banques locales",
+                  "subaccounts":[
+                     {
+                        "code":"5211",
+                        "name":"Banques en monnaie nationale"
+                     },
+                     {
+                        "code":"5215",
+                        "name":"Banques en devises"
+                     },
+                     {
+                        "code":"5217",
+                        "name":"Banques locales (Mobile Money)"
+                     }
+                  ]
+               },
+               {
+                  "code":"522",
+                  "name":"Banques autres États région",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"523",
+                  "name":"Banques autres États zone monétaire",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"524",
+                  "name":"Banques hors zone monétaire",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"525",
+                  "name":"Banques dépôt à terme",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"526",
+                  "name":"Banques, intérêts courus",
+                  "subaccounts":[
+                     {
+                        "code":"5261",
+                        "name":"Banque, intérêts courus, charges à payer"
+                     },
+                     {
+                        "code":"5267",
+                        "name":"Banque, intérêts courus, produits à recevoir"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"53",
+            "name":"Établissements financiers et assimilés",
+            "subaccounts":[
+               {
+                  "code":"531",
+                  "name":"Chèques postaux",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"532",
+                  "name":"Trésor",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"533",
+                  "name":"Sociétés de gestion et d’intermédiation (SGI)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"536",
+                  "name":"Établissements financiers, intérêts courus",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"538",
+                  "name":"Autres organismes financiers",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"54",
+            "name":"Instruments de trésorerie",
+            "subaccounts":[
+               {
+                  "code":"541",
+                  "name":"Options de taux d’intérêt",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"542",
+                  "name":"Options de taux de change",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"543",
+                  "name":"Options de taux boursiers",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"544",
+                  "name":"Instruments de marchés à terme",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"545",
+                  "name":"Avoirs d’or et autres métaux précieux [4]",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"55",
+            "name":"Instruments de monnaie électronique",
+            "subaccounts":[
+               {
+                  "code":"551",
+                  "name":"Monnaie électronique - carte carburant",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"552",
+                  "name":"Monnaie électronique - téléphone portable",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"553",
+                  "name":"Monnaie électronique - carte péage",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"554",
+                  "name":"Porte-monnaie électronique",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"558",
+                  "name":"Autres instruments de monnaies électroniques",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"56",
+            "name":"Banques, crédits de trésorerie et d’escompte",
+            "subaccounts":[
+               {
+                  "code":"561",
+                  "name":"Crédits de trésorerie",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"564",
+                  "name":"Escompte de crédits de campagne",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"565",
+                  "name":"Escompte de crédits ordinaires",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"566",
+                  "name":"Banques, crédits de trésorerie, intérêts courus",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"57",
+            "name":"Caisse",
+            "subaccounts":[
+               {
+                  "code":"571",
+                  "name":"Caisse siège social",
+                  "subaccounts":[
+                     {
+                        "code":"5711",
+                        "name":"Caisse en monnaie nationale"
+                     },
+                     {
+                        "code":"5712",
+                        "name":"Caisse en devises"
+                     }
+                  ]
+               },
+               {
+                  "code":"572",
+                  "name":"Caisse succursale A",
+                  "subaccounts":[
+                     {
+                        "code":"5721",
+                        "name":"En monnaie nationale"
+                     },
+                     {
+                        "code":"5722",
+                        "name":"En devises"
+                     }
+                  ]
+               },
+               {
+                  "code":"573",
+                  "name":"Caisse succursale B",
+                  "subaccounts":[
+                     {
+                        "code":"5731",
+                        "name":"En monnaie nationale"
+                     },
+                     {
+                        "code":"5732",
+                        "name":"En devises"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"58",
+            "name":"Régies d’avances, accréditifs et virements internes",
+            "subaccounts":[
+               {
+                  "code":"581",
+                  "name":"Régies d’avance",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"582",
+                  "name":"Accréditifs",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"585",
+                  "name":"Virements de fonds",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"588",
+                  "name":"Autres virements internes",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"59",
+            "name":"Dépréciations et provisions pour risque à court terme",
+            "subaccounts":[
+               {
+                  "code":"590",
+                  "name":"Dépréciations des titres de placement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"591",
+                  "name":"Dépréciations des titres et valeurs à encaisser",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"592",
+                  "name":"Dépréciations des comptes banques",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"593",
+                  "name":"Dépréciations des comptes établissements financiers et assimilés",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"594",
+                  "name":"Dépréciations des comptes d’instruments de trésorerie",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"599",
+                  "name":"Provisions pour risque à court terme à caractère financier",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"6",
+      "name":"Comptes de charges des activités ordinaires",
+      "accounts":[
+         {
+            "code":"60",
+            "name":"Achats et variations de stocks",
+            "subaccounts":[
+               {
+                  "code":"601",
+                  "name":"Achats de marchandises",
+                  "subaccounts":[
+                     {
+                        "code":"6011",
+                        "name":"Dans la Région [5]"
+                     },
+                     {
+                        "code":"6012",
+                        "name":"Hors Région [5]"
+                     },
+                     {
+                        "code":"6013",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"6014",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"6015",
+                        "name":"Frais sur achats [6]"
+                     },
+                     {
+                        "code":"6019",
+                        "name":"Rabais, remises et ristournes obtenus (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"602",
+                  "name":"Achats de matières premières et fournitures liées",
+                  "subaccounts":[
+                     {
+                        "code":"6021",
+                        "name":"Dans la Région [5]"
+                     },
+                     {
+                        "code":"6022",
+                        "name":"Hors Région [5]"
+                     },
+                     {
+                        "code":"6023",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"6024",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"6025",
+                        "name":"Frais sur achats [6]"
+                     },
+                     {
+                        "code":"6029",
+                        "name":"Rabais, remises et ristournes obtenus (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"603",
+                  "name":"Variations des stocks de biens achetés",
+                  "subaccounts":[
+                     {
+                        "code":"6031",
+                        "name":"Variations des stocks de marchandises"
+                     },
+                     {
+                        "code":"6032",
+                        "name":"Variations des stocks de matières premières et fournitures liées"
+                     },
+                     {
+                        "code":"6033",
+                        "name":"Variations des stocks d’autres approvisionnements"
+                     }
+                  ]
+               },
+               {
+                  "code":"604",
+                  "name":"Achats stockés de matières et fournitures consommables",
+                  "subaccounts":[
+                     {
+                        "code":"6041",
+                        "name":"Matières consommables"
+                     },
+                     {
+                        "code":"6042",
+                        "name":"Matières combustibles"
+                     },
+                     {
+                        "code":"6043",
+                        "name":"Produits d’entretien"
+                     },
+                     {
+                        "code":"6044",
+                        "name":"Fournitures d’atelier et d’usine"
+                     },
+                     {
+                        "code":"6045",
+                        "name":"Frais sur achat [6]"
+                     },
+                     {
+                        "code":"6046",
+                        "name":"Fournitures de magasin"
+                     },
+                     {
+                        "code":"6047",
+                        "name":"Fournitures de bureau"
+                     },
+                     {
+                        "code":"6049",
+                        "name":"Rabais, remises et ristournes obtenus (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"605",
+                  "name":"Autres achats",
+                  "subaccounts":[
+                     {
+                        "code":"6051",
+                        "name":"Fournitures non stockables - Eau"
+                     },
+                     {
+                        "code":"6052",
+                        "name":"Fournitures non stockables - Électricité"
+                     },
+                     {
+                        "code":"6053",
+                        "name":"Fournitures non stockables - Autres énergies"
+                     },
+                     {
+                        "code":"6054",
+                        "name":"Fournitures d’entretien non stockables"
+                     },
+                     {
+                        "code":"6055",
+                        "name":"Fournitures de bureau non stockables"
+                     },
+                     {
+                        "code":"6056",
+                        "name":"Achats de petit matériel et outillage"
+                     },
+                     {
+                        "code":"6057",
+                        "name":"Achats d’études et prestations de services"
+                     },
+                     {
+                        "code":"6058",
+                        "name":"Achats de travaux, matériels et équipements"
+                     },
+                     {
+                        "code":"6059",
+                        "name":"Rabais, remises et ristournes obtenus (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"608",
+                  "name":"Achats d’emballages",
+                  "subaccounts":[
+                     {
+                        "code":"6081",
+                        "name":"Emballages perdus"
+                     },
+                     {
+                        "code":"6082",
+                        "name":"Emballages récupérables non identifiables"
+                     },
+                     {
+                        "code":"6083",
+                        "name":"Emballages à usage mixte"
+                     },
+                     {
+                        "code":"6085",
+                        "name":"Frais sur achats [6]"
+                     },
+                     {
+                        "code":"6089",
+                        "name":"Rabais, remises et ristournes obtenus (non ventilés)"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"61",
+            "name":"Transports",
+            "subaccounts":[
+               {
+                  "code":"612",
+                  "name":"Transports sur ventes",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"613",
+                  "name":"Transports pour le compte de tiers",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"614",
+                  "name":"Transports du personnel",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"616",
+                  "name":"Transports de plis",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"618",
+                  "name":"Autres frais de transport",
+                  "subaccounts":[
+                     {
+                        "code":"6181",
+                        "name":"Voyages et déplacements"
+                     },
+                     {
+                        "code":"6182",
+                        "name":"Transports entre établissements ou chantiers"
+                     },
+                     {
+                        "code":"6183",
+                        "name":"Transports administratifs"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"62",
+            "name":"Services extérieurs",
+            "subaccounts":[
+               {
+                  "code":"621",
+                  "name":"Sous-traitance générale",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"622",
+                  "name":"Locations, charges locatives",
+                  "subaccounts":[
+                     {
+                        "code":"6221",
+                        "name":"Locations de terrains"
+                     },
+                     {
+                        "code":"6222",
+                        "name":"Locations de bâtiments"
+                     },
+                     {
+                        "code":"6223",
+                        "name":"Locations de matériels et outillages"
+                     },
+                     {
+                        "code":"6224",
+                        "name":"Malis sur emballages"
+                     },
+                     {
+                        "code":"6225",
+                        "name":"Locations d’emballages"
+                     },
+                     {
+                        "code":"6226",
+                        "name":"Fermages et loyers du foncier"
+                     },
+                     {
+                        "code":"6228",
+                        "name":"Locations et charges locatives diverses"
+                     }
+                  ]
+               },
+               {
+                  "code":"623",
+                  "name":"Redevances de location acquisition",
+                  "subaccounts":[
+                     {
+                        "code":"6232",
+                        "name":"Crédit-bail immobilier"
+                     },
+                     {
+                        "code":"6233",
+                        "name":"Crédit-bail mobilier"
+                     },
+                     {
+                        "code":"6234",
+                        "name":"Location-vente"
+                     },
+                     {
+                        "code":"6238",
+                        "name":"Autres contrats de location acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"624",
+                  "name":"Entretien, réparations, remise en état et maintenance",
+                  "subaccounts":[
+                     {
+                        "code":"6241",
+                        "name":"Entretien et réparations des biens immobiliers"
+                     },
+                     {
+                        "code":"6242",
+                        "name":"Entretien et réparations des biens mobiliers"
+                     },
+                     {
+                        "code":"6243",
+                        "name":"Maintenance"
+                     },
+                     {
+                        "code":"6244",
+                        "name":"Charges de démantèlement et remise en état"
+                     },
+                     {
+                        "code":"6248",
+                        "name":"Autres entretiens et réparations"
+                     }
+                  ]
+               },
+               {
+                  "code":"625",
+                  "name":"Primes d’assurance",
+                  "subaccounts":[
+                     {
+                        "code":"6251",
+                        "name":"Assurances multirisques"
+                     },
+                     {
+                        "code":"6252",
+                        "name":"Assurances matériel de transport"
+                     },
+                     {
+                        "code":"6253",
+                        "name":"Assurances risques d’exploitation"
+                     },
+                     {
+                        "code":"6254",
+                        "name":"Assurances responsabilité du producteur"
+                     },
+                     {
+                        "code":"6255",
+                        "name":"Assurances insolvabilité clients"
+                     },
+                     {
+                        "code":"6257",
+                        "name":"Assurances transport sur ventes"
+                     },
+                     {
+                        "code":"6258",
+                        "name":"Autres primes d’assurances"
+                     }
+                  ]
+               },
+               {
+                  "code":"626",
+                  "name":"Études, recherches et documentation",
+                  "subaccounts":[
+                     {
+                        "code":"6261",
+                        "name":"Études et recherches"
+                     },
+                     {
+                        "code":"6265",
+                        "name":"Documentation générale"
+                     },
+                     {
+                        "code":"6266",
+                        "name":"Documentation technique"
+                     }
+                  ]
+               },
+               {
+                  "code":"627",
+                  "name":"Publicité, publications, relations publiques",
+                  "subaccounts":[
+                     {
+                        "code":"6271",
+                        "name":"Annonces, insertions"
+                     },
+                     {
+                        "code":"6272",
+                        "name":"Catalogues, imprimés publicitaires"
+                     },
+                     {
+                        "code":"6273",
+                        "name":"Échantillons"
+                     },
+                     {
+                        "code":"6274",
+                        "name":"Foires et expositions"
+                     },
+                     {
+                        "code":"6275",
+                        "name":"Publications"
+                     },
+                     {
+                        "code":"6276",
+                        "name":"Cadeaux à la clientèle"
+                     },
+                     {
+                        "code":"6277",
+                        "name":"Frais de colloques, séminaires, conférences"
+                     },
+                     {
+                        "code":"6278",
+                        "name":"Autres charges de publicité et relations publiques"
+                     }
+                  ]
+               },
+               {
+                  "code":"628",
+                  "name":"Frais de télécommunications",
+                  "subaccounts":[
+                     {
+                        "code":"6281",
+                        "name":"Frais de téléphone"
+                     },
+                     {
+                        "code":"6282",
+                        "name":"Frais de télex"
+                     },
+                     {
+                        "code":"6283",
+                        "name":"Frais de télécopie"
+                     },
+                     {
+                        "code":"6288",
+                        "name":"Autres frais de télécommunications"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"63",
+            "name":"Autres services extérieurs",
+            "subaccounts":[
+               {
+                  "code":"631",
+                  "name":"Frais bancaires",
+                  "subaccounts":[
+                     {
+                        "code":"6311",
+                        "name":"Frais sur titres (vente, garde)"
+                     },
+                     {
+                        "code":"6312",
+                        "name":"Frais sur effets"
+                     },
+                     {
+                        "code":"6313",
+                        "name":"Location de coffres"
+                     },
+                     {
+                        "code":"6314",
+                        "name":"Commissions d’affacturage"
+                     },
+                     {
+                        "code":"6315",
+                        "name":"Commissions sur cartes de crédit"
+                     },
+                     {
+                        "code":"6316",
+                        "name":"Frais d’émission d’emprunts"
+                     },
+                     {
+                        "code":"6317",
+                        "name":"Frais sur instruments monnaie électronique"
+                     },
+                     {
+                        "code":"6318",
+                        "name":"Autres frais bancaires"
+                     }
+                  ]
+               },
+               {
+                  "code":"632",
+                  "name":"Rémunérations d’intermédiaires et de conseils",
+                  "subaccounts":[
+                     {
+                        "code":"6322",
+                        "name":"Commissions et courtages sur ventes"
+                     },
+                     {
+                        "code":"6324",
+                        "name":"Honoraires des professions réglementées"
+                     },
+                     {
+                        "code":"6325",
+                        "name":"Frais d’actes et de contentieux"
+                     },
+                     {
+                        "code":"6326",
+                        "name":"Rémunérations d’affacturage"
+                     },
+                     {
+                        "code":"6327",
+                        "name":"Rémunérations des autres prestataires de services"
+                     },
+                     {
+                        "code":"6328",
+                        "name":"Divers frais"
+                     }
+                  ]
+               },
+               {
+                  "code":"633",
+                  "name":"Frais de formation du personnel",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"634",
+                  "name":"Redevances pour brevets, licences, logiciels, concessions et droits et valeurs similaires",
+                  "subaccounts":[
+                     {
+                        "code":"6342",
+                        "name":"Redevances pour brevets, licences"
+                     },
+                     {
+                        "code":"6343",
+                        "name":"Redevances pour logiciels"
+                     },
+                     {
+                        "code":"6344",
+                        "name":"Redevances pour marques"
+                     },
+                     {
+                        "code":"6345",
+                        "name":"Redevances pour sites internet"
+                     },
+                     {
+                        "code":"6346",
+                        "name":"Redevances pour concessions, droits et valeurs similaires"
+                     }
+                  ]
+               },
+               {
+                  "code":"635",
+                  "name":"Cotisations",
+                  "subaccounts":[
+                     {
+                        "code":"6351",
+                        "name":"Cotisations"
+                     },
+                     {
+                        "code":"6358",
+                        "name":"Concours divers"
+                     }
+                  ]
+               },
+               {
+                  "code":"637",
+                  "name":"Rémunérations de personnel extérieur à l’entité",
+                  "subaccounts":[
+                     {
+                        "code":"6371",
+                        "name":"Personnel intérimaire"
+                     },
+                     {
+                        "code":"6372",
+                        "name":"Personnel détaché ou prêté à l’entité"
+                     }
+                  ]
+               },
+               {
+                  "code":"638",
+                  "name":"Autres charges externes",
+                  "subaccounts":[
+                     {
+                        "code":"6381",
+                        "name":"Frais de recrutement du personnel"
+                     },
+                     {
+                        "code":"6382",
+                        "name":"Frais de déménagement"
+                     },
+                     {
+                        "code":"6383",
+                        "name":"Réceptions"
+                     },
+                     {
+                        "code":"6384",
+                        "name":"Missions"
+                     },
+                     {
+                        "code":"6385",
+                        "name":"Charges de copropriété"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"64",
+            "name":"Impôts et taxes",
+            "subaccounts":[
+               {
+                  "code":"641",
+                  "name":"Impôts et taxes directs",
+                  "subaccounts":[
+                     {
+                        "code":"6411",
+                        "name":"Impôts fonciers et taxes annexes"
+                     },
+                     {
+                        "code":"6412",
+                        "name":"Patentes, licences et taxes annexes"
+                     },
+                     {
+                        "code":"6413",
+                        "name":"Taxes sur appointements et salaires"
+                     },
+                     {
+                        "code":"6414",
+                        "name":"Taxes d’apprentissage"
+                     },
+                     {
+                        "code":"6415",
+                        "name":"Formation professionnelle continue"
+                     },
+                     {
+                        "code":"6418",
+                        "name":"Autres impôts et taxes directs"
+                     }
+                  ]
+               },
+               {
+                  "code":"645",
+                  "name":"Impôts et taxes indirects",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"646",
+                  "name":"Droits d’enregistrement",
+                  "subaccounts":[
+                     {
+                        "code":"6461",
+                        "name":"Droits de mutation"
+                     },
+                     {
+                        "code":"6462",
+                        "name":"Droits de timbre"
+                     },
+                     {
+                        "code":"6463",
+                        "name":"Taxes sur les véhicules de société"
+                     },
+                     {
+                        "code":"6464",
+                        "name":"Vignettes"
+                     },
+                     {
+                        "code":"6468",
+                        "name":"Autres droits"
+                     }
+                  ]
+               },
+               {
+                  "code":"647",
+                  "name":"Pénalités, amendes fiscales",
+                  "subaccounts":[
+                     {
+                        "code":"6471",
+                        "name":"Pénalités d’assiette, impôts directs"
+                     },
+                     {
+                        "code":"6472",
+                        "name":"Pénalités d’assiette, impôts indirects"
+                     },
+                     {
+                        "code":"6473",
+                        "name":"Pénalités de recouvrement, impôts directs"
+                     },
+                     {
+                        "code":"6474",
+                        "name":"Pénalités de recouvrement, impôts indirects"
+                     },
+                     {
+                        "code":"6478",
+                        "name":"Autres pénalités et amendes fiscales"
+                     }
+                  ]
+               },
+               {
+                  "code":"648",
+                  "name":"Autres impôts et taxes",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"65",
+            "name":"Autres charges",
+            "subaccounts":[
+               {
+                  "code":"651",
+                  "name":"Pertes sur créances clients et autres débiteurs",
+                  "subaccounts":[
+                     {
+                        "code":"6511",
+                        "name":"Clients"
+                     },
+                     {
+                        "code":"6515",
+                        "name":"Autres débiteurs"
+                     }
+                  ]
+               },
+               {
+                  "code":"652",
+                  "name":"Quote-part de résultat sur opérations faites en commun",
+                  "subaccounts":[
+                     {
+                        "code":"6521",
+                        "name":"Quote-part transférée de bénéfices (comptabilité du gérant)"
+                     },
+                     {
+                        "code":"6525",
+                        "name":"Pertes imputées par transfert (comptabilité des associés non gérants)"
+                     }
+                  ]
+               },
+               {
+                  "code":"654",
+                  "name":"Valeurs comptables des cessions courantes d’immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"6541",
+                        "name":"Immobilisations incorporelles"
+                     },
+                     {
+                        "code":"6542",
+                        "name":"Immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"656",
+                  "name":"Perte de change sur créances et dettes commerciale",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"657",
+                  "name":"Pénalités et amendes pénales",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"658",
+                  "name":"Charges diverses",
+                  "subaccounts":[
+                     {
+                        "code":"6581",
+                        "name":"Indemnités de fonction et autres rémunérations d’administrateurs"
+                     },
+                     {
+                        "code":"6582",
+                        "name":"Dons"
+                     },
+                     {
+                        "code":"6583",
+                        "name":"Mécénat"
+                     },
+                     {
+                        "code":"6588",
+                        "name":"Autres charges diverses"
+                     }
+                  ]
+               },
+               {
+                  "code":"659",
+                  "name":"Charges pour dépréciations et provisions pour risques à court terme d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"6591",
+                        "name":"Sur risques à court terme"
+                     },
+                     {
+                        "code":"6593",
+                        "name":"Sur stocks"
+                     },
+                     {
+                        "code":"6594",
+                        "name":"Sur créances"
+                     },
+                     {
+                        "code":"6598",
+                        "name":"Autres charges pour dépréciations et provisions pour risques à court terme"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"66",
+            "name":"Charges de personnel",
+            "subaccounts":[
+               {
+                  "code":"661",
+                  "name":"Rémunérations directes versées au personnel national",
+                  "subaccounts":[
+                     {
+                        "code":"6611",
+                        "name":"Appointements salaires et commissions"
+                     },
+                     {
+                        "code":"6612",
+                        "name":"Primes et gratifications"
+                     },
+                     {
+                        "code":"6613",
+                        "name":"Congés payés"
+                     },
+                     {
+                        "code":"6614",
+                        "name":"Indemnités de préavis, de licenciement et de recherche d’embauche"
+                     },
+                     {
+                        "code":"6615",
+                        "name":"Indemnités de maladie versées aux travailleurs"
+                     },
+                     {
+                        "code":"6616",
+                        "name":"Supplément familial"
+                     },
+                     {
+                        "code":"6617",
+                        "name":"Avantages en nature"
+                     },
+                     {
+                        "code":"6618",
+                        "name":"Autres rémunérations directes"
+                     }
+                  ]
+               },
+               {
+                  "code":"662",
+                  "name":"Rémunérations directes versées au personnel non national",
+                  "subaccounts":[
+                     {
+                        "code":"6621",
+                        "name":"Appointements salaires et commissions"
+                     },
+                     {
+                        "code":"6622",
+                        "name":"Primes et gratifications"
+                     },
+                     {
+                        "code":"6623",
+                        "name":"Congés payés"
+                     },
+                     {
+                        "code":"6624",
+                        "name":"Indemnités de préavis, de licenciement et de recherche d’embauche"
+                     },
+                     {
+                        "code":"6625",
+                        "name":"Indemnités de maladie versées aux travailleurs"
+                     },
+                     {
+                        "code":"6626",
+                        "name":"Supplément familial"
+                     },
+                     {
+                        "code":"6627",
+                        "name":"Avantages en nature"
+                     },
+                     {
+                        "code":"6628",
+                        "name":"Autres rémunérations directes"
+                     }
+                  ]
+               },
+               {
+                  "code":"663",
+                  "name":"Indemnités forfaitaires versées au personnel",
+                  "subaccounts":[
+                     {
+                        "code":"6631",
+                        "name":"Indemnités de logement"
+                     },
+                     {
+                        "code":"6632",
+                        "name":"Indemnités de représentation"
+                     },
+                     {
+                        "code":"6633",
+                        "name":"Indemnités d’expatriation"
+                     },
+                     {
+                        "code":"6634",
+                        "name":"Indemnités de transport"
+                     },
+                     {
+                        "code":"6638",
+                        "name":"Autres indemnités et avantages divers"
+                     }
+                  ]
+               },
+               {
+                  "code":"664",
+                  "name":"Charges sociales",
+                  "subaccounts":[
+                     {
+                        "code":"6641",
+                        "name":"Charges sociales sur rémunération du personnel national"
+                     },
+                     {
+                        "code":"6642",
+                        "name":"Charges sociales sur rémunération du personnel non national"
+                     }
+                  ]
+               },
+               {
+                  "code":"666",
+                  "name":"Rémunérations et charges sociales de l’exploitant individuel",
+                  "subaccounts":[
+                     {
+                        "code":"6661",
+                        "name":"Rémunération du travail de l’exploitant"
+                     },
+                     {
+                        "code":"6662",
+                        "name":"Charges sociales"
+                     }
+                  ]
+               },
+               {
+                  "code":"667",
+                  "name":"Rémunération transférée de personnel extérieur",
+                  "subaccounts":[
+                     {
+                        "code":"6671",
+                        "name":"Personnel intérimaire"
+                     },
+                     {
+                        "code":"6672",
+                        "name":"Personnel détaché ou prêté à l’entité"
+                     }
+                  ]
+               },
+               {
+                  "code":"668",
+                  "name":"Autres charges sociales",
+                  "subaccounts":[
+                     {
+                        "code":"6681",
+                        "name":"Versements aux syndicats et comités d’entreprise, d’établissement"
+                     },
+                     {
+                        "code":"6682",
+                        "name":"Versements aux comités d’hygiène et de sécurité"
+                     },
+                     {
+                        "code":"6683",
+                        "name":"Versements et contributions aux autres œuvres sociales"
+                     },
+                     {
+                        "code":"6684",
+                        "name":"Médecine du travail et pharmacie"
+                     },
+                     {
+                        "code":"6685",
+                        "name":"Assurances et organismes de santé"
+                     },
+                     {
+                        "code":"6686",
+                        "name":"Assurances retraite et fonds de pension"
+                     },
+                     {
+                        "code":"6687",
+                        "name":"Majorations et pénalités sociales"
+                     },
+                     {
+                        "code":"6688",
+                        "name":"Charges sociales diverses"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"67",
+            "name":"Frais financiers et charges assimilées",
+            "subaccounts":[
+               {
+                  "code":"671",
+                  "name":"Intérêts des emprunts",
+                  "subaccounts":[
+                     {
+                        "code":"6711",
+                        "name":"Emprunts obligataires"
+                     },
+                     {
+                        "code":"6712",
+                        "name":"Emprunts auprès des établissements de crédit"
+                     },
+                     {
+                        "code":"6713",
+                        "name":"Dettes liées à des participations"
+                     },
+                     {
+                        "code":"6714",
+                        "name":"Primes de remboursement des obligations"
+                     }
+                  ]
+               },
+               {
+                  "code":"672",
+                  "name":"Intérêts dans loyers de location acquisition",
+                  "subaccounts":[
+                     {
+                        "code":"6722",
+                        "name":"Intérêts dans loyers de location acquisition / crédit-bail immobilier"
+                     },
+                     {
+                        "code":"6723",
+                        "name":"Intérêts dans loyers de location acquisition / crédit-bail mobilier"
+                     },
+                     {
+                        "code":"6724",
+                        "name":"Intérêts dans loyers de location acquisition / location-vente"
+                     },
+                     {
+                        "code":"6728",
+                        "name":"Intérêts dans loyers des autres locations acquisition"
+                     }
+                  ]
+               },
+               {
+                  "code":"673",
+                  "name":"Escomptes accordés",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"674",
+                  "name":"Autres intérêts",
+                  "subaccounts":[
+                     {
+                        "code":"6741",
+                        "name":"Avances reçues et dépôts créditeurs"
+                     },
+                     {
+                        "code":"6742",
+                        "name":"Comptes courants bloqués"
+                     },
+                     {
+                        "code":"6743",
+                        "name":"Intérêts sur obligations cautionnées"
+                     },
+                     {
+                        "code":"6744",
+                        "name":"Intérêts sur dettes commerciales"
+                     },
+                     {
+                        "code":"6745",
+                        "name":"Intérêts bancaires et sur opérations de financement (escompte...)"
+                     },
+                     {
+                        "code":"6748",
+                        "name":"Intérêts sur dettes diverses"
+                     }
+                  ]
+               },
+               {
+                  "code":"675",
+                  "name":"Escomptes des effets de commerce",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"676",
+                  "name":"Pertes de change financières",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"677",
+                  "name":"Pertes sur titres de placement",
+                  "subaccounts":[
+                     {
+                        "code":"6771",
+                        "name":"Pertes sur cessions de titres de placement"
+                     },
+                     {
+                        "code":"6772",
+                        "name":"Mali provenant d’attribution gratuite d’actions"
+                     }
+                  ]
+               },
+               {
+                  "code":"678",
+                  "name":"Pertes et charges sur risques financiers",
+                  "subaccounts":[
+                     {
+                        "code":"6781",
+                        "name":"Sur rentes viagères"
+                     },
+                     {
+                        "code":"6782",
+                        "name":"Sur opérations financières"
+                     },
+                     {
+                        "code":"6784",
+                        "name":"Sur instruments de trésorerie"
+                     }
+                  ]
+               },
+               {
+                  "code":"679",
+                  "name":"Charges pour dépréciations et provisions pour risques à court terme financières",
+                  "subaccounts":[
+                     {
+                        "code":"6791",
+                        "name":"Sur risques financiers"
+                     },
+                     {
+                        "code":"6795",
+                        "name":"Sur titres de placement"
+                     },
+                     {
+                        "code":"6798",
+                        "name":"Autres charges pour dépréciations et provisions pour risques à court terme financières"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"68",
+            "name":"Dotations aux amortissements",
+            "subaccounts":[
+               {
+                  "code":"681",
+                  "name":"Dotations aux amortissements d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"6812",
+                        "name":"Dotations aux amortissements des immobilisations incorporelles"
+                     },
+                     {
+                        "code":"6813",
+                        "name":"Dotations aux amortissements des immobilisations corporelles"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"69",
+            "name":"Dotations aux provisions et aux dépréciations",
+            "subaccounts":[
+               {
+                  "code":"691",
+                  "name":"Dotations aux provisions et aux dépréciations d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"6911",
+                        "name":"Dotations aux provisions pour risques et charges"
+                     },
+                     {
+                        "code":"6913",
+                        "name":"Dotations aux dépréciations des immobilisations incorporelles"
+                     },
+                     {
+                        "code":"6914",
+                        "name":"Dotations aux dépréciations des immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"697",
+                  "name":"Dotations aux provisions et aux dépréciations financières",
+                  "subaccounts":[
+                     {
+                        "code":"6971",
+                        "name":"Dotations aux provisions pour risques et charges"
+                     },
+                     {
+                        "code":"6972",
+                        "name":"Dotations aux dépréciations des immobilisations financières"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"7",
+      "name":"Comptes de produits des activités ordinaires",
+      "accounts":[
+         {
+            "code":"70",
+            "name":"Ventes",
+            "subaccounts":[
+               {
+                  "code":"701",
+                  "name":"Ventes de marchandises",
+                  "subaccounts":[
+                     {
+                        "code":"7011",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7012",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7013",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7014",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7015",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7019",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"702",
+                  "name":"Ventes de produits finis",
+                  "subaccounts":[
+                     {
+                        "code":"7021",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7022",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7023",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7024",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7025",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7029",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"703",
+                  "name":"Ventes de produits intermédiaires",
+                  "subaccounts":[
+                     {
+                        "code":"7031",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7032",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7033",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7034",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7035",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7039",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"704",
+                  "name":"Ventes de produits résiduels",
+                  "subaccounts":[
+                     {
+                        "code":"7041",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7042",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7043",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7044",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7045",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7049",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"705",
+                  "name":"Travaux facturés",
+                  "subaccounts":[
+                     {
+                        "code":"7051",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7052",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7053",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7054",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7055",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7059",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"706",
+                  "name":"Services vendus",
+                  "subaccounts":[
+                     {
+                        "code":"7061",
+                        "name":"Dans la Région [7]"
+                     },
+                     {
+                        "code":"7062",
+                        "name":"Hors Région [7]"
+                     },
+                     {
+                        "code":"7063",
+                        "name":"Aux entités du groupe dans la Région"
+                     },
+                     {
+                        "code":"7064",
+                        "name":"Aux entités du groupe hors Région"
+                     },
+                     {
+                        "code":"7065",
+                        "name":"Sur internet"
+                     },
+                     {
+                        "code":"7069",
+                        "name":"Rabais, remises, ristournes accordés (non ventilés)"
+                     }
+                  ]
+               },
+               {
+                  "code":"707",
+                  "name":"Produits accessoires",
+                  "subaccounts":[
+                     {
+                        "code":"7071",
+                        "name":"Ports, emballages perdus et autres frais facturés"
+                     },
+                     {
+                        "code":"7072",
+                        "name":"Commissions et courtages [8]"
+                     },
+                     {
+                        "code":"7073",
+                        "name":"Locations [8]"
+                     },
+                     {
+                        "code":"7074",
+                        "name":"Bonis sur reprises et cessions d’emballages"
+                     },
+                     {
+                        "code":"7075",
+                        "name":"Mise à disposition de personnel [8]"
+                     },
+                     {
+                        "code":"7076",
+                        "name":"Redevances pour brevets, logiciels, marques et droits similaires [8]"
+                     },
+                     {
+                        "code":"7077",
+                        "name":"Services exploités dans l’intérêt du personnel"
+                     },
+                     {
+                        "code":"7078",
+                        "name":"Autres produits accessoires"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"71",
+            "name":"Subventions d’exploitation",
+            "subaccounts":[
+               {
+                  "code":"711",
+                  "name":"Sur produits à l’exportation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"712",
+                  "name":"Sur produits à l’importation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"713",
+                  "name":"Sur produits de péréquation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"714",
+                  "name":"Indemnités et subventions d’exploitation (entité agricole)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"718",
+                  "name":"Autres subventions d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"7181",
+                        "name":"Versées par l’État et les collectivités publiques"
+                     },
+                     {
+                        "code":"7182",
+                        "name":"Versées par les organismes internationaux"
+                     },
+                     {
+                        "code":"7183",
+                        "name":"Versées par des tiers"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"72",
+            "name":"Production immobilisée",
+            "subaccounts":[
+               {
+                  "code":"721",
+                  "name":"Immobilisations incorporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"722",
+                  "name":"Immobilisations corporelles",
+                  "subaccounts":[
+                     {
+                        "code":"7221",
+                        "name":"Immobilisations corporelles (hors actifs biologiques)"
+                     },
+                     {
+                        "code":"7222",
+                        "name":"Immobilisations corporelles (actifs biologiques)"
+                     }
+                  ]
+               },
+               {
+                  "code":"724",
+                  "name":"Production auto-consommée",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"726",
+                  "name":"Immobilisations financières [9]",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"73",
+            "name":"Variations des stocks de biens et de services produits",
+            "subaccounts":[
+               {
+                  "code":"734",
+                  "name":"Variations des stocks de produits en cours",
+                  "subaccounts":[
+                     {
+                        "code":"7341",
+                        "name":"Produits en cours"
+                     },
+                     {
+                        "code":"7342",
+                        "name":"Travaux en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"735",
+                  "name":"Variations des en-cours de services",
+                  "subaccounts":[
+                     {
+                        "code":"7351",
+                        "name":"Études en cours"
+                     },
+                     {
+                        "code":"7352",
+                        "name":"Prestations de services en cours"
+                     }
+                  ]
+               },
+               {
+                  "code":"736",
+                  "name":"Variations des stocks de produits finis",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"737",
+                  "name":"Variations des stocks de produits intermédiaires et résiduels",
+                  "subaccounts":[
+                     {
+                        "code":"7371",
+                        "name":"Produits intermédiaires"
+                     },
+                     {
+                        "code":"7372",
+                        "name":"Produits résiduels"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"75",
+            "name":"Autres produits",
+            "subaccounts":[
+               {
+                  "code":"751",
+                  "name":"Profits sur créances clients et autres débiteurs",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"752",
+                  "name":"Quote-part de résultat sur opérations faites en commun",
+                  "subaccounts":[
+                     {
+                        "code":"7521",
+                        "name":"Quote-part transférée de pertes (comptabilité du gérant)"
+                     },
+                     {
+                        "code":"7525",
+                        "name":"Bénéfices attribués par transfert (comptabilité des associés non gérants)"
+                     }
+                  ]
+               },
+               {
+                  "code":"754",
+                  "name":"Produits des cessions courantes d’immobilisations",
+                  "subaccounts":[
+                     {
+                        "code":"7541",
+                        "name":"Immobilisations incorporelles"
+                     },
+                     {
+                        "code":"7542",
+                        "name":"Immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"756",
+                  "name":"Gains de change sur créances et dettes commerciales",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"758",
+                  "name":"Produits divers",
+                  "subaccounts":[
+                     {
+                        "code":"7581",
+                        "name":"Indemnités de fonction et autres rémunérations d’administrateurs"
+                     },
+                     {
+                        "code":"7582",
+                        "name":"Indemnités d’assurances reçues"
+                     },
+                     {
+                        "code":"7588",
+                        "name":"Autres produits divers"
+                     }
+                  ]
+               },
+               {
+                  "code":"759",
+                  "name":"Reprises de charges pour dépréciations et provisions pour risques à court terme d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"7591",
+                        "name":"Sur risques à court terme"
+                     },
+                     {
+                        "code":"7593",
+                        "name":"Sur stocks"
+                     },
+                     {
+                        "code":"7594",
+                        "name":"Sur créances"
+                     },
+                     {
+                        "code":"7598",
+                        "name":"Sur autres charges pour dépréciations et provisions pour risques à court terme"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"77",
+            "name":"Revenus financiers et produits assimilés",
+            "subaccounts":[
+               {
+                  "code":"771",
+                  "name":"Intérêts de prêts et créances diverses",
+                  "subaccounts":[
+                     {
+                        "code":"7712",
+                        "name":"Intérêts de prêts"
+                     },
+                     {
+                        "code":"7713",
+                        "name":"Intérêts sur créances diverses"
+                     }
+                  ]
+               },
+               {
+                  "code":"772",
+                  "name":"Revenus de participations et autres titres immobilisés",
+                  "subaccounts":[
+                     {
+                        "code":"7721",
+                        "name":"Revenus des titres de participation"
+                     },
+                     {
+                        "code":"7722",
+                        "name":"Revenus autres titres immobilisés"
+                     }
+                  ]
+               },
+               {
+                  "code":"773",
+                  "name":"Escomptes obtenus",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"774",
+                  "name":"Revenus de placement",
+                  "subaccounts":[
+                     {
+                        "code":"7745",
+                        "name":"Revenus des obligations"
+                     },
+                     {
+                        "code":"7746",
+                        "name":"Revenus des titres de placement"
+                     }
+                  ]
+               },
+               {
+                  "code":"775",
+                  "name":"Intérêts dans loyers de location acquisition",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"776",
+                  "name":"Gains de change financiers",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"777",
+                  "name":"Gains sur cessions de titres de placement",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"778",
+                  "name":"Gains sur risques financiers",
+                  "subaccounts":[
+                     {
+                        "code":"7781",
+                        "name":"Sur rentes viagères"
+                     },
+                     {
+                        "code":"7782",
+                        "name":"Sur opérations financières"
+                     },
+                     {
+                        "code":"7784",
+                        "name":"Sur instruments de trésorerie"
+                     }
+                  ]
+               },
+               {
+                  "code":"779",
+                  "name":"Reprises de charges pour dépréciations et provisions à court terme financières",
+                  "subaccounts":[
+                     {
+                        "code":"7791",
+                        "name":"Sur risques financiers"
+                     },
+                     {
+                        "code":"7795",
+                        "name":"Sur titres de placement"
+                     },
+                     {
+                        "code":"7798",
+                        "name":"Sur autres charges pour dépréciations et provisions pour risques à court terme financières"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"78",
+            "name":"Transferts de charges",
+            "subaccounts":[
+               {
+                  "code":"781",
+                  "name":"Transferts de charges d’exploitation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"787",
+                  "name":"Transferts de charges financières",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"79",
+            "name":"Reprises de provisions, de dépréciations et autres",
+            "subaccounts":[
+               {
+                  "code":"791",
+                  "name":"Reprises de provisions et dépréciations d’exploitation",
+                  "subaccounts":[
+                     {
+                        "code":"7911",
+                        "name":"Pour risques et charges"
+                     },
+                     {
+                        "code":"7913",
+                        "name":"Des immobilisations incorporelles"
+                     },
+                     {
+                        "code":"7914",
+                        "name":"Des immobilisations corporelles"
+                     }
+                  ]
+               },
+               {
+                  "code":"797",
+                  "name":"Reprises de provisions et dépréciations financières",
+                  "subaccounts":[
+                     {
+                        "code":"7971",
+                        "name":"Pour risques et charges"
+                     },
+                     {
+                        "code":"7972",
+                        "name":"Des immobilisations financières"
+                     }
+                  ]
+               },
+               {
+                  "code":"798",
+                  "name":"Reprises d’amortissements [10]",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"799",
+                  "name":"Reprises de subventions d’investissement",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"8",
+      "name":"Comptes des autres charges et des autres produits",
+      "accounts":[
+         {
+            "code":"81",
+            "name":"Valeurs comptables des cessions d’immobilisations",
+            "subaccounts":[
+               {
+                  "code":"811",
+                  "name":"Immobilisations incorporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"812",
+                  "name":"Immobilisations corporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"816",
+                  "name":"Immobilisations financières",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"82",
+            "name":"Produits des cessions d’immobilisations",
+            "subaccounts":[
+               {
+                  "code":"821",
+                  "name":"Immobilisations incorporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"822",
+                  "name":"Immobilisations corporelles",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"826",
+                  "name":"Immobilisations financières",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"83",
+            "name":"Charges hors activités ordinaires",
+            "subaccounts":[
+               {
+                  "code":"831",
+                  "name":"Charges HAO constatées",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"833",
+                  "name":"Charges liées aux opérations de restructuration",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"834",
+                  "name":"Pertes sur créances HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"835",
+                  "name":"Dons et libéralités accordés",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"836",
+                  "name":"Abandons de créances consentis",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"837",
+                  "name":"Charges liées aux opérations de liquidation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"839",
+                  "name":"Charges pour dépréciations et provisions pour risques à court terme HAO",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"84",
+            "name":"Produits hors activités ordinaires",
+            "subaccounts":[
+               {
+                  "code":"841",
+                  "name":"Produits HAO constatés",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"843",
+                  "name":"Produits liés aux opérations de restructuration",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"844",
+                  "name":"Indemnités et subventions HAO (entité agricole)",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"845",
+                  "name":"Dons et libéralités obtenus",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"846",
+                  "name":"Abandons de créances obtenus",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"847",
+                  "name":"Produits liés aux opérations de liquidation",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"848",
+                  "name":"Transferts de charges HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"849",
+                  "name":"Reprises de charges pour dépréciations et provisions pour risques à court terme HAO",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"85",
+            "name":"Dotations hors activités ordinaires",
+            "subaccounts":[
+               {
+                  "code":"851",
+                  "name":"Dotations aux provisions réglementées",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"852",
+                  "name":"Dotations aux amortissements HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"853",
+                  "name":"Dotations aux dépréciations HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"854",
+                  "name":"Dotations aux provisions pour risques et charges HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"858",
+                  "name":"Autres dotations HAO",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"86",
+            "name":"Reprises de charges, provisions et dépréciations HAO",
+            "subaccounts":[
+               {
+                  "code":"861",
+                  "name":"Reprises de provisions réglementées",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"862",
+                  "name":"Reprises d’amortissements HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"863",
+                  "name":"Reprises de dépréciations HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"864",
+                  "name":"Reprises de provisions pour risques et charges HAO",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"868",
+                  "name":"Autres reprises HAO",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"87",
+            "name":"Participation des travailleurs",
+            "subaccounts":[
+               {
+                  "code":"871",
+                  "name":"Participation légale aux bénéfices",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"874",
+                  "name":"Participation contractuelle aux bénéfices",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"878",
+                  "name":"Autres participations",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"88",
+            "name":"Subventions d’équilibre",
+            "subaccounts":[
+               {
+                  "code":"881",
+                  "name":"État",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"884",
+                  "name":"Collectivités publiques",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"886",
+                  "name":"Groupe",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"888",
+                  "name":"Autres",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"89",
+            "name":"Impôts sur le résultat",
+            "subaccounts":[
+               {
+                  "code":"891",
+                  "name":"Impôts sur les bénéfices de l’exercice",
+                  "subaccounts":[
+                     {
+                        "code":"8911",
+                        "name":"Activités exercées dans l’État"
+                     },
+                     {
+                        "code":"8912",
+                        "name":"Activités exercées dans les autres États de la Région"
+                     },
+                     {
+                        "code":"8913",
+                        "name":"Activités exercées hors Région"
+                     }
+                  ]
+               },
+               {
+                  "code":"892",
+                  "name":"Rappel d’impôts sur résultats antérieurs",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"895",
+                  "name":"Impôt minimum forfaitaire IMF",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"899",
+                  "name":"Dégrèvements et annulations d’impôts sur résultats antérieurs",
+                  "subaccounts":[
+                     {
+                        "code":"8991",
+                        "name":"Dégrèvements"
+                     },
+                     {
+                        "code":"8994",
+                        "name":"Annulations pour pertes rétroactives"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "class":"9",
+      "name":"Comptes des engagements hors bilan et de la comptabilité analytique",
+      "accounts":[
+         {
+            "code":"90",
+            "name":"Engagements obtenus et engagements accordés",
+            "subaccounts":[
+               {
+                  "code":"901",
+                  "name":"Engagements de financement obtenus",
+                  "subaccounts":[
+                     {
+                        "code":"9011",
+                        "name":"Crédits confirmés obtenus"
+                     },
+                     {
+                        "code":"9012",
+                        "name":"Emprunts restant à encaisser"
+                     },
+                     {
+                        "code":"9013",
+                        "name":"Facilités de financement renouvelables"
+                     },
+                     {
+                        "code":"9014",
+                        "name":"Facilités d’émission"
+                     },
+                     {
+                        "code":"9018",
+                        "name":"Autres engagements de financement obtenus"
+                     }
+                  ]
+               },
+               {
+                  "code":"902",
+                  "name":"Engagements de garantie obtenus",
+                  "subaccounts":[
+                     {
+                        "code":"9021",
+                        "name":"Avals obtenus"
+                     },
+                     {
+                        "code":"9022",
+                        "name":"Cautions, garanties obtenues"
+                     },
+                     {
+                        "code":"9023",
+                        "name":"Hypothèques obtenues"
+                     },
+                     {
+                        "code":"9024",
+                        "name":"Effets endossés par des tiers"
+                     },
+                     {
+                        "code":"9028",
+                        "name":"Autres garanties obtenues"
+                     }
+                  ]
+               },
+               {
+                  "code":"903",
+                  "name":"Engagements réciproques",
+                  "subaccounts":[
+                     {
+                        "code":"9031",
+                        "name":"Achats de marchandises à terme"
+                     },
+                     {
+                        "code":"9032",
+                        "name":"Achats à terme de devises"
+                     },
+                     {
+                        "code":"9033",
+                        "name":"Commandes fermes des clients"
+                     },
+                     {
+                        "code":"9038",
+                        "name":"Autres engagements réciproques"
+                     }
+                  ]
+               },
+               {
+                  "code":"904",
+                  "name":"Autres engagements obtenus",
+                  "subaccounts":[
+                     {
+                        "code":"9041",
+                        "name":"Abandons de créances conditionnels"
+                     },
+                     {
+                        "code":"9043",
+                        "name":"Ventes avec clause de réserve de propriété"
+                     },
+                     {
+                        "code":"9048",
+                        "name":"Divers engagements obtenus"
+                     }
+                  ]
+               },
+               {
+                  "code":"905",
+                  "name":"Engagements de financement accordés",
+                  "subaccounts":[
+                     {
+                        "code":"9051",
+                        "name":"Crédits accordés non décaissés"
+                     },
+                     {
+                        "code":"9058",
+                        "name":"Autres engagements de financement accordés"
+                     }
+                  ]
+               },
+               {
+                  "code":"906",
+                  "name":"Engagements de garantie accordés",
+                  "subaccounts":[
+                     {
+                        "code":"9061",
+                        "name":"Avals accordés"
+                     },
+                     {
+                        "code":"9062",
+                        "name":"Cautions, garanties accordées"
+                     },
+                     {
+                        "code":"9063",
+                        "name":"Hypothèques accordées"
+                     },
+                     {
+                        "code":"9064",
+                        "name":"Effets endossés par l’entité"
+                     },
+                     {
+                        "code":"9068",
+                        "name":"Autres garanties accordées"
+                     }
+                  ]
+               },
+               {
+                  "code":"907",
+                  "name":"Engagements réciproques",
+                  "subaccounts":[
+                     {
+                        "code":"9071",
+                        "name":"Ventes de marchandises à terme"
+                     },
+                     {
+                        "code":"9072",
+                        "name":"Ventes à terme de devises"
+                     },
+                     {
+                        "code":"9073",
+                        "name":"Commandes fermes aux fournisseurs"
+                     },
+                     {
+                        "code":"9078",
+                        "name":"Autres engagements réciproques"
+                     }
+                  ]
+               },
+               {
+                  "code":"908",
+                  "name":"Autres engagements accordés",
+                  "subaccounts":[
+                     {
+                        "code":"9081",
+                        "name":"Annulations conditionnelles de dettes"
+                     },
+                     {
+                        "code":"9082",
+                        "name":"Engagements de retraite"
+                     },
+                     {
+                        "code":"9083",
+                        "name":"Achats avec clause de réserve de propriété"
+                     },
+                     {
+                        "code":"9088",
+                        "name":"Divers engagements accordés"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"91",
+            "name":"Contreparties des engagements",
+            "subaccounts":[
+               {
+                  "code":"911 à 914",
+                  "name":"Contrepartie des engagements obtenus, 901 à 904",
+                  "subaccounts":[
+                     
+                  ]
+               },
+               {
+                  "code":"915 à 918",
+                  "name":"Contrepartie des engagements accordés, 905 à 908",
+                  "subaccounts":[
+                     
+                  ]
+               }
+            ]
+         },
+         {
+            "code":"92",
+            "name":"Comptes réfléchis",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"93",
+            "name":"Comptes de reclassements",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"94",
+            "name":"Comptes de coûts",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"95",
+            "name":"Comptes de stocks",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"96",
+            "name":"Comptes d’écarts sur coûts préétablis",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"97",
+            "name":"Comptes de différences de traitement comptable",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"98",
+            "name":"Comptes de résultats",
+            "subaccounts":[
+               
+            ]
+         },
+         {
+            "code":"99",
+            "name":"Comptes de liaisons internes",
+            "subaccounts":[
+               
+            ]
+         }
+      ]
+   }
+];
