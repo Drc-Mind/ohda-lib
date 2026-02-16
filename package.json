@@ -1,6 +1,6 @@
 {
   "name": "ohada-lib",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A developer-friendly OHADA accounting library that transforms business events into type-safe journal entries, manages stock and expenses, and generates compliant financial reports",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
