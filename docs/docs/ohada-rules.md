@@ -1,27 +1,68 @@
 # OHADA Accounting Rules
 
-To effectively use **Ohada Lib**, it is essential to understand a few core principles of the SYSCOHADA (Système Comptable OHADA) framework. The library is built to enforce these rules automatically.
+To build compliant financial software for the region, it's essential to understand the legal and technical framework of OHADA.
 
-## 1. The "Golden Rule": Constatation vs. Règlement
+## What is OHADA?
 
-In OHADA accounting, a business transaction is typically recorded in two distinct steps to maintain a clear audit trail.
+**OHADA** (Organisation pour l'Harmonisation en Afrique du Droit des Affaires) is a system of uniform corporate laws adopted by seventeen West and Central African nations. It was created in 1993 to foster economic growth by providing a modern and secure legal environment for business.
 
-### Step A: Constatation (Invoice Recognition)
-When an invoice is issued or received, the theoretical debt or claim is recorded. This acknowledges the legal obligation before any money changes hands.
-- **Purchase**: Debit an Expense (Class 6) and Credit the Supplier (Account 4011).
-- **Sale**: Debit the Client (Account 4111) and Credit a Revenue account (Class 7).
+### Member States (17 Nations)
 
-### Step B: Règlement (Payment Settlement)
-When money is actually paid or received, the debt/claim is settled.
-- **Purchase**: Debit the Supplier (4011) and Credit the Payment Method (Cash 571 or Bank 521).
-- **Sale**: Debit the Payment Method (Class 5) and Credit the Client (4111).
+The following countries follow the OHADA accounting standards:
 
-> [!IMPORTANT]
-> **Ohada Lib** handles both steps. If you provide payment details in your input, two distinct entries (Invoice + Settlement) are generated automatically.
+- 🇧🇯 Benin
+- 🇧🇫 Burkina Faso
+- 🇨🇲 Cameroon
+- 🇨🇫 Central African Republic
+- 🇹🇩 Chad
+- 🇰🇲 Comoros
+- 🇨🇬 Congo
+- 🇨🇩 Democratic Republic of Congo
+- 🇬🇶 Equatorial Guinea
+- 🇬🇦 Gabon
+- 🇬🇳 Guinea
+- 🇬🇼 Guinea-Bissau
+- 🇨🇮 Ivory Coast
+- 🇲🇱 Mali
+- 🇳🇪 Niger
+- 🇸🇳 Senegal
+- 🇹🇬 Togo
 
-## 2. The Use of Intermediate Accounts (4011/4111)
+## The SYSCOHADA Standard
 
-Even for immediate cash transactions, SYSCOHADA standards recommend passing through personal accounts (4011 for Suppliers, 4111 for Clients). This ensures that the ledger accurately reflects with whom the business is transacting, providing a robust history for audits and financial reporting.
+The **SYSCOHADA** (Système Comptable OHADA) is the regional chart of accounts. **ohada-lib** follows the **Uniform Act on Accounting Law and Financial Reporting (AUDCIF)**, specifically the "Revised SYSCOHADA" structure.
+
+### Core Principles
+
+#### 1. The Double Step Constraint (Constatation vs Règlement)
+In SYSCOHADA, you never record a credit transaction directly to cash. You must always:
+1. **Constatation**: Recognize the debt (Supplier) or claim (Client).
+2. **Règlement**: Settle the transaction with a monetary account (Cash/Bank).
+
+*`ohada-lib` enforces this by generating two journal entries for sales/purchases with payments.*
+
+#### 2. The Golden Rule of Invoices
+Every purchase of goods must pass through account **4011** (Suppliers) to maintain a perfect audit trail, even if paid immediately.
+
+#### 3. Distinct VAT Accounts
+VAT is not a single bucket. It's tracked differently based on the business event:
+- **4431**: VAT Collected on Sales.
+- **4452**: VAT Recoverable on Goods.
+- **4454**: VAT Recoverable on Services.
+- **4451**: VAT Recoverable on Assets (Immobilisations).
+
+## How the library helps
+
+Instead of memorizing these account codes, you use natural developer logic:
+
+```typescript
+// The library knows this is a SERVICE and uses account 4454 automatically
+ohada.recordExpense({
+  category: 'RENT',
+  amount: 500000,
+  label: "Office Rent"
+});
+```
 
 ## 3. Value Added Tax (VAT/TVA)
 

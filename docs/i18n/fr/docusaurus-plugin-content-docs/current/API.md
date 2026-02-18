@@ -1,45 +1,55 @@
-# API Reference
+# Référence API
 
-Complete reference for the Ohada Lib main API.
+Référence complète de l'API principale de `ohada-lib`.
 
-## `Ohada` Class
+## Classe `Ohada`
 
-Main entry point for the library.
+Le point d'entrée principal de la bibliothèque. Elle orchestre toutes les opérations comptables.
 
 ### `constructor(config: OhadaConfig)`
 
-Initializes the library.
+Initialise le moteur avec les paramètres globaux. Voir [Configuration](./config.md) pour plus de détails.
 
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| `vat` | `number` | Default VAT rate (e.g., 0.18). |
-| `taxInclusive` | `boolean` | Whether input prices are TTC. |
-| `locale` | `'fr' \| 'en'` | Label language. |
+### `recordSale(input: SaleInput): JournalEntry[]`
 
-### `recordPurchase(input: PurchaseInput | number)`
+Enregistre une vente.
+- **Règles** : Suit la reconnaissance de créance client (4111) et le revenu (70x).
+- **Fonctionnalités** : Supporte les escomptes, le transport, les emballages et les paiements.
 
-Records a purchase transaction.
+### `recordPurchase(input: PurchaseInput | number): JournalEntry[]`
 
-- **Parameters**: 
-  - `input`: A `number` for simplified cash purchase, or a `PurchaseInput` object for detailed recording.
-- **Returns**: `AccoutingResult` containing the Generated Journal Entries and any warnings.
+Enregistre un achat de marchandises.
+- **Règles** : Impose la dette fournisseur (4011) et l'entrée en stock (6011).
+- **Fonctionnalités** : Supporte le transport, la douane et le paiement multi-étapes.
 
-## Types
+### `recordExpense(input: ExpenseInput, vatConfig?: ExpenseVATConfig): JournalEntry[]`
 
-### `PurchaseInput`
+Enregistre les charges d'exploitation.
+- **Règles** : Utilise la résolution intelligente pour mapper les catégories (Loyer, Services) aux comptes.
+- **Fonctionnalités** : Supporte le "Mode Direct" (Base caisse) pour ignorer les comptes fournisseurs.
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `supplier` | `string` | Name of the supplier. |
-| `items` | `PurchaseItem[]` | List of items purchased. |
-| `payments` | `PurchasePayment[]` | Payment details. |
-| `additionalCharges` | `PurchaseCharge[]` | Fees like Transport/Customs. |
+### `recordAsset(input: AssetInput): JournalEntry[]`
+
+Enregistre l'acquisition d'actifs à long terme (Immobilisations).
+- **Règles** : Utilise le fournisseur d'investissement (481) et la TVA sur immobilisations (4451).
+- **Fonctionnalités** : Supporte la décomposition par composants et les provisions pour démantèlement.
+
+## Types Globaux
 
 ### `JournalEntry`
 
-| Field | Type | Description |
+| Champ | Type | Description |
 | :--- | :--- | :--- |
-| `accountCode` | `string` | OHADA Account code. |
-| `label` | `string` | Description of the entry. |
-| `debit` | `number` | Debit amount. |
-| `credit` | `number` | Credit amount. |
+| `type` | `'CONSTATATION' \| 'REGLEMENT' \| 'VIRTUAL'` | La nature comptable de l'écriture. |
+| `label` | `string` | Description lisible par l'homme (localisée). |
+| `lines` | `JournalLine[]` | Tableau de lignes de débit et de crédit. |
+| `isBalanced` | `boolean` | Vérifie si le total des débits est égal au total des crédits. |
+
+### `JournalLine`
+
+| Champ | Type | Description |
+| :--- | :--- | :--- |
+| `account` | `string` | Le code de compte SYSCOHADA (ex : '5211'). |
+| `label` | `string` | Description spécifique de la ligne. |
+| `debit` | `number` | Montant au débit. |
+| `credit` | `number` | Montant au crédit. |

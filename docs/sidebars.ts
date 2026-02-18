@@ -17,13 +17,15 @@ const sidebars: SidebarsConfig = {
     'intro',
     'ohada-rules',
     'getting-started',
+    'config',
     {
       type: 'category',
-      label: 'Business Cases',
+      label: 'Business Features',
       items: [
         'sales',
         'purchases',
         'expenses',
+        'assets',
       ],
     },
     'i18n',

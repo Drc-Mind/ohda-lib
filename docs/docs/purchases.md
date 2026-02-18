@@ -1,80 +1,75 @@
-# Recording Purchases
+# Purchase Management
 
-Purchases of goods and raw materials are recorded following the SYSCOHADA "Invoice then Payment" rule. **Ohada Lib** simplifies this by allowing you to record the acquisition and its settlement in a single call.
+Record inventory acquisitions and manage supplier debt following the SYSCOHADA "Double Step" rule.
 
-## Basic Purchase
+## Core Rules
 
-A simple purchase records the stock entry and the supplier debt.
+All purchases of goods (Stock) must follow a two-step process:
+1. **Constatation**: Recording the invoice and recognition of debt to the supplier (**Account 4011**).
+2. **Règlement**: The actual payment to clear that debt.
+
+*Even if paid in cash immediately, the library ensures the transaction passes through the supplier account for a perfect audit trail.*
+
+## Quick Purchase Example
+
+Recording a stock purchase with immediate cash payment.
 
 ```typescript
-const result = ohada.recordPurchase({
+const journal = ohada.recordPurchase({
   amount: 500000,
-  label: "Achat de marchandises - Facture Fournisseur #X",
-  vatRate: 18
+  label: "Vendor Stock",
+  charges: [{ type: 'Transport', amount: 25000 }],
+  vatRate: 18,
+  payments: [{ method: 'cash', amount: 619500 }]
 });
 ```
 
-## Additional Acquisition Costs
+## Advanced Costs
 
-Purchases often involve fees like transport or customs that must be incorporated into the acquisition cost of the goods.
+Include ancillary costs often associated with purchases.
+
+### Transport & Customs
+Costs like transport and customs are capitalized into the total value of the goods purchased (Account 6015).
 
 ```typescript
-const result = ohada.recordPurchase({
-  amount: 1000000,
-  label: "Importation Marchandises",
-  charges: [
-    { type: 'Transport', amount: 50000 },
-    { type: 'Douane', amount: 150000 },
-    { type: 'Divers', amount: 10000 }
-  ]
-});
+charges: [
+  { type: 'Transport', amount: 50000 },
+  { type: 'Douane', amount: 150000 }
+]
 ```
 
-## Complex Multi-Payment
+## Account Mapping
 
-In many ERP scenarios, a purchase is settled using multiple payment methods or in several installments. The `payments` array handles this complexity by generating a settlement entry for each item.
-
-```typescript
-const result = ohada.recordPurchase({
-  amount: 2000000,
-  label: "Major Purchase with Split Payment",
-  payments: [
-    { method: 'bank', amount: 1000000 }, // Partial bank transfer
-    { method: 'cash', amount: 500000 }    // Partial cash payment
-    // Remaining 500k stays as debt in Account 4011
-  ]
-});
-```
+| Input | Account Code | Description |
+| :--- | :--- | :--- |
+| Goods | `6011` | Purchase of Merchandise. |
+| Fees | `6015` | Ancillary costs (Transport/Customs). |
+| VAT | `4452` | VAT Recoverable on Goods. |
+| Supplier | `4011` | Accounts Payable (Trade). |
 
 ## Expected Output
 
-For a purchase involving multiple payments, the library generates both the invoice recognition and the settlement entries.
+The library generates both the invoice recognition (**Constatation**) and the settlement (**Règlement**).
 
 ```json
 [
   {
-    "label": "Invoice Recognition",
+    "type": "CONSTATATION",
     "lines": [
-      { "account": "6011", "label": "Achat de marchandises", "debit": 1000000, "credit": 0 },
-      { "account": "4452", "label": "Etat, TVA récupérable", "debit": 180000, "credit": 0 },
-      { "account": "4011", "label": "Fournisseurs", "debit": 0, "credit": 1180000 }
-    ]
+      { "account": "6011", "label": "Vendor Stock", "debit": 500000, "credit": 0 },
+      { "account": "6015", "label": "Frais (Transport) - Vendor Stock", "debit": 25000, "credit": 0 },
+      { "account": "4452", "label": "TVA récupérable - Vendor Stock", "debit": 94500, "credit": 0 },
+      { "account": "4011", "label": "Fournisseur - Vendor Stock", "debit": 0, "credit": 619500 }
+    ],
+    "isBalanced": true
   },
   {
-    "label": "Settlement Layer",
+    "type": "REGLEMENT",
     "lines": [
-      { "account": "4011", "label": "Fournisseurs", "debit": 500000, "credit": 0 },
-      { "account": "521", "label": "Banque", "debit": 0, "credit": 500000 }
-    ]
+      { "account": "4011", "label": "Paiement Fournisseur (cash) - #Stock", "debit": 619500, "credit": 0 },
+      { "account": "5711", "label": "Sortie de trésorerie (cash) - #Stock", "debit": 0, "credit": 619500 }
+    ],
+    "isBalanced": true
   }
 ]
 ```
-
-## How it works (The Audit Trail)
-
-When you record a purchase with charges and payments, **Ohada Lib** generates two distinct layers of journal entries:
-
-1. **Recognition**: Debits the goods (601) and VAT (4452), and credits the Supplier (4011).
-2. **Settlement**: For each payment provided, it debits the Supplier (4011) and credits the corresponding treasury account (Bank/Cash).
-
-This behavior ensures full compliance with the [OHADA "Golden Rules"](./ohada-rules.md).

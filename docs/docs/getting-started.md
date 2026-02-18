@@ -1,31 +1,57 @@
 # Getting Started
 
-Learn how to install and set up **Ohada Lib** in your project, or explore the library using our pre-built demo.
+Learn how to integrate `ohada-lib` into your project and record your first professional journal entry.
 
 ## Installation
 
-Install the core library using your preferred package manager:
+Install the package via your preferred package manager:
 
 ```bash
 npm install ohada-lib
 # or
 yarn add ohada-lib
+# or
+pnpm add ohada-lib
 ```
 
 ## Basic Setup
 
-Initialize the `Ohada` engine with your global configuration.
+The core of the library is the `Ohada` class. You can initialize it with global settings like VAT rates and currency.
 
 ```typescript
 import { Ohada } from 'ohada-lib';
 
 const ohada = new Ohada({
-  locale: 'fr',        // 'fr' (default) or 'en'
-  // Global defaults (can be overridden per transaction)
-  vat: 18,             // Default VAT rate percentage
-  taxInclusive: true   // Input prices are Gross (TTC) by default
+  vat: 0.18,          // Default VAT rate (18%)
+  currency: 'XAF',    // West African CFA Franc
+  taxInclusive: false // Prices provided are HT (Hors Taxe)
 });
 ```
+
+## First Journal Entry
+
+Let's record a simple cash sale of products.
+
+```typescript
+const journal = ohada.recordSale({
+  amount: 250000,
+  label: "Sale of 5 Computers",
+  vatRate: 18,
+  payment: {
+    method: 'cash',
+    amount: 295000 // Total TTC
+  }
+});
+
+console.log(journal);
+```
+
+### What happens under the hood?
+
+The engine automatically handles:
+1. **Account Mapping**: Maps your sale to high-level revenue accounts (e.g., 701).
+2. **VAT Calculation**: Generates the correct tax lines (Account 4431).
+3. **Double Step**: Records both the invoice (Constatation) and the payment (Règlement).
 
 ## Exploring the Demo
 

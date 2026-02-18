@@ -1,79 +1,54 @@
-# Recording Expenses
+# Gestion des Charges
 
-Expenses cover the operational costs of running a business (Class 6 in OHADA), such as electricity, rent, and telecommunications. Unlike purchases of goods, expenses are consumed immediately.
+Gérez les coûts d'exploitation tels que le loyer, l'électricité et les fournitures. **Ohada Lib** mappe automatiquement plus de 20 catégories de charges aux comptes SYSCOHADA corrects.
 
-## Basic Expense
+## Cartographie Dynamique
 
-Record an operational expense with automatic account resolution.
+Au lieu de chercher des codes de compte, vous utilisez des catégories naturelles :
 
 ```typescript
-const result = ohada.recordExpense({
-  category: 'ELECTRICITY',      // Maps to 6052
-  amount: 80000,                // Amount TTC
-  label: "Facture Senelec - Janvier",
-  vatRate: 18
+const journal = ohada.recordExpense({
+  category: 'OFFICE_SUPPLIES',  // Mappe vers le compte 604
+  amount: 80000,
+  label: "Fournitures de bureau",
+  payment: { method: 'bank', amount: 94400 }
 });
 ```
 
-## Expense Categories
+## Mode Charge Directe (Express)
 
-**Ohada Lib** includes a wide range of pre-mapped categories:
+Pour les petites dépenses qui ne nécessitent pas d'étape de facturation, vous pouvez activer `directExpense` dans votre configuration globale. Cela enregistre la charge directement contre le compte de trésorerie en une seule écriture.
 
-| Category | account | Description |
+## Correspondance des Comptes
+
+| Catégorie | Compte | Description |
 | :--- | :--- | :--- |
-| `ELECTRICITY` | 6052 | Power & Light |
-| `WATER` | 6051 | Water distribution |
-| `RENT_BUILDING` | 6222 | Office/Warehouse rent |
-| `TELECOMMUNICATIONS`| 6281 | Internet & Phone |
-| `STATIONERY` | 6041 | Office supplies |
+| `ELECTRICITY` | `6052` | Énergie et fluides. |
+| `RENT` | `622` | Locations. |
+| `OFFICE_SUPPLIES` | `604` | Achats de fournitures. |
+| `TRAVEL` | `627` | Frais de mission. |
 
-## Detailed VAT Configuration
+## Résultat Attendu
 
-Operational expenses have complex VAT rules. You can override the default recovery behavior using the `ExpenseVATConfig` object.
-
-```typescript
-const result = ohada.recordExpense({
-  category: 'RENT_BUILDING',
-  amount: 300000,
-  label: "Loyer Bureau"
-}, {
-  recoverable: true,            // Is VAT recoverable?
-  type: 'SERVICE'               // Maps to 4454 (Services) or 4452 (Goods)
-});
-```
-
-## Immediate Settlement
-
-By default, an expense is recorded as a debt to a supplier. To settle it immediately, provide a `payment` object.
-## Expected Output
-
-Operational expenses correctly resolve the specific OHADA account and handle VAT recovery rules.
+Par défaut, même les charges suivent le principe de reconnaissance de dette (Compte 4011) sauf si `directExpense` est activé.
 
 ```json
 [
   {
-    "label": "Expense Recording",
+    "type": "CONSTATATION",
     "lines": [
-      { "account": "6052", "label": "Electricité", "debit": 67797, "credit": 0 },
-      { "account": "4454", "label": "TVA récupérable sur services", "debit": 12203, "credit": 0 },
-      { "account": "4011", "label": "Fournisseurs", "debit": 0, "credit": 80000 }
+      { "account": "604", "label": "Fournitures de bureau", "debit": 80000, "credit": 0 },
+      { "account": "4011", "label": "Fournisseur", "debit": 0, "credit": 80000 }
     ],
-    "totals": { "debit": 80000, "credit": 80000 }
+    "isBalanced": true
+  },
+  {
+    "type": "REGLEMENT",
+    "lines": [
+      { "account": "4011", "debit": 94400, "credit": 0 },
+      { "account": "5211", "debit": 0, "credit": 94400 }
+    ],
+    "isBalanced": true
   }
 ]
 ```
-
-```typescript
-const result = ohada.recordExpense({
-  category: 'TELECOMMUNICATIONS',
-  amount: 25000,
-  label: "Orange Internet Bill",
-  payment: {
-    method: 'cash',
-    amount: 25000
-  }
-});
-```
-
-> [!NOTE]
-> For expenses, the `payment` amount usually matches the total expense amount for immediate cash/bank settlement.

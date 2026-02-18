@@ -1,88 +1,87 @@
-# Recording Sales
+# Gestion des Ventes
 
-Sales represent the primary revenue stream of a business. **Ohada Lib** handles sale recognition following SYSCOHADA standards, including commercial and financial adjustments.
+Enregistrez vos revenus et la TVA collectée tout en maintenant une piste d'audit conforme. **Ohada Lib** gère la reconnaissance des ventes selon les normes SYSCOHADA, incluant les ajustements commerciaux et financiers.
 
-## Basic Sale
+## Le Cycle de Vente
 
-A simple sale records the revenue and the client's debt.
+Dans le système SYSCOHADA, une vente est enregistrée en deux étapes :
+1. **Constatation** : Enregistrement de la facture et de la créance client (**Compte 4111**).
+2. **Règlement** : Enregistrement de l'encaissement pour solder la créance.
+
+`ohada-lib` gère cela en retournant un tableau d'écritures comptables équilibrées.
+
+## Exemple de Vente Rapide
+
+Une vente simple de marchandises avec règlement immédiat par banque.
 
 ```typescript
-const result = ohada.recordSale({
-  saleType: 'GOODS',            // 'GOODS' (701), 'MANUFACTURED' (702), or 'SERVICES' (706)
-  amount: 1000000,              // Net commercial amount
-  label: "Vente de marchandises - Facture #001",
-  vatRate: 18                   // Optional, defaults to configuration
+const journal = ohada.recordSale({
+  amount: 1000000,
+  label: "Commande #42",
+  saleType: 'GOODS',
+  vatRate: 18,
+  payment: {
+    method: 'bank',
+    amount: 1180000 // Total TTC (1M + 18%)
+  }
 });
 ```
 
-## Advanced Adjustments
+## Fonctionnalités Avancées
 
-The library supports various real-world scenarios through the `SaleInput` interface.
-
-### Financial Discounts (Escompte)
-If you grant a discount for early payment, use the `financialDiscount` property. This is recorded as an expense for the business (account 673).
+### Escomptes Financiers
+Si vous accordez une remise pour paiement anticipé, utilisez le champ `financialDiscount`. La bibliothèque enregistre correctement la charge financière (Compte 673).
 
 ```typescript
-financialDiscount: { percentage: 2 } // 2% discount
+financialDiscount: { percentage: 2 } // 2% d'escompte
 ```
 
-### Transport & Packaging
-You can record transport costs billed to the client and security deposits for packaging (Consignation).
+### Transport & Emballages
+Incluez les frais de transport facturés (Revenu pour vous, compte 7071) et les consignations d'emballages (Dettes, compte 4194).
 
 ```typescript
 transportCharge: { amount: 25000 },
 packagingDeposit: { amount: 5000 }
 ```
 
-### Inventory Exit (COGS)
-To maintain accurate stock levels and recognize the Cost of Goods Sold (COGS), you can trigger an inventory exit alongside the sale.
+### Sortie de Stock (Variation)
+Pour maintenir des niveaux de stock précis, vous pouvez déclencher une sortie de stock (6031/311) en même temps que la vente.
 
 ```typescript
-inventoryExit: { costPrice: 650000 } // CMUP (Average Weighted Cost)
+inventoryExit: { costPrice: 800000 }
 ```
 
-## Immediate Payment (Settlement)
+## Correspondance des Comptes
 
-If the sale is settled immediately, providing the payment method will generate the secondary accounting entry to clear the client's debt.
+| Entrée | Code Compte | Description |
+| :--- | :--- | :--- |
+| Revenu | `701/702/706` | Ventes de marchandises, produits finis ou services. |
+| TVA | `4431` | TVA Facturée. |
+| Client | `4111` | Créances Clients. |
+| Escompte | `673` | Charges financières (Escomptes accordés). |
 
-```typescript
-payment: {
-  method: 'bank', // 'bank' or 'cash'
-  amount: 1180000 // Total TTC
-}
-```
+## Résultat Attendu
 
-## Complete Example
-
-```typescript
-const journal = ohada.recordSale({
-  saleType: 'GOODS',
-  amount: 1000000,
-  label: "Large delivery to Client X",
-  vatRate: 18,
-  financialDiscount: { percentage: 2 },
-  transportCharge: { amount: 50000 },
-  inventoryExit: { costPrice: 700000 },
-  payment: {
-    method: 'bank',
-    amount: 1215400 // Net to pay + Transport - Discount + VAT
-  }
-});
-
-## Expected Output
-
-When you record a sale, the engine returns an array of accounting layers. Below is what the output looks like for a basic sale of 1M FCFA with 18% VAT.
+Pour une vente avec paiement immédiat, la bibliothèque génère deux écritures : la constatation de la facture et l'écriture de trésorerie.
 
 ```json
 [
   {
+    "type": "CONSTATATION",
     "lines": [
-      { "account": "4111", "label": "Clients", "debit": 1180000, "credit": 0 },
-      { "account": "7011", "label": "Ventes de marchandises", "debit": 0, "credit": 1000000 },
-      { "account": "4431", "label": "Etat, TVA facturée", "debit": 0, "credit": 180000 }
+      { "account": "4111", "label": "Client - Commande #42", "debit": 1180000, "credit": 0 },
+      { "account": "701", "label": "Vente de marchandises - #42", "debit": 0, "credit": 1000000 },
+      { "account": "4431", "label": "TVA facturée - #42", "debit": 0, "credit": 180000 }
     ],
-    "totals": { "debit": 1180000, "credit": 1180000 }
+    "isBalanced": true
+  },
+  {
+    "type": "REGLEMENT",
+    "lines": [
+      { "account": "5211", "label": "Entrée de trésorerie (bank) - #42", "debit": 1180000, "credit": 0 },
+      { "account": "4111", "label": "Règlement reçu (bank) - #42", "debit": 0, "credit": 1180000 }
+    ],
+    "isBalanced": true
   }
 ]
-```
 ```

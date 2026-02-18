@@ -9,21 +9,29 @@
   --site-text-muted: #667085;
   --site-accent: #004EEB;
   --grid-color: rgba(0, 0, 0, 0.05);
+
+  /* Documentation specific */
+  --doc-sidebar-background: #f9fafb;
+  --doc-toc-background: #ffffff;
   
   --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
   --ifm-heading-font-family: 'Outfit', sans-serif;
   --ifm-code-font-size: 90%;
+  --ifm-spacing-horizontal: 1.5rem;
 }
 
 [data-theme='dark'] {
-  --site-background: #060910;
-  --site-surface: #0c111d;
-  --site-border: #1d2939;
+  --site-background: #000000;
+  --site-surface: #0a0d16;
+  --site-border: #1a1f2e;
   --site-text-main: #f2f4f7;
   --site-text-muted: #98a2b3;
-  --site-accent: #53b1fd;
-  --grid-color: rgba(255, 255, 255, 0.04);
-  --ifm-navbar-background-color: rgba(6, 9, 16, 0.8);
+  --site-accent: #3b82f6;
+  --grid-color: rgba(255, 255, 255, 0.03);
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.8);
+
+  --doc-sidebar-background: #000000;
+  --doc-toc-background: #000000;
 }
 
 body {
@@ -54,37 +62,41 @@ body {
 }
 
 .hero__title {
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   color: var(--site-text-main);
-  margin-bottom: 2rem;
-  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-align: left;
 }
 
 .hero__subtitle {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 400;
   color: var(--site-text-muted);
-  max-width: 800px;
-  line-height: 1.5;
-  margin-bottom: 3rem;
+  max-width: 680px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  text-align: left;
 }
 
 .button--primary {
-  background-color: var(--site-text-main);
-  color: var(--site-background);
+  background-color: var(--ifm-color-primary);
+  color: white;
   border: none;
   border-radius: 99px;
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 2rem; /* Reduced padding */
   font-weight: 700;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px 0 rgba(0, 78, 235, 0.39);
 }
 
 .button--primary:hover {
-  opacity: 0.9;
-  color: var(--site-background);
+  background-color: #003dbd;
+  color: white;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 78, 235, 0.23);
   text-decoration: none;
 }
 
@@ -93,7 +105,7 @@ body {
   color: var(--site-text-main);
   border: 1px solid var(--site-border);
   border-radius: 99px;
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 2rem; /* Reduced padding */
   font-weight: 700;
 }
 
@@ -108,6 +120,12 @@ body {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--site-border);
   background-color: var(--ifm-navbar-background-color) !important;
+  z-index: 200; /* Ensure it stays above hero blobs and showcase */
+}
+
+/* Ensure hamburger menu is visible */
+.navbar__toggle {
+  color: var(--site-text-main) !important;
 }
 
 .navbar__title {
@@ -121,14 +139,14 @@ body {
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  background: var(--site-surface);
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 78, 235, 0.05);
   border: 1px solid var(--site-border);
   border-radius: 100px;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--ifm-color-primary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Forced Dark Theme for Landing Page */
@@ -144,6 +162,151 @@ body {
   color: var(--site-text-main);
 }
 
-.forced-dark-theme .hero--dyte {
+/* --- Documentation Layout Refinement (Vercel Style) --- */
+
+/* Sidebar Styling */
+.theme-doc-sidebar-container {
+  background-color: var(--doc-sidebar-background);
+  border-right: 1px solid var(--site-border);
+}
+
+/* Ensure mobile sidebar (drawer) also gets the background and stays on top */
+.navbar-sidebar {
   background-color: var(--site-background);
+  z-index: 300 !important;
+}
+
+.navbar-sidebar__item {
+  color: var(--site-text-main) !important;
+}
+
+.navbar-sidebar__back {
+  color: var(--ifm-color-primary) !important;
+}
+
+.menu__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--site-text-muted);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.1rem 0;
+}
+
+.menu__link--active {
+  background-color: rgba(0, 78, 235, 0.05) !important;
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Content Area */
+.theme-doc-markdown {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.theme-doc-markdown h1:first-child {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+/* "OHADA Lib by Marcellin" Tagline */
+.theme-doc-markdown h1:first-child::before {
+  content: 'OHADA Lib by Marcellin Tacite';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--site-text-muted);
+  margin-bottom: 0.5rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+/* TOC Styling */
+.table-of-contents {
+  border-left: none;
+  font-size: 0.8125rem;
+  padding: 0;
+}
+
+.table-of-contents__link {
+  color: var(--site-text-muted);
+  display: block;
+  padding: 0.25rem 0;
+  transition: color 0.1s;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--site-text-main);
+  text-decoration: none;
+}
+
+.table-of-contents::before {
+  content: 'On this page';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--site-text-main);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Code blocks in side docs */
+.theme-doc-markdown .code-block-container {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+  border: 1px solid var(--site-border);
+}
+
+@media screen and (max-width: 996px) {
+  .theme-doc-markdown .code-block-container pre {
+    font-size: 0.75rem !important; /* Smaller code in docs on mobile */
+  }
+}
+
+[data-theme='dark'] .theme-doc-markdown .code-block-container {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Professional Footer Refinement --- */
+.footer {
+  background-color: var(--site-background) !important;
+  border-top: 1px solid var(--site-border);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer__title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--site-text-main) !important;
+  margin-bottom: 1.5rem;
+}
+
+.footer__link-item {
+  font-size: 0.875rem;
+  color: var(--site-text-muted) !important;
+  transition: color 0.2s;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary) !important;
+  text-decoration: none;
+}
+
+.footer__copyright {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--site-border);
+  font-size: 0.75rem;
+  color: var(--site-text-muted);
+  text-align: left;
 }

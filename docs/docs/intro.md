@@ -4,24 +4,24 @@ Welcome to the **Ohada Lib** documentation.
 
 **Ohada Lib** is a specialized TypeScript library designed to bridge the gap between business operations and OHADA accounting compliance. It allows developers to focus on building features while the library handles the underlying SYSCOHADA logic, transforming simple business events into compliant journal entries.
 
-## Core Mission
+Welcome to **ohada-lib**, the professional TypeScript engine for compliant financial management in the OHADA region.
 
-Traditional accounting integrations are often rigid, requiring developers to have deep knowledge of account codes and debit/credit rules. **Ohada Lib** abstracts this complexity by providing high-level "verbs" (like `recordSale`, `recordPurchase`) that automatically resolve the correct accounting treatment based on the transaction context.
+## Why ohada-lib?
 
-## Key Capabilities
+Accounting for the OHADA region (Organisation pour l'Harmonisation en Afrique du Droit des Affaires) involves strict regulations, a specific chart of accounts (SYSCOHADA), and meticulous double-step rules for credit transactions. 
 
-- **Automated Compliance**: Generates SYSCOHADA-compliant journal entries for Sales, Purchases, and Expenses.
-- **Smart Account Resolution**: Identifies the correct accounting codes (701, 601, 445x, etc.) based on your data.
-- **Advanced Adjustments**: Supports financial discounts, transport charges, packaging deposits, and inventory exits.
-- **Multi-Payment Settlement**: Handles complex settlement scenarios involving multiple payment methods (Bank, Cash, Mobile Money).
-- **Internationalization**: Full support for French and English accounting labels and locales.
+Traditional accounting software is often too heavy or disconnected from the developer's workflow. **ohada-lib** was built with a simple mission: 
 
-## Visual Exploration
+> **"OHADA accounting should be simple for every developer."**
 
-Want to see the engine in action before diving into the code? Check out our **OHADA ERP Engine Demo**, a real-world implementation of the library providing a visual dashboard for transaction management.
+## Core Pillars
 
-[Explore the Demo App](https://github.com/marcellintacite/ohada-lib/tree/main/demo-vite)
+- **🚀 Performance**: A zero-dependency engine weighing only ~70KB. Deploy it on edge functions, mobile apps, or core servers.
+- **📐 Compliance**: Built-in logic for the Revised SYSCOHADA Standard. Every entry is pre-validated against official rules.
+- **🧠 Smart Resolution**: Automatically maps business events to the correct account codes. Stop looking up 4111 or 701 manually.
+- **🛡️ Type-Safety**: Built with TypeScript to catch logical accounting bugs at compile time, reducing audit risks.
+- **🌍 Multi-Lingual**: Native support for English and French, covering the diverse business landscape of the 17 member states.
 
-## Getting Started
+## Ready to start?
 
-Ready to integrate? Follow our [Getting Started](./getting-started.md) guide to install the library and record your first transaction.
+Jump into the [Getting Started](./getting-started.md) guide to record your first journal entry in minutes.

@@ -15,10 +15,9 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://marcellintacite.github.io',
+  url: 'https://ohada-lib.vercel.app', 
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ohada-lib/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -83,7 +82,7 @@ const config: Config = {
       title: 'Ohada Lib',
       logo: {
         alt: 'Ohada Lib Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -108,11 +107,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Library',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Introduction',
               to: '/docs/intro',
+            },
+            {
+              label: 'Global Configuration',
+              to: '/docs/config',
+            },
+            {
+              label: 'API Reference',
+              to: '/docs/API',
             },
           ],
         },
@@ -120,34 +127,30 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/marcellintacite/ohada-lib',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'NPM',
+              href: 'https://www.npmjs.com/package/ohada-lib',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Issues',
+              href: 'https://github.com/marcellintacite/ohada-lib/issues',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Developer',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Marcellin Tacite',
+              href: 'https://github.com/marcellintacite',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Ohada Lib. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Marcellin Tacite. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

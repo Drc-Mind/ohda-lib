@@ -1,47 +1,27 @@
-# Getting Started
+# Démarrage
 
-Learn how to install and set up **Ohada Lib** in your project, or explore the library using our pre-built demo.
+Apprenez à intégrer `ohada-lib` dans votre projet et déposez votre première écriture de journal professionnelle.
 
 ## Installation
 
-Install the core library using your preferred package manager:
+Installez le package via votre gestionnaire de paquets préféré :
 
 ```bash
 npm install ohada-lib
-# or
+# ou
 yarn add ohada-lib
+# ou
+pnpm add ohada-lib
 ```
 
-## Basic Setup
+## Configuration de Base
 
-Initialize the `Ohada` engine with your global configuration.
+Le cœur de la bibliothèque est la classe `Ohada`. Vous pouvez l'initialiser avec des paramètres globaux comme les taux de TVA et la devise.
 
 ```typescript
 import { Ohada } from 'ohada-lib';
 
 const ohada = new Ohada({
-  locale: 'fr',        // 'fr' (default) or 'en'
-  // Global defaults (can be overridden per transaction)
-  vat: 18,             // Default VAT rate percentage
-  taxInclusive: true   // Input prices are Gross (TTC) by default
-});
-```
-
-## Exploring the Demo
-
-Before writing code, we recommend running the **OHADA ERP Engine** demo located in the `demo-vite` directory. It provides a visual interface to see how different business events generate accounting journals.
-
-### Running the Demo locally
-
-1. Clone the repository and navigate to the demo folder.
-2. Install dependencies: `npm install`.
-3. Start the dev server: `npm run dev`.
-
-The demo will be available at `http://localhost:5173`.
-
-## Next Steps
-
-Now that you're set up, learn how to record different types of business transactions:
 
 - [Recording Sales](./sales.md)
 - [Recording Purchases](./purchases.md)

@@ -1,45 +1,55 @@
 # API Reference
 
-Complete reference for the Ohada Lib main API.
+Complete reference for the `ohada-lib` main API.
 
 ## `Ohada` Class
 
-Main entry point for the library.
+The main entry point for the library. It orchestrates all accounting operations.
 
 ### `constructor(config: OhadaConfig)`
 
-Initializes the library.
+Initializes the engine with global settings. See [Configuration](./config.md) for details.
 
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| `vat` | `number` | Default VAT rate (e.g., 0.18). |
-| `taxInclusive` | `boolean` | Whether input prices are TTC. |
-| `locale` | `'fr' \| 'en'` | Label language. |
+### `recordSale(input: SaleInput): JournalEntry[]`
 
-### `recordPurchase(input: PurchaseInput | number)`
+Records a sale transaction.
+- **Rules**: Follows client debt recognition (4111) and revenue (70x).
+- **Features**: Supports discounts, transport, packaging, and payments.
 
-Records a purchase transaction.
+### `recordPurchase(input: PurchaseInput | number): JournalEntry[]`
 
-- **Parameters**: 
-  - `input`: A `number` for simplified cash purchase, or a `PurchaseInput` object for detailed recording.
-- **Returns**: `AccoutingResult` containing the Generated Journal Entries and any warnings.
+Records a purchase of goods.
+- **Rules**: Enforces supplier debt (4011) and inventory entry (6011).
+- **Features**: Supports transport, customs, and multi-step payment.
 
-## Types
+### `recordExpense(input: ExpenseInput, vatConfig?: ExpenseVATConfig): JournalEntry[]`
 
-### `PurchaseInput`
+Records operating expenses.
+- **Rules**: Uses smart resolution to map categories (Rent, Utilities) to accounts.
+- **Features**: Supports "Direct Mode" (Cash basis) to skip supplier accounts.
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `supplier` | `string` | Name of the supplier. |
-| `items` | `PurchaseItem[]` | List of items purchased. |
-| `payments` | `PurchasePayment[]` | Payment details. |
-| `additionalCharges` | `PurchaseCharge[]` | Fees like Transport/Customs. |
+### `recordAsset(input: AssetInput): JournalEntry[]`
+
+Records the acquisition of long-term assets.
+- **Rules**: Uses investment supplier (481) and asset VAT (4451).
+- **Features**: Supports component splitting and dismantling provisions.
+
+## Global Types
 
 ### `JournalEntry`
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `accountCode` | `string` | OHADA Account code. |
-| `label` | `string` | Description of the entry. |
-| `debit` | `number` | Debit amount. |
-| `credit` | `number` | Credit amount. |
+| `type` | `'CONSTATATION' \| 'REGLEMENT' \| 'VIRTUAL'` | The accounting nature of the entry. |
+| `label` | `string` | Human-readable description (localized). |
+| `lines` | `JournalLine[]` | Array of debit and credit lines. |
+| `isBalanced` | `boolean` | Safely check if total debits equal total credits. |
+
+### `JournalLine`
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `account` | `string` | The SYSCOHADA account code (e.g., '5211'). |
+| `label` | `string` | Specific line description. |
+| `debit` | `number` | Amount debited. |
+| `credit` | `number` | Amount credited. |

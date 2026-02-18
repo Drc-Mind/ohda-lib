@@ -1,0 +1,13 @@
+{
+  "link.title.Library": { "message": "Bibliothèque" },
+  "link.title.Community": { "message": "Communauté" },
+  "link.title.Developer": { "message": "Développeur" },
+  "link.item.label.Introduction": { "message": "Introduction" },
+  "link.item.label.Global Configuration": { "message": "Configuration Globale" },
+  "link.item.label.API Reference": { "message": "Référence API" },
+  "link.item.label.GitHub": { "message": "GitHub" },
+  "link.item.label.NPM": { "message": "NPM" },
+  "link.item.label.Issues": { "message": "Problèmes" },
+  "link.item.label.Marcellin Tacite": { "message": "Marcellin Tacite" },
+  "copyright": { "message": "Copyright © {year} Marcellin Tacite. Construit avec Docusaurus." }
+}
