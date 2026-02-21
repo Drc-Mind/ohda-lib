@@ -50,24 +50,6 @@ export interface JournalLine {
   credit?: number;
 }
 
-/**
- * Comprehensive Journal Entry (SYSCOHADA format)
- * Represents a complete accounting entry with multiple lines
- */
-export interface JournalEntry {
-  date: Date;
-  lines: Array<{
-    account: string;      // Example: "6011"
-    label: string;        // Example: "Achat Marchandises"
-    debit: number;
-    credit: number;
-  }>;
-  totals: {
-    debit: number;
-    credit: number;
-  };
-  isBalanced: boolean;    // True if debit === credit
-}
 
 export interface AccoutingResult {
   journalEntries: JournalLine[];

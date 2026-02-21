@@ -18,4 +18,8 @@ export interface JournalEntry {
     credit: number;
   };
   isBalanced: boolean;    // True if debit === credit
+  /**
+   * Type of entry for filtering and metadata
+   */
+  type?: 'CONSTATATION' | 'REGLEMENT' | 'STOCK_EXIT';
 }

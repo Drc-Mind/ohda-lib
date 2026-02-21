@@ -1,14 +1,23 @@
 {
   "name": "ohada-lib",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A developer-friendly OHADA accounting library that transforms business events into type-safe journal entries, manages stock and expenses, and generates compliant financial reports",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && node build.js && npm run build:dts",
+    "build:dts": "dts-bundle-generator --no-check -o dist/index.d.ts src/index.ts",
     "test": "vitest",
     "clean": "rimraf dist coverage",
     "format": "prettier --write \"src/**/*.{ts,js,json}\""
@@ -28,6 +37,7 @@
   "homepage": "https://github.com/marcellintacite/ohada-lib#readme",
   "devDependencies": {
     "@types/node": "25.2.0",
+    "dts-bundle-generator": "^9.5.1",
     "esbuild": "^0.27.3",
     "prettier": "3.8.1",
     "rimraf": "6.1.2",

@@ -4,18 +4,39 @@ import { getTranslations, Locale } from '../../i18n/translations';
 import { EXPENSE_ACCOUNTS, COMMON_ACCOUNTS, isServiceExpense } from './constants';
 
 /**
- * Record an expense transaction following SYSCOHADA standards.
- * Returns an array of Journal Entries:
- * 1. The Invoice Entry (expense + VAT → supplier)
- * 2. Payment Entry (if payment provided)
+ * Records an expense transaction following SYSCOHADA standards.
  * 
- * SYSCOHADA Rule: All expenses MUST go through Account 4011 (Fournisseurs)
- * to enable proper Cash Flow Statement generation.
+ * Returns an array of Journal Entries:
+ * 1. **CONSTATATION (Invoice)**: Maps the expense category to the correct OHADA account
+ *    and records the liability to the supplier.
+ * 2. **REGLEMENT (Payment)**: Records immediate payment if provided.
+ * 
+ * All expenses MUST go through Account 4011 (Fournisseurs) to enable proper 
+ * Cash Flow Statement generation in the ODS (Tableau des Flux de Trésorerie).
+ * 
+ * @example
+ * ```typescript
+ * const entries = recordExpense({
+ *   category: 'WATER',
+ *   amount: 15000,
+ *   label: "Facture d'eau Janvier",
+ *   payment: { method: 'cash', amount: 15000 }
+ * });
+ * ```
+ * 
+ * @param input - The expense details.
+ * @param locale - Language for labels ('fr' | 'en').
+ * @param vatConfig - Optional VAT configuration (global settings).
+ * @param disableVAT - If true, VAT lines will not be generated.
+ * @param directMode - If true, records directly to cash/bank without 4011.
+ * @returns An array of balanced Journal entries.
  */
 export function recordExpense(
   input: ExpenseInput, 
   locale: Locale = 'fr',
-  vatConfig?: ExpenseVATConfig
+  vatConfig?: ExpenseVATConfig,
+  disableVAT: boolean = true,
+  directMode: boolean = false
 ): JournalEntry[] {
     const t = getTranslations(locale);
     
@@ -39,8 +60,8 @@ export function recordExpense(
     let vatAmount = 0;
     let vatAccount = '';
     
-    // Check if VAT should be applied
-    const vatEnabled = vatConfig?.vatOnExpenses !== false; // Default: enabled
+    // Check if VAT should be applied (Global disable flag OR local config)
+    const vatEnabled = !disableVAT && vatConfig?.vatOnExpenses !== false;
     
     if (vatEnabled) {
         // Priority 1: Manual VAT amount
@@ -65,14 +86,14 @@ export function recordExpense(
         }
     }
 
-    // Calculate total payable to supplier
+    // Calculate total TTC
     const totalTtc = round(amount + vatAmount);
 
-    // --- ENTRY 1: INVOICE ---
-    const invoiceLines: JournalEntry['lines'] = [];
+    // --- ENTRY 1: MAIN ENTRY ---
+    const mainLines: JournalEntry['lines'] = [];
 
     // 1. Debit Expense Account
-    invoiceLines.push({
+    mainLines.push({
         account: expenseAccount,
         label: `${label}`,
         debit: round(amount),
@@ -81,7 +102,7 @@ export function recordExpense(
 
     // 2. Debit VAT Recoverable (if applicable)
     if (vatAmount > 0) {
-        invoiceLines.push({
+        mainLines.push({
             account: vatAccount,
             label: `${t.vatRecoverable} - ${label}`,
             debit: vatAmount,
@@ -89,26 +110,39 @@ export function recordExpense(
         });
     }
 
-    // 3. Credit Supplier (Total TTC)
-    invoiceLines.push({
-        account: COMMON_ACCOUNTS.SUPPLIER,
-        label: `${t.supplier} - ${label}`,
-        debit: 0,
-        credit: totalTtc
-    });
+    // 3. Credit Side: Supplier or Cash/Bank
+    if (directMode) {
+        // In Direct Mode: Credit Cash/Bank directly
+        const monetaryAccount = (payment?.method === 'bank') ? COMMON_ACCOUNTS.BANK : COMMON_ACCOUNTS.CASH;
+        mainLines.push({
+            account: monetaryAccount,
+            label: `${label} (${payment?.method || 'cash'})`,
+            debit: 0,
+            credit: totalTtc
+        });
+    } else {
+        // Standard Mode: Credit Supplier (4011)
+        mainLines.push({
+            account: COMMON_ACCOUNTS.SUPPLIER,
+            label: `${t.supplier} - ${label}`,
+            debit: 0,
+            credit: totalTtc
+        });
+    }
 
     entries.push({
         date,
-        lines: invoiceLines,
+        type: directMode ? t.reglement as any : t.constatation as any,
+        lines: mainLines,
         totals: {
-            debit: round(invoiceLines.reduce((sum, l) => sum + l.debit, 0)),
-            credit: round(invoiceLines.reduce((sum, l) => sum + l.credit, 0))
+            debit: round(mainLines.reduce((sum, l) => sum + l.debit, 0)),
+            credit: round(mainLines.reduce((sum, l) => sum + l.credit, 0))
         },
         isBalanced: true
     });
 
-    // --- ENTRY 2: PAYMENT (if immediate payment) ---
-    if (payment && payment.amount > 0) {
+    // --- ENTRY 2: PAYMENT (only if NOT in directMode and payment is provided) ---
+    if (!directMode && payment && payment.amount > 0) {
         const paymentLines: JournalEntry['lines'] = [];
         
         // Debit Supplier (Reduce debt)
@@ -130,6 +164,7 @@ export function recordExpense(
 
         entries.push({
             date,
+            type: t.reglement as any,
             lines: paymentLines,
             totals: {
                 debit: round(payment.amount),
@@ -138,6 +173,5 @@ export function recordExpense(
             isBalanced: true
         });
     }
-
     return entries;
 }

@@ -42,4 +42,4 @@ export interface SaleInput {
 }
 
 // Re-export JournalEntry from global types
-export type { JournalEntry } from '../../types/events';
+export type { JournalEntry } from '../../types';

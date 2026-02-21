@@ -19,13 +19,18 @@ export interface Translations {
   packagingDeposit: string;
   financialDiscount: string;
   costOfSales: string;
-  stockExit: string;
   cashIn: string;
   paymentReceived: string;
   
   // Expense translations
   supplier: string;
   payment: string;
+
+  // Transaction Types
+  constatation: string;
+  reglement: string;
+  stockExit: string;
+  openingBalance: string;
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -46,12 +51,16 @@ export const translations: Record<Locale, Translations> = {
     packagingDeposit: 'Emballages consignés',
     financialDiscount: 'Escompte accordé',
     costOfSales: 'Variation de stocks',
-    stockExit: 'Sortie de stock',
     cashIn: 'Entrée de trésorerie',
     paymentReceived: 'Règlement reçu',
     
     supplier: 'Fournisseur',
-    payment: 'Règlement'
+    payment: 'Règlement',
+
+    constatation: 'CONSTATATION',
+    reglement: 'REGLEMENT',
+    stockExit: 'SORTIE_STOCK',
+    openingBalance: 'BILAN_OUVERTURE'
   },
   en: {
     genericPurchase: 'Purchase (Generic)',
@@ -70,12 +79,16 @@ export const translations: Record<Locale, Translations> = {
     packagingDeposit: 'Packaging deposits',
     financialDiscount: 'Cash discount granted',
     costOfSales: 'Cost of goods sold',
-    stockExit: 'Stock exit',
     cashIn: 'Cash Inflow',
     paymentReceived: 'Payment received',
     
     supplier: 'Supplier',
-    payment: 'Payment'
+    payment: 'Payment',
+
+    constatation: 'ACCRUAL',
+    reglement: 'PAYMENT',
+    stockExit: 'STOCK_EXIT',
+    openingBalance: 'OPENING_BALANCE'
   }
 };
 

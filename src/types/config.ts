@@ -24,5 +24,18 @@ export interface OhadaConfig {
    * - 'en': English labels.
    */
   locale?: 'fr' | 'en';
+  /**
+   * Whether to disable VAT calculation globally.
+   * - true (default): VAT lines will not be generated.
+   * - false: VAT will be calculated according to rules.
+   */
+  disableVAT?: boolean;
+
+  /**
+   * Whether to record expenses as direct payments (skipping supplier account 4011).
+   * - true: Records a single entry direct to cash/bank.
+   * - false (default): Records two entries (Constatation -> Règlement).
+   */
+  directExpense?: boolean;
 }
 

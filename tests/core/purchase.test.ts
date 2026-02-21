@@ -4,7 +4,7 @@ import { Ohada } from '../../src/core/ohada';
 describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
 
     it('Scenario A: should record a purchase on credit correctly', () => {
-        const ohada = new Ohada();
+        const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ amount: 100000, label: "Marchandises", vatRate: 18 });
 
         expect(results.length).toBe(1); // Only Invoice
@@ -18,7 +18,7 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
     });
 
     it('Scenario B: should record a cash purchase with separate entities', () => {
-        const ohada = new Ohada();
+        const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ 
             amount: 100000, 
             label: "Marchandises",
@@ -40,7 +40,7 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
     });
 
     it('Scenario C: should handle split payments and charges with separate entities', () => {
-        const ohada = new Ohada();
+        const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ 
             amount: 100000, 
             label: "Marchandises",
@@ -74,5 +74,38 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
         expect(results.length).toBe(3); // Invoice + 2 Payments
         expect(results[1].lines.find(l => l.account === '5711' && l.credit === 5000)).toBeDefined();
         expect(results[2].lines.find(l => l.account === '5211' && l.credit === 2000)).toBeDefined();
+        
+        // Metadata check
+        expect(results[0].type).toBe('CONSTATATION');
+        expect(results[1].type).toBe('REGLEMENT');
+    });
+
+    describe('Overpayment Validation', () => {
+        it('should throw an error if payments exceed total due', () => {
+            const ohada = new Ohada();
+            expect(() => {
+                ohada.recordPurchase({
+                    amount: 10000,
+                    label: "Overpayment Test",
+                    payments: [
+                        { method: 'cash', amount: 15000 }
+                    ]
+                });
+            }).toThrow(/exceed the total amount due/);
+        });
+    });
+
+    describe('Metadata Consistency', () => {
+        it('should assign correct types to all purchase entries', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 5000,
+                label: "Metadata Test",
+                payments: [{ method: 'bank', amount: 5000 }]
+            });
+
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('REGLEMENT');
+        });
     });
 });

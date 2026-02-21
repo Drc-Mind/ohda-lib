@@ -4,13 +4,33 @@ import { getTranslations, Locale } from '../../i18n/translations';
 import { SALE_ACCOUNTS } from './constants';
 
 /**
- * Record a sale transaction following SYSCOHADA standards.
+ * Records a sale transaction following SYSCOHADA standards.
+ * 
  * Returns an array of Journal Entries:
- * 1. The Invoice Entry (with revenue, VAT, packaging, transport, financial discount)
- * 2. Inventory Exit Entry (if inventoryExit provided)
- * 3. Payment Entry (if payment provided)
+ * 1. **CONSTATATION (Invoice)**: Sales revenue, VAT, packaging, and transport.
+ * 2. **STOCK_EXIT (Inventory)**: Records the cost of goods sold (if provided).
+ * 3. **REGLEMENT (Payment)**: Records immediate payment received (if provided).
+ * 
+ * @example
+ * ```typescript
+ * const entries = recordSale({
+ *   amount: 100000,
+ *   label: "Vente de marchandises",
+ *   saleType: 'GOODS',
+ *   payment: { method: 'bank', amount: 100000 }
+ * });
+ * ```
+ * 
+ * @param input - The sale data.
+ * @param locale - Language for labels ('fr' | 'en').
+ * @param disableVAT - If true, VAT lines (Account 4431) will not be generated.
+ * @returns An array of balanced Journal entries.
  */
-export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntry[] {
+export function recordSale(
+    input: SaleInput, 
+    locale: Locale = 'fr', 
+    disableVAT: boolean = true
+): JournalEntry[] {
     const t = getTranslations(locale);
     
     const {
@@ -44,7 +64,7 @@ export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntr
     // Calculate taxable base (amount + transport, but NOT packaging deposit)
     const transportAmount = transportCharge?.amount || 0;
     const taxableBase = amount + transportAmount;
-    const vatAmount = round(taxableBase * (vatRate / 100));
+    const vatAmount = !disableVAT ? round(taxableBase * (vatRate / 100)) : 0;
     
     // Calculate financial discount if applicable
     const discountAmount = financialDiscount ? round(amount * (financialDiscount.percentage / 100)) : 0;
@@ -111,6 +131,7 @@ export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntr
 
     entries.push({
         date,
+        type: t.constatation as any,
         lines: invoiceLines,
         totals: {
             debit: round(invoiceLines.reduce((sum, l) => sum + l.debit, 0)),
@@ -139,6 +160,7 @@ export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntr
 
         entries.push({
             date,
+            type: t.stockExit as any,
             lines: stockLines,
             totals: {
                 debit: round(inventoryExit.costPrice),
@@ -171,6 +193,7 @@ export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntr
 
         entries.push({
             date,
+            type: t.reglement as any,
             lines: paymentLines,
             totals: {
                 debit: round(payment.amount),
@@ -179,6 +202,5 @@ export function recordSale(input: SaleInput, locale: Locale = 'fr'): JournalEntr
             isBalanced: true
         });
     }
-
     return entries;
 }

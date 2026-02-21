@@ -5,7 +5,7 @@ describe('SYSCOHADA Sales Logic', () => {
 
     describe('Test Case 1: Complex Sale (Goods + Transport + Packaging)', () => {
         it('should record a complex sale with transport and packaging deposits correctly', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 25000000,
                 label: "Vente boissons",
@@ -34,7 +34,7 @@ describe('SYSCOHADA Sales Logic', () => {
 
     describe('Test Case 2: Sale with Financial Discount & Inventory', () => {
         it('should record financial discount as expense and track inventory exit', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 93000,
                 label: "Vente marchandises",
@@ -63,7 +63,7 @@ describe('SYSCOHADA Sales Logic', () => {
 
     describe('Test Case 3: Return of Goods (Credit Note)', () => {
         it('should record a return as negative revenue', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: -200000,
                 label: "Retour ordinateur défectueux",
@@ -98,7 +98,7 @@ describe('SYSCOHADA Sales Logic', () => {
 
     describe('Revenue Classification', () => {
         it('should use account 701 for GOODS', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 100000,
                 label: "Marchandises",
@@ -110,7 +110,7 @@ describe('SYSCOHADA Sales Logic', () => {
         });
 
         it('should use account 702 for MANUFACTURED products', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 100000,
                 label: "Produits finis",
@@ -122,7 +122,7 @@ describe('SYSCOHADA Sales Logic', () => {
         });
 
         it('should use account 706 for SERVICES', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 100000,
                 label: "Consulting",
@@ -136,7 +136,7 @@ describe('SYSCOHADA Sales Logic', () => {
 
     describe('Payment Handling', () => {
         it('should create a separate payment entry when payment is provided', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 100000,
                 label: "Vente comptant",
@@ -151,6 +151,23 @@ describe('SYSCOHADA Sales Logic', () => {
             expect(payment.isBalanced).toBe(true);
             expect(payment.lines.find(l => l.account === '5711' && l.debit === 118000)).toBeDefined(); // Cash
             expect(payment.lines.find(l => l.account === '4111' && l.credit === 118000)).toBeDefined(); // Client
+        });
+    });
+
+    describe('Metadata Consistency', () => {
+        it('should assign correct types to all sales entries', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordSale({
+                amount: 100000,
+                label: "Full Sale",
+                saleType: 'GOODS',
+                inventoryExit: { costPrice: 60000 },
+                payment: { method: 'bank', amount: 118000 }
+            });
+
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('STOCK_EXIT');
+            expect(results[2].type).toBe('REGLEMENT');
         });
     });
 });

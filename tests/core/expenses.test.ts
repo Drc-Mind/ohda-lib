@@ -5,7 +5,7 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Test Case 1: Utility Bill (Electricity)', () => {
         it('should record electricity expense with VAT', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
                 category: 'ELECTRICITY',
                 amount: 50000,
@@ -38,9 +38,9 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Test Case 2: Rent (VAT-Exempt)', () => {
         it('should record rent without VAT', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
-                category: 'RENT_BUILDING',
+                category: 'RENT',
                 amount: 8000,
                 label: "Loyer mensuel"
             });
@@ -55,7 +55,7 @@ describe('SYSCOHADA Expenses Logic', () => {
             // Should have only 2 lines (no VAT)
             expect(invoice.lines.length).toBe(2);
 
-            const expenseLine = invoice.lines.find(l => l.account === '6222');
+            const expenseLine = invoice.lines.find(l => l.account === '611');
             const supplierLine = invoice.lines.find(l => l.account === '4011');
 
             expect(expenseLine).toBeDefined();
@@ -68,9 +68,9 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Test Case 3: Professional Fees (Honoraires)', () => {
         it('should record legal fees with VAT on services', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
-                category: 'LEGAL_FEES',
+                category: 'HONORAIRES',
                 amount: 100000,
                 label: "Honoraires notaire",
                 vatRate: 18
@@ -83,7 +83,7 @@ describe('SYSCOHADA Expenses Logic', () => {
             expect(invoice.totals.debit).toBe(118000);
             expect(invoice.totals.credit).toBe(118000);
 
-            const expenseLine = invoice.lines.find(l => l.account === '6324');
+            const expenseLine = invoice.lines.find(l => l.account === '622');
             const vatLine = invoice.lines.find(l => l.account === '4454'); // Services VAT
             const supplierLine = invoice.lines.find(l => l.account === '4011');
 
@@ -100,7 +100,7 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Test Case 4: Expense with Payment', () => {
         it('should create invoice and payment entries', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
                 category: 'OFFICE_SUPPLIES',
                 amount: 25000,
@@ -133,7 +133,7 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Global VAT Configuration', () => {
         it('should apply global VAT rate when specified', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense(
                 {
                     category: 'TELECOMMUNICATIONS',
@@ -151,7 +151,7 @@ describe('SYSCOHADA Expenses Logic', () => {
         });
 
         it('should disable VAT globally when vatOnExpenses is false', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense(
                 {
                     category: 'TELECOMMUNICATIONS',
@@ -170,7 +170,7 @@ describe('SYSCOHADA Expenses Logic', () => {
         });
 
         it('should prioritize manual VAT over global config', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense(
                 {
                     category: 'ADVERTISING',
@@ -190,9 +190,9 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Service vs Goods VAT Account', () => {
         it('should use 4454 for service expenses', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
-                category: 'LEGAL_FEES',
+                category: 'HONORAIRES',
                 amount: 100000,
                 label: "Honoraires",
                 vatRate: 18
@@ -203,7 +203,7 @@ describe('SYSCOHADA Expenses Logic', () => {
         });
 
         it('should use 4452 for goods expenses', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
                 category: 'OFFICE_SUPPLIES',
                 amount: 50000,
@@ -218,19 +218,19 @@ describe('SYSCOHADA Expenses Logic', () => {
 
     describe('Various Expense Categories', () => {
         it('should handle bank fees', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
-                category: 'BANK_FEES',
+                category: 'BANK_SERVICES',
                 amount: 5000,
                 label: "Frais bancaires"
             });
 
-            const expenseLine = results[0].lines.find(l => l.account === '6318');
+            const expenseLine = results[0].lines.find(l => l.account === '627');
             expect(expenseLine).toBeDefined();
         });
 
         it('should handle business license', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
                 category: 'BUSINESS_LICENSE',
                 amount: 50000,
@@ -242,7 +242,7 @@ describe('SYSCOHADA Expenses Logic', () => {
         });
 
         it('should handle software license', () => {
-            const ohada = new Ohada();
+            const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordExpense({
                 category: 'SOFTWARE_LICENSE',
                 amount: 100000,
@@ -257,4 +257,130 @@ describe('SYSCOHADA Expenses Logic', () => {
             expect(vatLine).toBeDefined();
         });
     });
+
+    describe('Metadata Consistency', () => {
+        it('should assign correct types to all expense entries', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordExpense({
+                category: 'OFFICE_SUPPLIES',
+                amount: 10000,
+                label: "Office test",
+                payment: { method: 'cash', amount: 10000 }
+            });
+
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('REGLEMENT');
+        });
+    describe('Direct Expense Mode (Cash Basis)', () => {
+        it('should record expense directly to cash when directExpense is true', () => {
+            const ohada = new Ohada({ 
+                disableVAT: false,
+                directExpense: true 
+            });
+            
+            const results = ohada.recordExpense({
+                category: 'OFFICE_SUPPLIES',
+                amount: 5000,
+                label: "Achat direct papier",
+                vatRate: 18
+            });
+
+            // Should have ONLY 1 entry
+            expect(results.length).toBe(1);
+            
+            const entry = results[0];
+            expect(entry.type).toBe('REGLEMENT'); // Direct payment
+            
+            // Check lines: Expense (D), VAT (D), Cash (C)
+            expect(entry.lines.length).toBe(3);
+            
+            const expenseLine = entry.lines.find(l => l.account === '604');
+            const vatLine = entry.lines.find(l => l.account === '4452');
+            const cashLine = entry.lines.find(l => l.account === '5711');
+            const supplierLine = entry.lines.find(l => l.account === '4011');
+
+            expect(expenseLine?.debit).toBe(5000);
+            expect(vatLine?.debit).toBe(900);
+            expect(cashLine?.credit).toBe(5900);
+            expect(supplierLine).toBeUndefined(); // NO SUPPLIER ACCOUNT
+        });
+
+        it('should use bank account if specified in payment', () => {
+            const ohada = new Ohada({ 
+                disableVAT: true,
+                directExpense: true 
+            });
+            
+            const results = ohada.recordExpense({
+                category: 'MAINTENANCE_REPAIRS',
+                amount: 20000,
+                label: "Entretien clim",
+                payment: { method: 'bank', amount: 20000 }
+            });
+
+            const entry = results[0];
+            const bankLine = entry.lines.find(l => l.account === '5211');
+            expect(bankLine).toBeDefined();
+            expect(bankLine?.credit).toBe(20000);
+        });
+    });
+
+    describe('Functional Expenses (Expanded Coverage)', () => {
+        const ohada = new Ohada({ disableVAT: false });
+
+        it('should record Maintenance & Repairs (613)', () => {
+            const results = ohada.recordExpense({
+                category: 'MAINTENANCE_REPAIRS',
+                amount: 50000,
+                label: "Réparation clim"
+            });
+            expect(results[0].lines.find(l => l.account === '613')).toBeDefined();
+        });
+
+        it('should record Insurance (615)', () => {
+            const results = ohada.recordExpense({
+                category: 'INSURANCE',
+                amount: 200000,
+                label: "Assurance annuelle"
+            });
+            expect(results[0].lines.find(l => l.account === '615')).toBeDefined();
+        });
+
+        it('should record Research & Documentation (616)', () => {
+            const results = ohada.recordExpense({
+                category: 'RESEARCH_DOCUMENTATION',
+                amount: 25000,
+                label: "Abonnement revue fiscale"
+            });
+            expect(results[0].lines.find(l => l.account === '616')).toBeDefined();
+        });
+
+        it('should record Transport (624)', () => {
+            const results = ohada.recordExpense({
+                category: 'TRANSPORT',
+                amount: 10000,
+                label: "Taxi entreprise"
+            });
+            expect(results[0].lines.find(l => l.account === '624')).toBeDefined();
+        });
+
+        it('should record Personnel Charges (64)', () => {
+            const results = ohada.recordExpense({
+                category: 'PERSONNEL_CHARGES',
+                amount: 500000,
+                label: "Salaires Février"
+            });
+            expect(results[0].lines.find(l => l.account === '64')).toBeDefined();
+        });
+
+        it('should record Misc Management Charges (658)', () => {
+            const results = ohada.recordExpense({
+                category: 'MISC_MANAGEMENT_CHARGES',
+                amount: 2000,
+                label: "Timbres fiscaux"
+            });
+            expect(results[0].lines.find(l => l.account === '658')).toBeDefined();
+        });
+    });
+});
 });

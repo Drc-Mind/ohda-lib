@@ -4,38 +4,36 @@ import { ExpenseCategory } from './types';
  * SYSCOHADA account mapping for each expense category
  */
 export const EXPENSE_ACCOUNTS: Record<ExpenseCategory, string> = {
-  // Class 60: Consumables
+  // Class 60: Supplies & Utilities
   WATER: '6051',
   ELECTRICITY: '6052',
-  OTHER_ENERGY: '6053',
-  OFFICE_SUPPLIES: '6055',
+  GAS: '6053',
+  OFFICE_SUPPLIES: '604',
   FUEL: '6042',
-  MAINTENANCE_SUPPLIES: '6043',
   SMALL_EQUIPMENT: '6056',
   
-  // Class 61: Transport & Travel
-  PERSONNEL_TRANSPORT: '614',
-  BUSINESS_TRAVEL: '6181',
-  MAIL_TRANSPORT: '616',
+  // Class 61: External Services A
+  RENT: '611',
+  MAINTENANCE_REPAIRS: '613',
+  INSURANCE: '615',
+  RESEARCH_DOCUMENTATION: '616',
   
-  // Class 62: External Services A
-  RENT_BUILDING: '6222',
-  RENT_EQUIPMENT: '6223',
-  MAINTENANCE: '6242',
-  INSURANCE: '6251',
-  DOCUMENTATION: '6265',
+  // Class 62: External Services B
+  HONORAIRES: '622',
+  TRANSPORT: '624',
+  TRAVEL_RECEPTION: '625',
+  BANK_SERVICES: '627',
+  TELECOMMUNICATIONS: '628',
   ADVERTISING: '6271',
-  TELECOMMUNICATIONS: '6281',
-  
-  // Class 63: External Services B
-  BANK_FEES: '6318',
-  LEGAL_FEES: '6324',
-  ACCOUNTING_FEES: '6324',
-  PROFESSIONAL_FEES: '6327',
-  TRAINING: '633',
   SOFTWARE_LICENSE: '6343',
   
-  // Class 64: Taxes
+  // Class 64: Personnel Charges
+  PERSONNEL_CHARGES: '64',
+  
+  // Class 65: Other Management Charges
+  MISC_MANAGEMENT_CHARGES: '658',
+  
+  // Legacy / Other
   BUSINESS_LICENSE: '6412',
   PROPERTY_TAX: '6411',
   PAYROLL_TAX: '6413',
@@ -46,25 +44,30 @@ export const EXPENSE_ACCOUNTS: Record<ExpenseCategory, string> = {
 
 /**
  * Determine if expense category is a service (uses 4454) or goods (uses 4452)
+ * Following SYSCOHADA VAT recovery rules.
  */
 export const isServiceExpense = (category: ExpenseCategory): boolean => {
   const serviceCategories: ExpenseCategory[] = [
-    'PERSONNEL_TRANSPORT',
-    'BUSINESS_TRAVEL',
-    'MAIL_TRANSPORT',
-    'RENT_BUILDING',
-    'RENT_EQUIPMENT',
-    'MAINTENANCE',
+    'RENT',
+    'MAINTENANCE_REPAIRS',
     'INSURANCE',
-    'DOCUMENTATION',
-    'ADVERTISING',
+    'RESEARCH_DOCUMENTATION',
+    'HONORAIRES',
+    'TRANSPORT',
+    'TRAVEL_RECEPTION',
+    'BANK_SERVICES',
     'TELECOMMUNICATIONS',
-    'BANK_FEES',
-    'LEGAL_FEES',
-    'ACCOUNTING_FEES',
-    'PROFESSIONAL_FEES',
-    'TRAINING',
-    'SOFTWARE_LICENSE'
+    'ADVERTISING',
+    'SOFTWARE_LICENSE',
+    'PERSONNEL_CHARGES', // Usually VAT-exempt, but categorized as service
+    'MISC_MANAGEMENT_CHARGES',
+    // Legacy
+    'BUSINESS_LICENSE',
+    'PROPERTY_TAX',
+    'PAYROLL_TAX',
+    'REGISTRATION_FEES',
+    'STAMP_DUTY',
+    'VEHICLE_TAX'
   ];
   
   return serviceCategories.includes(category);

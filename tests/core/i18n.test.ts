@@ -4,7 +4,7 @@ import { Ohada } from '../../src/core/ohada';
 describe('Internationalization (i18n) Support', () => {
   describe('French locale (default)', () => {
     it('should use French labels when no locale is specified', () => {
-      const ohada = new Ohada();
+      const ohada = new Ohada({ disableVAT: false });
       const results = ohada.recordPurchase({ amount: 1000, label: 'Riz' });
       const invoiceLines = results[0].lines;
 
@@ -24,7 +24,7 @@ describe('Internationalization (i18n) Support', () => {
     });
 
     it('should use French labels for payment entries', () => {
-      const ohada = new Ohada({ locale: 'fr' });
+      const ohada = new Ohada({ locale: 'fr', disableVAT: false });
       const results = ohada.recordPurchase({
         amount: 1000,
         label: 'Fournitures',
@@ -40,7 +40,7 @@ describe('Internationalization (i18n) Support', () => {
 
   describe('English locale', () => {
     it('should use English labels when locale is set to "en"', () => {
-      const ohada = new Ohada({ locale: 'en' });
+      const ohada = new Ohada({ locale: 'en', disableVAT: false });
       const results = ohada.recordPurchase({ amount: 1000, label: 'Rice' });
       const invoiceLines = results[0].lines;
 
@@ -55,7 +55,7 @@ describe('Internationalization (i18n) Support', () => {
     });
 
     it('should use English default label for numeric input', () => {
-      const ohada = new Ohada({ locale: 'en' });
+      const ohada = new Ohada({ locale: 'en', disableVAT: false });
       const results = ohada.recordPurchase(1000);
       const invoiceLines = results[0].lines;
 
@@ -67,7 +67,7 @@ describe('Internationalization (i18n) Support', () => {
     });
 
     it('should use English labels for payment entries', () => {
-      const ohada = new Ohada({ locale: 'en' });
+      const ohada = new Ohada({ locale: 'en', disableVAT: false });
       const results = ohada.recordPurchase({
         amount: 1000,
         label: 'Supplies',
@@ -87,8 +87,8 @@ describe('Internationalization (i18n) Support', () => {
 
   describe('Locale switching', () => {
     it('should produce different labels for the same transaction in different locales', () => {
-      const ohadaFr = new Ohada({ locale: 'fr' });
-      const ohadaEn = new Ohada({ locale: 'en' });
+      const ohadaFr = new Ohada({ locale: 'fr', disableVAT: false });
+      const ohadaEn = new Ohada({ locale: 'en', disableVAT: false });
 
       const resultsFr = ohadaFr.recordPurchase({ amount: 1000, label: 'Test' });
       const resultsEn = ohadaEn.recordPurchase({ amount: 1000, label: 'Test' });
@@ -102,8 +102,8 @@ describe('Internationalization (i18n) Support', () => {
     });
 
     it('should maintain accounting accuracy regardless of locale', () => {
-      const ohadaFr = new Ohada({ locale: 'fr' });
-      const ohadaEn = new Ohada({ locale: 'en' });
+      const ohadaFr = new Ohada({ locale: 'fr', disableVAT: false });
+      const ohadaEn = new Ohada({ locale: 'en', disableVAT: false });
 
       const resultsFr = ohadaFr.recordPurchase({ amount: 1000, label: 'Test' });
       const resultsEn = ohadaEn.recordPurchase({ amount: 1000, label: 'Test' });
