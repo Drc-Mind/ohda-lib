@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocs=globalThis.webpackChunkdocs||[]).push([[472],{5513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"@drcmind/ohada-lib v1.0.0 \u2014 First Stable Release","permalink":"/blog/ohada-lib-v1-stable-release","unlisted":false,"date":"2026-02-16T00:00:00.000Z"}]}')}}]);
