@@ -1,6 +1,6 @@
 # Référence API
 
-Référence complète de l'API principale de `ohada-lib`.
+Référence complète de l'API principale de `@drcmind/ohada-lib`.
 
 ## Classe `Ohada`
 

@@ -1,17 +1,17 @@
 ---
-slug: launching-ohada-lib
-title: "Launching ohada-lib: The Future of Programmable Accounting"
+slug: ohada-lib-v1-stable-release
+title: "@drcmind/ohada-lib v1.0.0 — First Stable Release"
 authors: [tacite]
 tags: [launch, ohada, typescript]
 ---
 
-We are thrilled to announce the official launch of **ohada-lib**, the first developer-first TypeScript library designed for the SYSCOHADA accounting framework.
+We are thrilled to announce the official launch of **@drcmind/ohada-lib v1.0.0 — First Stable Release**, the first developer-first TypeScript library designed for the SYSCOHADA accounting framework.
 
 ### The Problem: Accounting is Hard for Developers
 Integrating accounting logic into business applications has historically been a nightmare. Developers are forced to become amateur accountants, memorizing account codes like `701`, `601`, and `4431`, and manually balancing debits and credits. This lead to bugs, compliance issues, and slow development cycles.
 
-### The Solution: ohada-lib
-**ohada-lib** changes this dynamic. Instead of thinking in accounts, you think in **Business Events**.
+### The Solution: @drcmind/ohada-lib
+**@drcmind/ohada-lib** changes this dynamic. Instead of thinking in accounts, you think in **Business Events**.
 
 Want to record a sale with a discount and immediate bank payment?
 ```typescript

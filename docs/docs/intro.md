@@ -4,13 +4,13 @@ Welcome to the **Ohada Lib** documentation.
 
 **Ohada Lib** is a specialized TypeScript library designed to bridge the gap between business operations and OHADA accounting compliance. It allows developers to focus on building features while the library handles the underlying SYSCOHADA logic, transforming simple business events into compliant journal entries.
 
-Welcome to **ohada-lib**, the professional TypeScript engine for compliant financial management in the OHADA region.
+Welcome to **@drcmind/ohada-lib**, the professional TypeScript engine for compliant financial management in the OHADA region.
 
-## Why ohada-lib?
+## Why @drcmind/ohada-lib?
 
 Accounting for the OHADA region (Organisation pour l'Harmonisation en Afrique du Droit des Affaires) involves strict regulations, a specific chart of accounts (SYSCOHADA), and meticulous double-step rules for credit transactions. 
 
-Traditional accounting software is often too heavy or disconnected from the developer's workflow. **ohada-lib** was built with a simple mission: 
+Traditional accounting software is often too heavy or disconnected from the developer's workflow. **@drcmind/ohada-lib** was built with a simple mission: 
 
 > **"OHADA accounting should be simple for every developer."**
 

@@ -30,7 +30,7 @@ The following countries follow the OHADA accounting standards:
 
 ## The SYSCOHADA Standard
 
-The **SYSCOHADA** (Système Comptable OHADA) is the regional chart of accounts. **ohada-lib** follows the **Uniform Act on Accounting Law and Financial Reporting (AUDCIF)**, specifically the "Revised SYSCOHADA" structure.
+The **SYSCOHADA** (Système Comptable OHADA) is the regional chart of accounts. **@drcmind/ohada-lib** follows the **Uniform Act on Accounting Law and Financial Reporting (AUDCIF)**, specifically the "Revised SYSCOHADA" structure.
 
 ### Core Principles
 
@@ -39,7 +39,7 @@ In SYSCOHADA, you never record a credit transaction directly to cash. You must a
 1. **Constatation**: Recognize the debt (Supplier) or claim (Client).
 2. **Règlement**: Settle the transaction with a monetary account (Cash/Bank).
 
-*`ohada-lib` enforces this by generating two journal entries for sales/purchases with payments.*
+*`@drcmind/ohada-lib` enforces this by generating two journal entries for sales/purchases with payments.*
 
 #### 2. The Golden Rule of Invoices
 Every purchase of goods must pass through account **4011** (Suppliers) to maintain a perfect audit trail, even if paid immediately.

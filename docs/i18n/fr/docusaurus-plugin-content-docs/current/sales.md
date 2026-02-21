@@ -8,7 +8,7 @@ Dans le système SYSCOHADA, une vente est enregistrée en deux étapes :
 1. **Constatation** : Enregistrement de la facture et de la créance client (**Compte 4111**).
 2. **Règlement** : Enregistrement de l'encaissement pour solder la créance.
 
-`ohada-lib` gère cela en retournant un tableau d'écritures comptables équilibrées.
+`@drcmind/ohada-lib` gère cela en retournant un tableau d'écritures comptables équilibrées.
 
 ## Exemple de Vente Rapide
 

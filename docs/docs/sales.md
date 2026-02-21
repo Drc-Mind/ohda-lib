@@ -8,7 +8,7 @@ In SYSCOHADA, a sale is recorded in two steps:
 1. **Constatation**: Recording the invoice and client claim (**Account 4111**).
 2. **Règlement**: Recording the payment receipt to settle the claim.
 
-`ohada-lib` handles this by returning an array of balanced journal entries.
+`@drcmind/ohada-lib` handles this by returning an array of balanced journal entries.
 
 ## Quick Sale Example
 

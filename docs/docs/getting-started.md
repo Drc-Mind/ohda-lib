@@ -1,17 +1,17 @@
 # Getting Started
 
-Learn how to integrate `ohada-lib` into your project and record your first professional journal entry.
+Learn how to integrate `@drcmind/ohada-lib` into your project and record your first professional journal entry.
 
 ## Installation
 
 Install the package via your preferred package manager:
 
 ```bash
-npm install ohada-lib
+npm install @drcmind/ohada-lib
 # or
-yarn add ohada-lib
+yarn add @drcmind/ohada-lib
 # or
-pnpm add ohada-lib
+pnpm add @drcmind/ohada-lib
 ```
 
 ## Basic Setup
@@ -19,7 +19,7 @@ pnpm add ohada-lib
 The core of the library is the `Ohada` class. You can initialize it with global settings like VAT rates and currency.
 
 ```typescript
-import { Ohada } from 'ohada-lib';
+import { Ohada } from '@drcmind/ohada-lib';
 
 const ohada = new Ohada({
   vat: 0.18,          // Default VAT rate (18%)
@@ -44,6 +44,23 @@ const journal = ohada.recordSale({
 });
 
 console.log(journal);
+/*
+Output: [
+  {
+    "type": "CONSTATATION",
+    "lines": [
+      { "account": "4111", "label": "Client - Sale of 5 Computers", "debit": 295000, "credit": 0 },
+      { "account": "701", "label": "Vente de marchandises - Sale of 5 Computers", "debit": 0, "credit": 250000 },
+      { "account": "4431", "label": "TVA facturée - Sale of 5 Computers", "debit": 0, "credit": 45000 }
+    ],
+    "isBalanced": true
+  },
+  {
+    "type": "REGLEMENT",
+    ... payment lines (Account 5711, 4111)
+  }
+]
+*/
 ```
 
 ### What happens under the hood?

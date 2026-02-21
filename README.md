@@ -1,8 +1,8 @@
 # Ohada Lib 📈
 
-[![npm version](https://img.shields.io/npm/v/ohada-lib.svg)](https://www.npmjs.com/package/ohada-lib)
+[![npm version](https://img.shields.io/npm/v/@drcmind/ohada-lib.svg)](https://www.npmjs.com/package/@drcmind/ohada-lib)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-green.svg)](https://marcellintacite.github.io/ohada-lib/)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-green.svg)](https://Drc-Mind.github.io/ohda-lib/)
 
 **A developer-friendly OHADA accounting library** that transforms business events into type-safe journal entries, manages stock and expenses, and generates compliant financial reports.
 
@@ -21,9 +21,9 @@
 ## 📦 Installation
 
 ```bash
-npm install ohada-lib
+npm install @drcmind/ohada-lib
 # or
-yarn add ohada-lib
+yarn add @drcmind/ohada-lib
 ```
 
 ---
@@ -31,7 +31,7 @@ yarn add ohada-lib
 ## 📖 Quick Start
 
 ```typescript
-import { Ohada } from 'ohada-lib';
+import { Ohada } from '@drcmind/ohada-lib';
 
 // Initialize the library
 const ohada = new Ohada({ locale: 'en' });
@@ -45,8 +45,17 @@ const entries = ohada.recordPurchase({
 
 console.log(entries);
 /*
-Output: Array of JournalEntry objects with correct 
-debits/credits following OHADA standards.
+Output: [
+  {
+    "type": "CONSTATATION",
+    "lines": [
+      { "account": "2441", "label": "Laptop for office", "debit": 150000, "credit": 0 },
+      { "account": "4451", "label": "VAT on assets", "debit": 27000, "credit": 0 },
+      { "account": "4812", "label": "Supplier", "debit": 0, "credit": 177000 }
+    ],
+    "isBalanced": true
+  }
+]
 */
 ```
 
@@ -54,13 +63,13 @@ debits/credits following OHADA standards.
 
 ## 📚 Documentation
 
-For full documentation, visit [https://marcellintacite.github.io/ohada-lib/](https://marcellintacite.github.io/ohada-lib/).
+For full documentation, visit [https://Drc-Mind.github.io/ohda-lib/](https://Drc-Mind.github.io/ohda-lib/).
 
 We cover:
-- [Getting Started](https://marcellintacite.github.io/ohada-lib/docs/getting-started)
-- [Accounting Rules](https://marcellintacite.github.io/ohada-lib/docs/ohada-rules)
-- [API Reference](https://marcellintacite.github.io/ohada-lib/docs/API)
-- [Internationalization](https://marcellintacite.github.io/ohada-lib/docs/i18n)
+- [Getting Started](https://Drc-Mind.github.io/ohda-lib/docs/getting-started)
+- [Accounting Rules](https://Drc-Mind.github.io/ohda-lib/docs/ohada-rules)
+- [API Reference](https://Drc-Mind.github.io/ohda-lib/docs/API)
+- [Internationalization](https://Drc-Mind.github.io/ohda-lib/docs/i18n)
 
 ---
 
@@ -82,4 +91,4 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ❤️ by [Aksanti bahiga Tacite](https://github.com/marcellintacite)
+Built with ❤️ by [Drc-Mind](https://github.com/Drc-Mind)

@@ -59,7 +59,7 @@ export const translations: Record<Locale, Translations> = {
 
     constatation: 'CONSTATATION',
     reglement: 'REGLEMENT',
-    stockExit: 'SORTIE_STOCK',
+    stockExit: 'STOCK_EXIT',
     openingBalance: 'BILAN_OUVERTURE'
   },
   en: {

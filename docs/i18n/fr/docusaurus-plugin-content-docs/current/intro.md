@@ -1,12 +1,12 @@
 # Introduction
 
-Bienvenue dans **ohada-lib**, le moteur TypeScript professionnel pour une gestion financière conforme dans l'espace OHADA.
+Bienvenue dans **@drcmind/ohada-lib**, le moteur TypeScript professionnel pour une gestion financière conforme dans l'espace OHADA.
 
-## Pourquoi ohada-lib ?
+## Pourquoi @drcmind/ohada-lib ?
 
 La comptabilité pour la région OHADA (Organisation pour l'Harmonisation en Afrique du Droit des Affaires) implique des réglementations strictes, un plan comptable spécifique (SYSCOHADA) et des règles méticuleuses de double étape pour les transactions à crédit.
 
-Les logiciels de comptabilité traditionnels sont souvent trop lourds ou déconnectés du flux de travail des développeurs. **ohada-lib** a été conçu avec une mission simple :
+Les logiciels de comptabilité traditionnels sont souvent trop lourds ou déconnectés du flux de travail des développeurs. **@drcmind/ohada-lib** a été conçu avec une mission simple :
 
 > **"La comptabilité OHADA doit être simple pour tout développeur."**
 

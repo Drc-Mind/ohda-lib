@@ -21,8 +21,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'marcellintacite', // Usually your GitHub org/user name.
-  projectName: 'ohada-lib', // Usually your repo name.
+  organizationName: 'Drc-Mind', // Usually your GitHub org/user name.
+  projectName: 'ohda-lib', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -48,7 +48,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/marcellintacite/ohada-lib/tree/main/docs/',
+            'https://github.com/Drc-Mind/ohda-lib/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -59,7 +59,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/marcellintacite/ohada-lib/tree/main/docs/',
+            'https://github.com/Drc-Mind/ohda-lib/tree/main/docs/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -97,7 +97,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/marcellintacite/ohada-lib',
+          href: 'https://github.com/Drc-Mind/ohda-lib',
           label: 'GitHub',
           position: 'right',
         },
@@ -128,15 +128,15 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/marcellintacite/ohada-lib',
+              href: 'https://github.com/Drc-Mind/ohda-lib',
             },
             {
               label: 'NPM',
-              href: 'https://www.npmjs.com/package/ohada-lib',
+              href: 'https://www.npmjs.com/package/@drcmind/ohada-lib',
             },
             {
               label: 'Issues',
-              href: 'https://github.com/marcellintacite/ohada-lib/issues',
+              href: 'https://github.com/Drc-Mind/ohda-lib/issues',
             },
           ],
         },

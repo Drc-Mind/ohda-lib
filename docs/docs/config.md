@@ -1,13 +1,13 @@
 # Global Configuration
 
-Configure `ohada-lib` to match your legal jurisdiction and business defaults.
+Configure `@drcmind/ohada-lib` to match your legal jurisdiction and business defaults.
 
 ## The Ohada Instance
 
 Initialize the `Ohada` class once and reuse it throughout your application.
 
 ```typescript
-import { Ohada } from 'ohada-lib';
+import { Ohada } from '@drcmind/ohada-lib';
 
 const ohada = new Ohada({
   // --- Core ---
