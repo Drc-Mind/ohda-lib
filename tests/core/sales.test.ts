@@ -166,7 +166,7 @@ describe('SYSCOHADA Sales Logic', () => {
             });
 
             expect(results[0].type).toBe('CONSTATATION');
-            expect(results[1].type).toBe('STOCK_EXIT');
+            expect(results[1].type).toBe('SORTIE_STOCK');
             expect(results[2].type).toBe('REGLEMENT');
         });
     });

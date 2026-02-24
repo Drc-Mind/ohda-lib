@@ -115,9 +115,8 @@ body {
   text-decoration: none;
 }
 
-/* Navbar blurring */
+/* Navbar blurring - Removed backdrop-filter to prevent mobile sidebar clipping */
 .navbar {
-  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--site-border);
   background-color: var(--ifm-navbar-background-color) !important;
   z-index: 200; /* Ensure it stays above hero blobs and showcase */
@@ -172,8 +171,14 @@ body {
 
 /* Ensure mobile sidebar (drawer) also gets the background and stays on top */
 .navbar-sidebar {
-  background-color: var(--site-background);
-  z-index: 300 !important;
+  background-color: var(--site-background) !important;
+  z-index: 9999 !important;
+  box-shadow: 0 0 40px rgba(0,0,0,0.2) !important;
+  max-width: 85vw !important; /* Prevent overshooting on small screens */
+}
+
+.navbar-sidebar__brand {
+  border-bottom: 1px solid var(--site-border);
 }
 
 .navbar-sidebar__item {

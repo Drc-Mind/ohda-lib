@@ -22,6 +22,10 @@ export interface Translations {
   cashIn: string;
   paymentReceived: string;
   
+  // Inventory/Stock translations
+  stock: string;
+  stockEntry: string;
+  
   // Expense translations
   supplier: string;
   payment: string;
@@ -54,12 +58,15 @@ export const translations: Record<Locale, Translations> = {
     cashIn: 'Entrée de trésorerie',
     paymentReceived: 'Règlement reçu',
     
+    stock: 'Stock',
+    stockEntry: 'Entrée de stock',
+    
     supplier: 'Fournisseur',
     payment: 'Règlement',
 
     constatation: 'CONSTATATION',
     reglement: 'REGLEMENT',
-    stockExit: 'STOCK_EXIT',
+    stockExit: 'SORTIE_STOCK',
     openingBalance: 'BILAN_OUVERTURE'
   },
   en: {
@@ -81,6 +88,9 @@ export const translations: Record<Locale, Translations> = {
     costOfSales: 'Cost of goods sold',
     cashIn: 'Cash Inflow',
     paymentReceived: 'Payment received',
+    
+    stock: 'Stock',
+    stockEntry: 'Stock entry',
     
     supplier: 'Supplier',
     payment: 'Payment',

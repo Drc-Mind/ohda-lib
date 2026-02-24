@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Ohada Lib',
   tagline: 'Developer-friendly OHADA accounting library',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/ohada.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -82,7 +82,7 @@ const config: Config = {
       title: 'Ohada Lib',
       logo: {
         alt: 'Ohada Lib Logo',
-        src: 'img/logo.png',
+        src: 'img/ohada.png',
       },
       items: [
         {
@@ -150,7 +150,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Marcellin Tacite. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} @drcmind & Marcellin Tacite. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

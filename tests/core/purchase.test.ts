@@ -108,4 +108,154 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
             expect(results[1].type).toBe('REGLEMENT');
         });
     });
+
+    describe('Stock Entry Support (OHADA Inventory)', () => {
+        it('should handle initial stock recognition', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Purchase with Initial Stock",
+                vatRate: 18,
+                stockEntry: {
+                    initialStock: 200000
+                }
+            });
+
+            // Should have: Invoice + Stock Entry
+            expect(results.length).toBe(2);
+            
+            const stockEntry = results[1];
+            expect(stockEntry.lines.find(l => l.account === '6031' && l.debit === 200000)).toBeDefined();
+            expect(stockEntry.lines.find(l => l.account === '31' && l.credit === 200000)).toBeDefined();
+            expect(stockEntry.isBalanced).toBe(true);
+        });
+
+        it('should handle final stock recognition', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Purchase with Final Stock",
+                vatRate: 18,
+                stockEntry: {
+                    finalStock: 250000
+                }
+            });
+
+            // Should have: Invoice + Stock Entry
+            expect(results.length).toBe(2);
+            
+            const stockEntry = results[1];
+            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === 250000)).toBeDefined();
+            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 250000)).toBeDefined();
+            expect(stockEntry.isBalanced).toBe(true);
+        });
+
+        it('should handle both initial and final stock', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 100000,
+                label: "Purchase with Initial and Final Stock",
+                vatRate: 18,
+                stockEntry: {
+                    initialStock: 200000,
+                    finalStock: 350000
+                }
+            });
+
+            // Should have: Invoice + Initial Stock Entry + Final Stock Entry
+            expect(results.length).toBe(3);
+            
+            const initialStock = results[1];
+            expect(initialStock.lines.find(l => l.account === '6031' && l.debit === 200000)).toBeDefined();
+            expect(initialStock.lines.find(l => l.account === '31' && l.credit === 200000)).toBeDefined();
+            
+            const finalStock = results[2];
+            expect(finalStock.lines.find(l => l.account === '31' && l.debit === 350000)).toBeDefined();
+            expect(finalStock.lines.find(l => l.account === '6031' && l.credit === 350000)).toBeDefined();
+        });
+
+        it('should use custom stock account when provided', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Purchase with Custom Stock Account",
+                vatRate: 18,
+                stockEntry: {
+                    finalStock: 300000,
+                    stockAccount: '311'  // Specific stock account
+                }
+            });
+
+            const stockEntry = results[1];
+            expect(stockEntry.lines.find(l => l.account === '311' && l.debit === 300000)).toBeDefined();
+            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 300000)).toBeDefined();
+        });
+
+        it('should record multiple entries with payments and stock', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Complete Purchase Flow",
+                vatRate: 18,
+                payments: [{ method: 'bank', amount: 59000 }],
+                stockEntry: {
+                    initialStock: 150000,
+                    finalStock: 200000
+                }
+            });
+
+            // Should have: Invoice + Payment + Initial Stock + Final Stock
+            expect(results.length).toBe(4);
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('REGLEMENT');
+            expect(results[2].type).toBe('SORTIE_STOCK');  // Stock exit type
+            expect(results[3].type).toBe('SORTIE_STOCK');  // Stock exit type
+        });
+
+        it('should auto-calculate finalStock as amount + charges when not provided', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Purchase with Auto Stock Calculation",
+                vatRate: 18,
+                charges: [
+                    { type: 'Transport', amount: 5000 },
+                    { type: 'Douane', amount: 2000 }
+                ],
+                stockEntry: {
+                    // finalStock NOT specified - should auto-calculate to 57000 (50000 + 5000 + 2000)
+                }
+            });
+
+            // Should have: Invoice + Stock Entry
+            expect(results.length).toBe(2);
+            
+            const stockEntry = results[1];
+            const expectedStockValue = 57000; // 50000 + 5000 + 2000
+            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === expectedStockValue)).toBeDefined();
+            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === expectedStockValue)).toBeDefined();
+            expect(stockEntry.isBalanced).toBe(true);
+        });
+
+        it('should override auto-calculation when finalStock is explicitly provided', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 50000,
+                label: "Purchase with Override Stock",
+                vatRate: 18,
+                charges: [{ type: 'Transport', amount: 5000 }],
+                stockEntry: {
+                    finalStock: 100000  // Explicitly override auto-calculation
+                }
+            });
+
+            // Should have: Invoice + Stock Entry
+            expect(results.length).toBe(2);
+            
+            const stockEntry = results[1];
+            // Should use explicit value (100000) not auto-calculated (55000)
+            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === 100000)).toBeDefined();
+            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 100000)).toBeDefined();
+        });
+    });
 });
