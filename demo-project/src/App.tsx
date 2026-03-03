@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router';
+import { useStore } from './store/StoreContext';
+import Layout from './components/Layout';
+import Onboarding from './pages/Onboarding';
+import Dashboard from './pages/Dashboard';
+import Sales from './pages/Sales';
+import Purchases from './pages/Purchases';
+import Expenses from './pages/Expenses';
+import Journal from './pages/Journal';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const { store } = useStore();
+  const ready = store.openingEntry !== null;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route
+        path="/onboarding"
+        element={ready ? <Navigate to="/dashboard" replace /> : <Onboarding />}
+      />
+      <Route
+        path="/"
+        element={ready ? <Layout /> : <Navigate to="/onboarding" replace />}
+      >
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="sales" element={<Sales />} />
+        <Route path="purchases" element={<Purchases />} />
+        <Route path="expenses" element={<Expenses />} />
+        <Route path="journal" element={<Journal />} />
+      </Route>
+      <Route path="*" element={<Navigate to={ready ? '/dashboard' : '/onboarding'} replace />} />
+    </Routes>
+  );
 }
-
-export default App
