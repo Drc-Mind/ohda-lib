@@ -12,7 +12,8 @@ import { PURCHASE_ACCOUNTS } from './constants';
  *    and optional charges/VAT.
  * 2. **REGLEMENT (Payment)**: Records separate payment entries for each payment 
  *    method provided (Cash/Bank).
- * 3. **INVENTORY (Stock Entries)**: Records initial and final stock adjustments (CMUP).
+ * 3. **VARIATION DE STOCK**: Records the stock increase (Debit 31, Credit 6031) 
+ *    for the cost of goods acquired (amount + charges).
  * 
  * @example
  * ```typescript
@@ -43,6 +44,7 @@ export function recordPurchase(
         vatRate = 18,
         charges = [],
         payments = [],
+        reduction,
         stockEntry
     } = input;
 
@@ -105,15 +107,61 @@ export function recordPurchase(
         isBalanced: true
     });
 
+    // --- ENTRY 2: REDUCTION (RRR obtenus) ---
+    let reductionTtc = 0;
+    if (reduction && reduction > 0) {
+        const reductionLines: JournalEntry['lines'] = [];
+        const reductionVat = !disableVAT ? round(reduction * (vatRate / 100)) : 0;
+        reductionTtc = round(reduction + reductionVat);
+
+        // Debit Supplier (reduce debt)
+        reductionLines.push({
+            account: '4011',
+            label: `${t.operatingSupplier} - RRR - ${label}`,
+            debit: reductionTtc,
+            credit: 0
+        });
+
+        // Credit RRR obtenus
+        reductionLines.push({
+            account: PURCHASE_ACCOUNTS.REDUCTION,
+            label: `RRR obtenus - ${label}`,
+            debit: 0,
+            credit: round(reduction)
+        });
+
+        // Credit VAT collected (avoir) if VAT is enabled
+        if (reductionVat > 0) {
+            reductionLines.push({
+                account: PURCHASE_ACCOUNTS.VAT_COLLECTED,
+                label: `TVA sur avoir - ${label}`,
+                debit: 0,
+                credit: reductionVat
+            });
+        }
+
+        entries.push({
+            date,
+            type: t.reduction as any,
+            lines: reductionLines,
+            totals: {
+                debit: reductionTtc,
+                credit: reductionTtc
+            },
+            isBalanced: true
+        });
+    }
+
     // --- OVERPAYMENT VALIDATION ---
+    const netTtc = round(totalTtc - reductionTtc);
     const totalPaid = round(payments.reduce((sum, p) => sum + p.amount, 0));
-    if (totalPaid > totalTtc) {
+    if (totalPaid > netTtc) {
         throw new Error(
-            `Total payments (${totalPaid}) exceed the total amount due (${totalTtc}). Overpayment is not allowed.`
+            `Total payments (${totalPaid}) exceed the total amount due (${netTtc}). Overpayment is not allowed.`
         );
     }
 
-    // --- ENTRIES 2+: REGLEMENTS (PAYMENTS) ---
+    // --- ENTRIES 3+: REGLEMENTS (PAYMENTS) ---
     payments.forEach(pay => {
         if (pay.amount <= 0) return;
 
@@ -148,82 +196,36 @@ export function recordPurchase(
         });
     });
 
-    // --- ENTRIES 3+: INVENTORY ENTRIES (Stock Initial & Final) ---
-    if (stockEntry) {
-        const stockAccount = stockEntry.stockAccount || PURCHASE_ACCOUNTS.STOCK_ACCOUNT;
-        
-        // Auto-calculate finalStock if:
-        // 1. finalStock is NOT explicitly provided AND
-        // 2. initialStock is also NOT provided (user wants automatic stock calculation)
-        const shouldAutoCalculate = 
-            stockEntry.finalStock === undefined && 
-            stockEntry.initialStock === undefined;
-        
-        const autoCalculatedFinalStock = shouldAutoCalculate 
-            ? round(amount + totalCharges)
-            : stockEntry.finalStock;
+    // --- ENTRY 3: VARIATION DE STOCK (Debit 31, Credit 6031) ---
+    const stockAccount = stockEntry?.stockAccount || PURCHASE_ACCOUNTS.STOCK_ACCOUNT;
+    const stockVariationAmount = round(amount + totalCharges);
 
-        // Initial Stock Recognition (Annulation - Debit 6031, Credit 31)
-        if (stockEntry.initialStock !== undefined && stockEntry.initialStock > 0) {
-            const initialStockLines: JournalEntry['lines'] = [];
+    const stockLines: JournalEntry['lines'] = [];
 
-            initialStockLines.push({
-                account: PURCHASE_ACCOUNTS.STOCK_VARIATION,
-                label: `${t.stockExit || 'Variation de stock initial'} - ${label}`,
-                debit: round(stockEntry.initialStock),
-                credit: 0
-            });
+    stockLines.push({
+        account: stockAccount,
+        label: `${t.stock || 'Stock'} - ${label}`,
+        debit: stockVariationAmount,
+        credit: 0
+    });
 
-            initialStockLines.push({
-                account: stockAccount,
-                label: `${t.stock || 'Stock initial'} - ${label}`,
-                debit: 0,
-                credit: round(stockEntry.initialStock)
-            });
+    stockLines.push({
+        account: PURCHASE_ACCOUNTS.STOCK_VARIATION,
+        label: `${t.costOfSales || 'Variation de stock'} - ${label}`,
+        debit: 0,
+        credit: stockVariationAmount
+    });
 
-            entries.push({
-                date,
-                type: t.stockExit as any,
-                lines: initialStockLines,
-                totals: {
-                    debit: round(stockEntry.initialStock),
-                    credit: round(stockEntry.initialStock)
-                },
-                isBalanced: true
-            });
-        }
-
-        // Final Stock Recognition (Inventory - Debit 31, Credit 6031)
-        // Auto-calculated or explicitly provided value
-        if (autoCalculatedFinalStock !== undefined && autoCalculatedFinalStock > 0) {
-            const finalStockLines: JournalEntry['lines'] = [];
-
-            finalStockLines.push({
-                account: stockAccount,
-                label: `${t.stock || 'Stock final'} - ${label}`,
-                debit: round(autoCalculatedFinalStock),
-                credit: 0
-            });
-
-            finalStockLines.push({
-                account: PURCHASE_ACCOUNTS.STOCK_VARIATION,
-                label: `${t.stockEntry || 'Variation de stock final'} - ${label}`,
-                debit: 0,
-                credit: round(autoCalculatedFinalStock)
-            });
-
-            entries.push({
-                date,
-                type: t.stockExit as any,
-                lines: finalStockLines,
-                totals: {
-                    debit: round(autoCalculatedFinalStock),
-                    credit: round(autoCalculatedFinalStock)
-                },
-                isBalanced: true
-            });
-        }
-    }
+    entries.push({
+        date,
+        type: t.variationStock as any,
+        lines: stockLines,
+        totals: {
+            debit: stockVariationAmount,
+            credit: stockVariationAmount
+        },
+        isBalanced: true
+    });
 
     return entries;
 }

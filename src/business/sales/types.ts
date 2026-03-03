@@ -18,6 +18,11 @@ export interface InventoryExit {
   costPrice: number;  // CMUP (Coût Moyen Unitaire Pondéré)
 }
 
+export interface SalePayment {
+  method: 'cash' | 'bank';
+  amount: number;
+}
+
 export interface SaleInput {
   // REQUIRED
   amount: number;           // Net commercial price (after RRR if applicable)
@@ -33,12 +38,7 @@ export interface SaleInput {
   packagingDeposit?: PackagingDeposit;    // Consignation (no VAT)
   transportCharge?: TransportCharge;       // Port facturé (7071)
   inventoryExit?: InventoryExit;          // Stock exit (6031/311)
-  
-  // PAYMENT (optional - if immediate payment)
-  payment?: {
-    method: 'cash' | 'bank';
-    amount: number;
-  };
+  payments?: SalePayment[];                // One or more payment entries
 }
 
 // Re-export JournalEntry from global types

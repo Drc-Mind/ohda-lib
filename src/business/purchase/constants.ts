@@ -28,6 +28,10 @@ export const PURCHASE_ACCOUNTS = {
   // Supplier
   SUPPLIER: '4011',                // Fournisseurs
   
+  // Reduction (RRR)
+  REDUCTION: '6019',               // RRR obtenus sur achats
+  VAT_COLLECTED: '4451',           // TVA facturée (sur avoir fournisseur)
+
   // Inventory (Stock)
   STOCK_VARIATION: '6031',         // Variation de stocks de marchandises
   STOCK_ACCOUNT: '31',             // Stocks de marchandises

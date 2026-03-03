@@ -106,7 +106,7 @@ describe('SYSCOHADA Expenses Logic', () => {
                 amount: 25000,
                 label: "Fournitures bureau",
                 vatRate: 18,
-                payment: { method: 'cash', amount: 29500 }
+                payments: [{ method: 'cash', amount: 29500 }]
             });
 
             expect(results.length).toBe(2);
@@ -128,6 +128,34 @@ describe('SYSCOHADA Expenses Logic', () => {
 
             expect(supplierPaymentLine?.debit).toBe(29500);
             expect(cashLine?.credit).toBe(29500);
+        });
+
+        it('should handle multiple split payments', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordExpense({
+                category: 'OFFICE_SUPPLIES',
+                amount: 25000,
+                label: "Fournitures bureau",
+                vatRate: 18,
+                payments: [
+                    { method: 'cash', amount: 14750 },
+                    { method: 'bank', amount: 14750 }
+                ]
+            });
+
+            expect(results.length).toBe(3); // Invoice + 2 Payments
+
+            // Entry 1: Invoice
+            const invoice = results[0];
+            expect(invoice.isBalanced).toBe(true);
+
+            // Entry 2: Payment 1 (cash)
+            const payment1 = results[1];
+            expect(payment1.lines.find(l => l.account === '5711' && l.credit === 14750)).toBeDefined();
+
+            // Entry 3: Payment 2 (bank)
+            const payment2 = results[2];
+            expect(payment2.lines.find(l => l.account === '5211' && l.credit === 14750)).toBeDefined();
         });
     });
 
@@ -265,12 +293,14 @@ describe('SYSCOHADA Expenses Logic', () => {
                 category: 'OFFICE_SUPPLIES',
                 amount: 10000,
                 label: "Office test",
-                payment: { method: 'cash', amount: 10000 }
+                payments: [{ method: 'cash', amount: 10000 }]
             });
 
             expect(results[0].type).toBe('CONSTATATION');
             expect(results[1].type).toBe('REGLEMENT');
         });
+    });
+
     describe('Direct Expense Mode (Cash Basis)', () => {
         it('should record expense directly to cash when directExpense is true', () => {
             const ohada = new Ohada({ 
@@ -315,7 +345,7 @@ describe('SYSCOHADA Expenses Logic', () => {
                 category: 'MAINTENANCE_REPAIRS',
                 amount: 20000,
                 label: "Entretien clim",
-                payment: { method: 'bank', amount: 20000 }
+                payments: [{ method: 'bank', amount: 20000 }]
             });
 
             const entry = results[0];
@@ -382,5 +412,4 @@ describe('SYSCOHADA Expenses Logic', () => {
             expect(results[0].lines.find(l => l.account === '658')).toBeDefined();
         });
     });
-});
 });

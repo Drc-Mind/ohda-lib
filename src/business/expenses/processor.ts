@@ -47,7 +47,7 @@ export function recordExpense(
         date = new Date(),
         vatAmount: manualVAT,
         vatRate,
-        payment
+        payments = []
     } = input;
 
     const entries: JournalEntry[] = [];
@@ -113,10 +113,11 @@ export function recordExpense(
     // 3. Credit Side: Supplier or Cash/Bank
     if (directMode) {
         // In Direct Mode: Credit Cash/Bank directly
-        const monetaryAccount = (payment?.method === 'bank') ? COMMON_ACCOUNTS.BANK : COMMON_ACCOUNTS.CASH;
+        const paymentMethod = (payments && payments.length > 0) ? payments[0].method : 'cash';
+        const monetaryAccount = (paymentMethod === 'bank') ? COMMON_ACCOUNTS.BANK : COMMON_ACCOUNTS.CASH;
         mainLines.push({
             account: monetaryAccount,
-            label: `${label} (${payment?.method || 'cash'})`,
+            label: `${label} (${paymentMethod})`,
             debit: 0,
             credit: totalTtc
         });
@@ -141,25 +142,27 @@ export function recordExpense(
         isBalanced: true
     });
 
-    // --- ENTRY 2: PAYMENT (only if NOT in directMode and payment is provided) ---
-    if (!directMode && payment && payment.amount > 0) {
+    // --- ENTRY 2: PAYMENTS (only if NOT in directMode and payments are provided) ---
+    payments.forEach(pay => {
+        if (pay.amount <= 0) return;
+
         const paymentLines: JournalEntry['lines'] = [];
         
         // Debit Supplier (Reduce debt)
         paymentLines.push({
             account: COMMON_ACCOUNTS.SUPPLIER,
             label: `${t.supplier} - ${t.payment} - ${label}`,
-            debit: round(payment.amount),
+            debit: round(pay.amount),
             credit: 0
         });
 
         // Credit Cash/Bank
-        const monetaryAccount = payment.method === 'cash' ? COMMON_ACCOUNTS.CASH : COMMON_ACCOUNTS.BANK;
+        const monetaryAccount = pay.method === 'cash' ? COMMON_ACCOUNTS.CASH : COMMON_ACCOUNTS.BANK;
         paymentLines.push({
             account: monetaryAccount,
-            label: `${t.payment} (${payment.method}) - ${label}`,
+            label: `${t.payment} (${pay.method}) - ${label}`,
             debit: 0,
-            credit: round(payment.amount)
+            credit: round(pay.amount)
         });
 
         entries.push({
@@ -167,11 +170,11 @@ export function recordExpense(
             type: t.reglement as any,
             lines: paymentLines,
             totals: {
-                debit: round(payment.amount),
-                credit: round(payment.amount)
+                debit: round(pay.amount),
+                credit: round(pay.amount)
             },
             isBalanced: true
         });
-    }
+    });
     return entries;
 }

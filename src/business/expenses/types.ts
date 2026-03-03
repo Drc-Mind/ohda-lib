@@ -36,6 +36,11 @@ export type ExpenseCategory =
   | 'STAMP_DUTY'               // 6462 - Droits de timbre
   | 'VEHICLE_TAX';             // 6463 - Taxes sur véhicules
 
+export interface ExpensePayment {
+  method: 'cash' | 'bank';
+  amount: number;
+}
+
 export interface ExpenseInput {
   category: ExpenseCategory;
   amount: number;
@@ -46,11 +51,8 @@ export interface ExpenseInput {
   vatAmount?: number;      // Manual VAT amount (takes precedence)
   vatRate?: number;        // Auto-calculate VAT from rate
   
-  // Optional payment
-  payment?: {
-    method: 'cash' | 'bank';
-    amount: number;
-  };
+  // Optional payments (array for multiple payment methods)
+  payments?: ExpensePayment[];
 }
 
 // Configuration for global VAT settings

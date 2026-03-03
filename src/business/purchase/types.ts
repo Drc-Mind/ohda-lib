@@ -35,5 +35,6 @@ export type PurchaseInput = {
   // ADVANCED OPTIONS
   charges?: PurchaseCharge[];
   payments?: PurchasePayment[];
+  reduction?: number;        // RRR obtenus (rabais/remise/ristourne) - reduces supplier debt
   stockEntry?: StockEntry;  // Inventory adjustment entries
 };

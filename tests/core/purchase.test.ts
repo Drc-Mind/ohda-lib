@@ -3,21 +3,28 @@ import { Ohada } from '../../src/core/ohada';
 
 describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
 
-    it('Scenario A: should record a purchase on credit correctly', () => {
+    it('Scenario A: should record a purchase on credit correctly (constatation + stock variation)', () => {
         const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ amount: 100000, label: "Marchandises", vatRate: 18 });
 
-        expect(results.length).toBe(1); // Only Invoice
+        expect(results.length).toBe(2); // Constatation + Stock Variation
+        
         const invoice = results[0];
         expect(invoice.isBalanced).toBe(true);
         expect(invoice.totals.debit).toBe(118000);
-        
         expect(invoice.lines.find(l => l.account === '6011' && l.debit === 100000)).toBeDefined();
         expect(invoice.lines.find(l => l.account === '4452' && l.debit === 18000)).toBeDefined();
         expect(invoice.lines.find(l => l.account === '4011' && l.credit === 118000)).toBeDefined();
+
+        // Stock Variation (Debit 31, Credit 6031)
+        const stockVar = results[1];
+        expect(stockVar.type).toBe('VARIATION_STOCK');
+        expect(stockVar.isBalanced).toBe(true);
+        expect(stockVar.lines.find(l => l.account === '31' && l.debit === 100000)).toBeDefined();
+        expect(stockVar.lines.find(l => l.account === '6031' && l.credit === 100000)).toBeDefined();
     });
 
-    it('Scenario B: should record a cash purchase with separate entities', () => {
+    it('Scenario B: should record a cash purchase with 3 entries (constatation + reglement + stock variation)', () => {
         const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ 
             amount: 100000, 
@@ -26,7 +33,7 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
             payments: [{ method: 'cash', amount: 118000 }]
         });
 
-        expect(results.length).toBe(2); // Invoice + Payment
+        expect(results.length).toBe(3); // Constatation + Payment + Stock Variation
         
         // Check Invoice
         const invoice = results[0];
@@ -37,9 +44,15 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
         expect(payment.isBalanced).toBe(true);
         expect(payment.lines.find(l => l.account === '4011' && l.debit === 118000)).toBeDefined();
         expect(payment.lines.find(l => l.account === '5711' && l.credit === 118000)).toBeDefined();
+
+        // Check Stock Variation
+        const stockVar = results[2];
+        expect(stockVar.type).toBe('VARIATION_STOCK');
+        expect(stockVar.lines.find(l => l.account === '31' && l.debit === 100000)).toBeDefined();
+        expect(stockVar.lines.find(l => l.account === '6031' && l.credit === 100000)).toBeDefined();
     });
 
-    it('Scenario C: should handle split payments and charges with separate entities', () => {
+    it('Scenario C: should handle split payments and charges with stock variation', () => {
         const ohada = new Ohada({ disableVAT: false });
         const results = ohada.recordPurchase({ 
             amount: 100000, 
@@ -49,7 +62,7 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
             payments: [{ method: 'bank', amount: 61950 }]
         });
 
-        expect(results.length).toBe(2); // Invoice + 1 Payment
+        expect(results.length).toBe(3); // Constatation + Payment + Stock Variation
         
         const invoice = results[0];
         expect(invoice.lines.find(l => l.account === '6011' && l.debit === 100000)).toBeDefined();
@@ -57,9 +70,15 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
 
         const payment = results[1];
         expect(payment.lines.find(l => l.account === '5211' && l.credit === 61950)).toBeDefined();
+
+        // Stock Variation includes charges (100000 + 5000 = 105000)
+        const stockVar = results[2];
+        expect(stockVar.type).toBe('VARIATION_STOCK');
+        expect(stockVar.lines.find(l => l.account === '31' && l.debit === 105000)).toBeDefined();
+        expect(stockVar.lines.find(l => l.account === '6031' && l.credit === 105000)).toBeDefined();
     });
 
-    it('should handle multiple payments as separate entries', () => {
+    it('should handle multiple payments as separate entries with stock variation at end', () => {
         const ohada = new Ohada();
         const results = ohada.recordPurchase({
             amount: 10000,
@@ -71,13 +90,16 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
             ]
         });
 
-        expect(results.length).toBe(3); // Invoice + 2 Payments
-        expect(results[1].lines.find(l => l.account === '5711' && l.credit === 5000)).toBeDefined();
-        expect(results[2].lines.find(l => l.account === '5211' && l.credit === 2000)).toBeDefined();
-        
-        // Metadata check
+        expect(results.length).toBe(4); // Constatation + 2 Payments + Stock Variation
         expect(results[0].type).toBe('CONSTATATION');
         expect(results[1].type).toBe('REGLEMENT');
+        expect(results[2].type).toBe('REGLEMENT');
+        expect(results[3].type).toBe('VARIATION_STOCK');
+
+        expect(results[1].lines.find(l => l.account === '5711' && l.credit === 5000)).toBeDefined();
+        expect(results[2].lines.find(l => l.account === '5211' && l.credit === 2000)).toBeDefined();
+        expect(results[3].lines.find(l => l.account === '31' && l.debit === 10000)).toBeDefined();
+        expect(results[3].lines.find(l => l.account === '6031' && l.credit === 10000)).toBeDefined();
     });
 
     describe('Overpayment Validation', () => {
@@ -106,156 +128,199 @@ describe('Simplified SYSCOHADA Purchase Logic (Multi-Entry)', () => {
 
             expect(results[0].type).toBe('CONSTATATION');
             expect(results[1].type).toBe('REGLEMENT');
+            expect(results[2].type).toBe('VARIATION_STOCK');
         });
     });
 
-    describe('Stock Entry Support (OHADA Inventory)', () => {
-        it('should handle initial stock recognition', () => {
+    describe('Stock Variation (Automatic for every purchase)', () => {
+        it('should always generate stock variation entry (Debit 31, Credit 6031)', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordPurchase({
                 amount: 50000,
-                label: "Purchase with Initial Stock",
+                label: "Purchase with Auto Stock",
                 vatRate: 18,
-                stockEntry: {
-                    initialStock: 200000
-                }
             });
 
-            // Should have: Invoice + Stock Entry
+            // Should have: Constatation + Stock Variation
             expect(results.length).toBe(2);
             
-            const stockEntry = results[1];
-            expect(stockEntry.lines.find(l => l.account === '6031' && l.debit === 200000)).toBeDefined();
-            expect(stockEntry.lines.find(l => l.account === '31' && l.credit === 200000)).toBeDefined();
-            expect(stockEntry.isBalanced).toBe(true);
+            const stockVar = results[1];
+            expect(stockVar.type).toBe('VARIATION_STOCK');
+            expect(stockVar.lines.find(l => l.account === '31' && l.debit === 50000)).toBeDefined();
+            expect(stockVar.lines.find(l => l.account === '6031' && l.credit === 50000)).toBeDefined();
+            expect(stockVar.isBalanced).toBe(true);
         });
 
-        it('should handle final stock recognition', () => {
+        it('should include charges in stock variation amount', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordPurchase({
                 amount: 50000,
-                label: "Purchase with Final Stock",
+                label: "Purchase with Charges",
                 vatRate: 18,
-                stockEntry: {
-                    finalStock: 250000
-                }
+                charges: [
+                    { type: 'Transport', amount: 5000 },
+                    { type: 'Douane', amount: 2000 }
+                ]
             });
 
-            // Should have: Invoice + Stock Entry
+            // Should have: Constatation + Stock Variation
             expect(results.length).toBe(2);
             
-            const stockEntry = results[1];
-            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === 250000)).toBeDefined();
-            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 250000)).toBeDefined();
-            expect(stockEntry.isBalanced).toBe(true);
+            const stockVar = results[1];
+            const expectedStockValue = 57000; // 50000 + 5000 + 2000
+            expect(stockVar.lines.find(l => l.account === '31' && l.debit === expectedStockValue)).toBeDefined();
+            expect(stockVar.lines.find(l => l.account === '6031' && l.credit === expectedStockValue)).toBeDefined();
+            expect(stockVar.isBalanced).toBe(true);
         });
 
-        it('should handle both initial and final stock', () => {
-            const ohada = new Ohada({ disableVAT: false });
-            const results = ohada.recordPurchase({
-                amount: 100000,
-                label: "Purchase with Initial and Final Stock",
-                vatRate: 18,
-                stockEntry: {
-                    initialStock: 200000,
-                    finalStock: 350000
-                }
-            });
-
-            // Should have: Invoice + Initial Stock Entry + Final Stock Entry
-            expect(results.length).toBe(3);
-            
-            const initialStock = results[1];
-            expect(initialStock.lines.find(l => l.account === '6031' && l.debit === 200000)).toBeDefined();
-            expect(initialStock.lines.find(l => l.account === '31' && l.credit === 200000)).toBeDefined();
-            
-            const finalStock = results[2];
-            expect(finalStock.lines.find(l => l.account === '31' && l.debit === 350000)).toBeDefined();
-            expect(finalStock.lines.find(l => l.account === '6031' && l.credit === 350000)).toBeDefined();
-        });
-
-        it('should use custom stock account when provided', () => {
+        it('should use custom stock account when provided via stockEntry', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordPurchase({
                 amount: 50000,
                 label: "Purchase with Custom Stock Account",
                 vatRate: 18,
                 stockEntry: {
-                    finalStock: 300000,
                     stockAccount: '311'  // Specific stock account
                 }
             });
 
-            const stockEntry = results[1];
-            expect(stockEntry.lines.find(l => l.account === '311' && l.debit === 300000)).toBeDefined();
-            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 300000)).toBeDefined();
+            const stockVar = results[1];
+            expect(stockVar.lines.find(l => l.account === '311' && l.debit === 50000)).toBeDefined();
+            expect(stockVar.lines.find(l => l.account === '6031' && l.credit === 50000)).toBeDefined();
         });
 
-        it('should record multiple entries with payments and stock', () => {
+        it('should record 3 entries: constatation + reglement + stock variation', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordPurchase({
                 amount: 50000,
                 label: "Complete Purchase Flow",
                 vatRate: 18,
-                payments: [{ method: 'bank', amount: 59000 }],
-                stockEntry: {
-                    initialStock: 150000,
-                    finalStock: 200000
-                }
+                payments: [{ method: 'bank', amount: 59000 }]
             });
 
-            // Should have: Invoice + Payment + Initial Stock + Final Stock
-            expect(results.length).toBe(4);
+            // Should have: Constatation + Payment + Stock Variation
+            expect(results.length).toBe(3);
             expect(results[0].type).toBe('CONSTATATION');
             expect(results[1].type).toBe('REGLEMENT');
-            expect(results[2].type).toBe('SORTIE_STOCK');  // Stock exit type
-            expect(results[3].type).toBe('SORTIE_STOCK');  // Stock exit type
-        });
+            expect(results[2].type).toBe('VARIATION_STOCK');
 
-        it('should auto-calculate finalStock as amount + charges when not provided', () => {
-            const ohada = new Ohada({ disableVAT: false });
+            // Stock variation = amount only (no charges)
+            expect(results[2].lines.find(l => l.account === '31' && l.debit === 50000)).toBeDefined();
+            expect(results[2].lines.find(l => l.account === '6031' && l.credit === 50000)).toBeDefined();
+        });
+    });
+
+    describe('Reduction (RRR obtenus)', () => {
+        it('should add reduction entry after constatation (VAT disabled)', () => {
+            const ohada = new Ohada(); // disableVAT = true by default
             const results = ohada.recordPurchase({
-                amount: 50000,
-                label: "Purchase with Auto Stock Calculation",
-                vatRate: 18,
-                charges: [
-                    { type: 'Transport', amount: 5000 },
-                    { type: 'Douane', amount: 2000 }
-                ],
-                stockEntry: {
-                    // finalStock NOT specified - should auto-calculate to 57000 (50000 + 5000 + 2000)
-                }
+                amount: 100000,
+                label: "Marchandises",
+                reduction: 20000
             });
 
-            // Should have: Invoice + Stock Entry
-            expect(results.length).toBe(2);
-            
-            const stockEntry = results[1];
-            const expectedStockValue = 57000; // 50000 + 5000 + 2000
-            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === expectedStockValue)).toBeDefined();
-            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === expectedStockValue)).toBeDefined();
-            expect(stockEntry.isBalanced).toBe(true);
+            // Constatation + Reduction + Stock Variation
+            expect(results.length).toBe(3);
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('REDUCTION');
+            expect(results[2].type).toBe('VARIATION_STOCK');
+
+            // Reduction entry: D 4011 20000, C 6019 20000
+            const red = results[1];
+            expect(red.isBalanced).toBe(true);
+            expect(red.lines.find(l => l.account === '4011' && l.debit === 20000)).toBeDefined();
+            expect(red.lines.find(l => l.account === '6019' && l.credit === 20000)).toBeDefined();
+            // No VAT line when VAT disabled
+            expect(red.lines.find(l => l.account === '4451')).toBeUndefined();
         });
 
-        it('should override auto-calculation when finalStock is explicitly provided', () => {
+        it('should add reduction entry with VAT reversal (VAT enabled)', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordPurchase({
-                amount: 50000,
-                label: "Purchase with Override Stock",
+                amount: 100000,
+                label: "Marchandises",
                 vatRate: 18,
-                charges: [{ type: 'Transport', amount: 5000 }],
-                stockEntry: {
-                    finalStock: 100000  // Explicitly override auto-calculation
-                }
+                reduction: 10000
             });
 
-            // Should have: Invoice + Stock Entry
-            expect(results.length).toBe(2);
-            
-            const stockEntry = results[1];
-            // Should use explicit value (100000) not auto-calculated (55000)
-            expect(stockEntry.lines.find(l => l.account === '31' && l.debit === 100000)).toBeDefined();
-            expect(stockEntry.lines.find(l => l.account === '6031' && l.credit === 100000)).toBeDefined();
+            // Constatation + Reduction + Stock Variation
+            expect(results.length).toBe(3);
+
+            const red = results[1];
+            expect(red.type).toBe('REDUCTION');
+            expect(red.isBalanced).toBe(true);
+
+            // D 4011 = 10000 + 1800 = 11800
+            expect(red.lines.find(l => l.account === '4011' && l.debit === 11800)).toBeDefined();
+            // C 6019 = 10000
+            expect(red.lines.find(l => l.account === '6019' && l.credit === 10000)).toBeDefined();
+            // C 4451 = 1800
+            expect(red.lines.find(l => l.account === '4451' && l.credit === 1800)).toBeDefined();
+        });
+
+        it('should place reduction before reglement, after constatation', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordPurchase({
+                amount: 100000,
+                label: "Marchandises",
+                vatRate: 18,
+                reduction: 10000,
+                payments: [{ method: 'cash', amount: 50000 }]
+            });
+
+            // Constatation + Reduction + Payment + Stock Variation
+            expect(results.length).toBe(4);
+            expect(results[0].type).toBe('CONSTATATION');
+            expect(results[1].type).toBe('REDUCTION');
+            expect(results[2].type).toBe('REGLEMENT');
+            expect(results[3].type).toBe('VARIATION_STOCK');
+        });
+
+        it('should validate overpayment against net amount after reduction', () => {
+            const ohada = new Ohada();
+            // amount=100000, reduction=20000 → net=80000
+            expect(() => {
+                ohada.recordPurchase({
+                    amount: 100000,
+                    label: "Test",
+                    reduction: 20000,
+                    payments: [{ method: 'cash', amount: 90000 }]
+                });
+            }).toThrow(/exceed the total amount due/);
+
+            // Should NOT throw when paying net amount
+            expect(() => {
+                ohada.recordPurchase({
+                    amount: 100000,
+                    label: "Test",
+                    reduction: 20000,
+                    payments: [{ method: 'cash', amount: 80000 }]
+                });
+            }).not.toThrow();
+        });
+
+        it('should validate overpayment with VAT against net TTC after reduction', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            // amount=100000, VAT 18% → TTC=118000, reduction=10000 → reductionTTC=11800, net=106200
+            expect(() => {
+                ohada.recordPurchase({
+                    amount: 100000,
+                    label: "Test",
+                    vatRate: 18,
+                    reduction: 10000,
+                    payments: [{ method: 'cash', amount: 106200 }]
+                });
+            }).not.toThrow();
+
+            expect(() => {
+                ohada.recordPurchase({
+                    amount: 100000,
+                    label: "Test",
+                    vatRate: 18,
+                    reduction: 10000,
+                    payments: [{ method: 'cash', amount: 106201 }]
+                });
+            }).toThrow(/exceed the total amount due/);
         });
     });
 });

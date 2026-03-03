@@ -11,8 +11,8 @@ import { SaleInput, recordSale } from '../business/sales';
 import { ExpenseInput, ExpenseVATConfig, recordExpense } from '../business/expenses';
 import { recordAsset } from '../business/assets/processor';
 import { AssetInput } from '../business/assets/types';
-import { calculateOpeningBalance } from '../business/onboarding/processor';
-import { OpeningBalanceInput } from '../business/onboarding/types';
+import { recordOpeningEntry } from '../business/onboarding/processor';
+import { OpeningEntryInput } from '../business/onboarding/types';
 import { JournalEntry } from '../types';
 
 import { AccountResolver } from './account-resolver';
@@ -113,17 +113,19 @@ export class Ohada {
   }
 
   /**
-   * Records the initial opening balance (Bilan d'Ouverture) for a new company.
-   * 
-   * This handles the initial "A-Nouveaux" entries, calculating the Capital
-   * based on the provided Assets and Liabilities.
-   * 
-   * @param input - The inventory of assets, stocks, and debts.
-   * @returns A single balanced JournalEntry representing the starting position.
+   * Records the Opening Journal Entry (A-Nouveaux / Journal d'Ouverture).
+   *
+   * Lists all assets on the debit side (fixed assets, stocks, receivables,
+   * bank, cash, mobile money) and all liabilities on the credit side
+   * (supplier debts, loans). Capital is auto-calculated as the balancing
+   * figure and credited to account 1011 (or debited to 1311 if deficit).
+   *
+   * @param input - Full inventory of assets and liabilities.
+   * @returns A single balanced JournalEntry.
    */
-  recordOpeningBalance(input: OpeningBalanceInput): JournalEntry {
+  recordOpeningEntry(input: OpeningEntryInput): JournalEntry {
     const locale = this.config.locale || 'fr';
-    return calculateOpeningBalance(input, locale);
+    return recordOpeningEntry(input, locale);
   }
 
   // Methods temporarily commented out pending restructuring

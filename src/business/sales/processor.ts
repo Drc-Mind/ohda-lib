@@ -43,7 +43,7 @@ export function recordSale(
         packagingDeposit,
         transportCharge,
         inventoryExit,
-        payment
+        payments = []
     } = input;
 
     const entries: JournalEntry[] = [];
@@ -170,25 +170,27 @@ export function recordSale(
         });
     }
 
-    // --- ENTRY 3: PAYMENT (if immediate payment) ---
-    if (payment && payment.amount > 0) {
+    // --- ENTRIES 3+: PAYMENTS (if immediate payments) ---
+    payments.forEach(pay => {
+        if (pay.amount <= 0) return;
+
         const paymentLines: JournalEntry['lines'] = [];
-        
+
         // Debit Cash/Bank
-        const monetaryAccount = payment.method === 'cash' ? '5711' : '5211';
+        const monetaryAccount = pay.method === 'cash' ? '5711' : '5211';
         paymentLines.push({
             account: monetaryAccount,
-            label: `${t.cashIn} (${payment.method}) - ${label}`,
-            debit: round(payment.amount),
+            label: `${t.cashIn} (${pay.method}) - ${label}`,
+            debit: round(pay.amount),
             credit: 0
         });
 
         // Credit Client (Reduce receivable)
         paymentLines.push({
             account: SALE_ACCOUNTS.CLIENT,
-            label: `${t.paymentReceived} (${payment.method}) - ${label}`,
+            label: `${t.paymentReceived} (${pay.method}) - ${label}`,
             debit: 0,
-            credit: round(payment.amount)
+            credit: round(pay.amount)
         });
 
         entries.push({
@@ -196,11 +198,11 @@ export function recordSale(
             type: t.reglement as any,
             lines: paymentLines,
             totals: {
-                debit: round(payment.amount),
-                credit: round(payment.amount)
+                debit: round(pay.amount),
+                credit: round(pay.amount)
             },
             isBalanced: true
         });
-    }
+    });
     return entries;
 }

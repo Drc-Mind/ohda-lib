@@ -135,14 +135,14 @@ describe('SYSCOHADA Sales Logic', () => {
     });
 
     describe('Payment Handling', () => {
-        it('should create a separate payment entry when payment is provided', () => {
+        it('should create a separate payment entry when payments are provided', () => {
             const ohada = new Ohada({ disableVAT: false });
             const results = ohada.recordSale({
                 amount: 100000,
                 label: "Vente comptant",
                 saleType: 'GOODS',
                 vatRate: 18,
-                payment: { method: 'cash', amount: 118000 }
+                payments: [{ method: 'cash', amount: 118000 }]
             });
 
             expect(results.length).toBe(2); // Invoice + Payment
@@ -151,6 +151,28 @@ describe('SYSCOHADA Sales Logic', () => {
             expect(payment.isBalanced).toBe(true);
             expect(payment.lines.find(l => l.account === '5711' && l.debit === 118000)).toBeDefined(); // Cash
             expect(payment.lines.find(l => l.account === '4111' && l.credit === 118000)).toBeDefined(); // Client
+        });
+
+        it('should handle multiple split payments', () => {
+            const ohada = new Ohada({ disableVAT: false });
+            const results = ohada.recordSale({
+                amount: 100000,
+                label: "Vente split",
+                saleType: 'GOODS',
+                vatRate: 18,
+                payments: [
+                    { method: 'cash', amount: 59000 },
+                    { method: 'bank', amount: 59000 }
+                ]
+            });
+
+            expect(results.length).toBe(3); // Invoice + 2 Payments
+            
+            const payment1 = results[1];
+            expect(payment1.lines.find(l => l.account === '5711' && l.debit === 59000)).toBeDefined(); // Cash
+            
+            const payment2 = results[2];
+            expect(payment2.lines.find(l => l.account === '5211' && l.debit === 59000)).toBeDefined(); // Bank
         });
     });
 
@@ -162,7 +184,7 @@ describe('SYSCOHADA Sales Logic', () => {
                 label: "Full Sale",
                 saleType: 'GOODS',
                 inventoryExit: { costPrice: 60000 },
-                payment: { method: 'bank', amount: 118000 }
+                payments: [{ method: 'bank', amount: 118000 }]
             });
 
             expect(results[0].type).toBe('CONSTATATION');

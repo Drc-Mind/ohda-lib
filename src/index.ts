@@ -5,4 +5,4 @@ export * from './business/purchase/types';
 export * from './business/sales';
 export * from './business/expenses';
 export * from './business/onboarding/types';
-export { calculateOpeningBalance } from './business/onboarding/processor';
+export { recordOpeningEntry } from './business/onboarding/processor';

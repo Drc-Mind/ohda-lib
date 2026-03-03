@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Business Features',
       items: [
+        'opening-entry',
         'sales',
         'purchases',
         'expenses',

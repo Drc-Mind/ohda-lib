@@ -33,7 +33,9 @@ export interface Translations {
   // Transaction Types
   constatation: string;
   reglement: string;
+  reduction: string;
   stockExit: string;
+  variationStock: string;
   openingBalance: string;
 }
 
@@ -66,7 +68,9 @@ export const translations: Record<Locale, Translations> = {
 
     constatation: 'CONSTATATION',
     reglement: 'REGLEMENT',
+    reduction: 'REDUCTION',
     stockExit: 'SORTIE_STOCK',
+    variationStock: 'VARIATION_STOCK',
     openingBalance: 'BILAN_OUVERTURE'
   },
   en: {
@@ -97,7 +101,9 @@ export const translations: Record<Locale, Translations> = {
 
     constatation: 'ACCRUAL',
     reglement: 'PAYMENT',
+    reduction: 'REDUCTION',
     stockExit: 'STOCK_EXIT',
+    variationStock: 'STOCK_VARIATION',
     openingBalance: 'OPENING_BALANCE'
   }
 };
