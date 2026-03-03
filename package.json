@@ -1,6 +1,6 @@
 {
   "name": "@drcmind/ohada-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A developer-friendly OHADA accounting library that transforms business events into type-safe journal entries, manages stock and expenses, and generates compliant financial reports",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
