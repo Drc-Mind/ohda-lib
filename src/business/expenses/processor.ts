@@ -143,38 +143,40 @@ export function recordExpense(
     });
 
     // --- ENTRY 2: PAYMENTS (only if NOT in directMode and payments are provided) ---
-    payments.forEach(pay => {
-        if (pay.amount <= 0) return;
+    if (!directMode) {
+        payments.forEach(pay => {
+            if (pay.amount <= 0) return;
 
-        const paymentLines: JournalEntry['lines'] = [];
-        
-        // Debit Supplier (Reduce debt)
-        paymentLines.push({
-            account: COMMON_ACCOUNTS.SUPPLIER,
-            label: `${t.supplier} - ${t.payment} - ${label}`,
-            debit: round(pay.amount),
-            credit: 0
-        });
-
-        // Credit Cash/Bank
-        const monetaryAccount = pay.method === 'cash' ? COMMON_ACCOUNTS.CASH : COMMON_ACCOUNTS.BANK;
-        paymentLines.push({
-            account: monetaryAccount,
-            label: `${t.payment} (${pay.method}) - ${label}`,
-            debit: 0,
-            credit: round(pay.amount)
-        });
-
-        entries.push({
-            date,
-            type: t.reglement as any,
-            lines: paymentLines,
-            totals: {
+            const paymentLines: JournalEntry['lines'] = [];
+            
+            // Debit Supplier (Reduce debt)
+            paymentLines.push({
+                account: COMMON_ACCOUNTS.SUPPLIER,
+                label: `${t.supplier} - ${t.payment} - ${label}`,
                 debit: round(pay.amount),
+                credit: 0
+            });
+
+            // Credit Cash/Bank
+            const monetaryAccount = pay.method === 'cash' ? COMMON_ACCOUNTS.CASH : COMMON_ACCOUNTS.BANK;
+            paymentLines.push({
+                account: monetaryAccount,
+                label: `${t.payment} (${pay.method}) - ${label}`,
+                debit: 0,
                 credit: round(pay.amount)
-            },
-            isBalanced: true
+            });
+
+            entries.push({
+                date,
+                type: t.reglement as any,
+                lines: paymentLines,
+                totals: {
+                    debit: round(pay.amount),
+                    credit: round(pay.amount)
+                },
+                isBalanced: true
+            });
         });
-    });
+    }
     return entries;
 }

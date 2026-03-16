@@ -302,10 +302,10 @@ describe('SYSCOHADA Expenses Logic', () => {
     });
 
     describe('Direct Expense Mode (Cash Basis)', () => {
-        it('should record expense directly to cash when directExpense is true', () => {
+        it('should record expense directly to cash when directMode is true', () => {
             const ohada = new Ohada({ 
                 disableVAT: false,
-                directExpense: true 
+                directMode: true 
             });
             
             const results = ohada.recordExpense({
@@ -338,7 +338,7 @@ describe('SYSCOHADA Expenses Logic', () => {
         it('should use bank account if specified in payment', () => {
             const ohada = new Ohada({ 
                 disableVAT: true,
-                directExpense: true 
+                directMode: true 
             });
             
             const results = ohada.recordExpense({
@@ -347,6 +347,8 @@ describe('SYSCOHADA Expenses Logic', () => {
                 label: "Entretien clim",
                 payments: [{ method: 'bank', amount: 20000 }]
             });
+
+            expect(results.length).toBe(1);
 
             const entry = results[0];
             const bankLine = entry.lines.find(l => l.account === '5211');

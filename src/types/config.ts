@@ -36,6 +36,6 @@ export interface OhadaConfig {
    * - true: Records a single entry direct to cash/bank.
    * - false (default): Records two entries (Constatation -> Règlement).
    */
-  directExpense?: boolean;
+  directMode?: boolean;
 }
 

@@ -108,7 +108,7 @@ export class Ohada {
       locale, 
       vatConfig, 
       !!this.config.disableVAT, 
-      !!this.config.directExpense
+      !!this.config.directMode
     );
   }
 
